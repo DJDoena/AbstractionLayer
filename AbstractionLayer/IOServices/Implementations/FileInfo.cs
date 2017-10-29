@@ -52,6 +52,15 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
         }
 
         public DateTime CreationTime
-            => (Actual.CreationTime);
+        {
+            get
+            {
+                return (Actual.CreationTime);
+            }
+            set
+            {
+                Actual.CreationTime = value;
+            }
+        }
     }
 }

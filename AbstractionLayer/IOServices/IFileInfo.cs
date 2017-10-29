@@ -20,6 +20,6 @@ namespace DoenaSoft.AbstractionLayer.IOServices
 
         DateTime LastWriteTime { get; set; }
 
-        DateTime CreationTime { get; }
+        DateTime CreationTime { get; set; }
     }
 }
