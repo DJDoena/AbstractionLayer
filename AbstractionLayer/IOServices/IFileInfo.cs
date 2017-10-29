@@ -18,6 +18,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices
 
         Int64 Length { get; }
 
-        DateTime LastWriteTime { get; }
+        DateTime LastWriteTime { get; set; }
+
+        DateTime CreationTime { get; }
     }
 }

@@ -40,6 +40,18 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
             => (Actual.Length);
 
         public DateTime LastWriteTime
-            => (Actual.LastWriteTime);
+        {
+            get
+            {
+                return (Actual.LastWriteTime);
+            }
+            set
+            {
+                Actual.LastWriteTime = value;
+            }
+        }
+
+        public DateTime CreationTime
+            => (Actual.CreationTime);
     }
 }
