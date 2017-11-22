@@ -1,11 +1,11 @@
-﻿using System;
-using System.Globalization;
-
-namespace DoenaSoft.AbstractionLayer.WebServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.WebServices.Implementations
 {
+    using System;
+    using System.Globalization;
+
     internal sealed class WebRequest : IWebRequest
     {
-        private readonly System.Net.WebRequest Actual;
+        private System.Net.WebRequest Actual { get; }
 
         #region IWebRequest
 

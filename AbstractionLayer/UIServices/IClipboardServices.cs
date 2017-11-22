@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.UIServices
+﻿namespace DoenaSoft.AbstractionLayer.UIServices
 {
+    using System;
+
     public interface IClipboardServices
     {
         Boolean ContainsText { get; }

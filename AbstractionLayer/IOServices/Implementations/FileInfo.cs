@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
+    using System;
+    using System.Diagnostics;
+
     [DebuggerDisplay("Name={Name}, FullName={FullName}")]
     internal sealed class FileInfo : IFileInfo
     {
-        private readonly System.IO.FileInfo Actual;
+        private System.IO.FileInfo Actual { get; }
 
         public FileInfo(String fileName)
         {
@@ -27,7 +27,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
         public String FullName
              => (Actual.FullName);
 
-        public String DirectoryName
+        public String FolderName
             => (Actual.DirectoryName);
 
         public String NameWithoutExtension

@@ -1,12 +1,12 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
+    using System;
+
     public sealed class DualLogger : ILogger
     {
-        private readonly ILogger ConsoleLogger;
+        private ILogger ConsoleLogger { get; }
 
-        private readonly ILogger FileLogger;
+        private ILogger FileLogger { get; }
 
         public DualLogger(String fileName)
         {

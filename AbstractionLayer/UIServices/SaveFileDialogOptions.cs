@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.UIServices
+﻿namespace DoenaSoft.AbstractionLayer.UIServices
 {
+    using System;
+
     public sealed class SaveFileDialogOptions : FileDialogOptions
     {
         public Nullable<Boolean> AddExtension { get; set; }

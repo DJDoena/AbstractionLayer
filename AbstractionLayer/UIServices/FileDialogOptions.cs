@@ -1,14 +1,14 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.UIServices
+﻿namespace DoenaSoft.AbstractionLayer.UIServices
 {
+    using System;
+
     public abstract class FileDialogOptions
     {
-        public String InitialDirectory { get; set; }
+        public String InitialFolder { get; set; }
 
         public String Filter { get; set; }
 
-        public Nullable<Boolean> RestoreDirectory { get; set; }
+        public Nullable<Boolean> RestoreFolder { get; set; }
 
         public String Title { get; set; }
 

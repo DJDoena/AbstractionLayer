@@ -1,18 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DoenaSoft.AbstractionLayer.IOServices
+﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+
     public interface IIOServices
     {
         IPath Path { get; }
 
         IFile File { get; }
 
-        IDirectory Directory { get; }
+        IFolder Folder { get; }
 
-        IDirectoryInfo GetDirectoryInfo(String path);
+        IFolderInfo GetFolderInfo(String path);
 
         IFileInfo GetFileInfo(String fileName);
 

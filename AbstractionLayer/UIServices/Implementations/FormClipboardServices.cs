@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
 {
+    using System;
+    using System.Windows.Forms;
+
     public sealed class FormClipboardServices : IClipboardServices
     {
         public Boolean ContainsText

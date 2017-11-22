@@ -1,13 +1,13 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
+    using System;
+    using System.Diagnostics;
+    using System.IO;
+
     [DebuggerDisplay("DriveLetter={DriveLetter}, Label={Label}")]
     internal sealed class DriveInfo : IDriveInfo
     {
-        private readonly System.IO.DriveInfo Actual;
+        private System.IO.DriveInfo Actual { get; }
 
         public DriveInfo(System.IO.DriveInfo driveInfo)
         {
@@ -20,7 +20,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
             => (Actual.IsReady);
 
         public String DriveLetter
-            => (RootDirectory.Substring(0, 2));
+            => (RootFolder.Substring(0, 2));
 
         public String Label
         {
@@ -37,7 +37,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
             }
         }
 
-        public String RootDirectory
+        public String RootFolder
             => (Actual.RootDirectory.FullName);
 
         public Int64 AvailableFreeSpace

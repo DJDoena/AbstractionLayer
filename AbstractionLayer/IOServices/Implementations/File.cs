@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
+    using System;
+
     internal sealed class File : IFile
     {
-        private readonly ILogger Logger;
+        private ILogger Logger { get; }
 
         public File(ILogger logger)
         {

@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-
-namespace DoenaSoft.AbstractionLayer.WebServices
+﻿namespace DoenaSoft.AbstractionLayer.WebServices
 {
+    using System;
+    using System.IO;
+
     public interface IWebResponse : IDisposable
     {
         String ResponseUri { get; }

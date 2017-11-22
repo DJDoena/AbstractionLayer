@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
 {
+    using System;
+    using System.Windows.Forms;
+
     public sealed class FormUIServices : IUIServices
     {
         #region UIServices
@@ -91,9 +91,9 @@ namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
 
             using (SaveFileDialog sfd = new SaveFileDialog())
             {
-                if (options.InitialDirectory != null)
+                if (options.InitialFolder != null)
                 {
-                    sfd.InitialDirectory = options.InitialDirectory;
+                    sfd.InitialDirectory = options.InitialFolder;
                 }
 
                 if (options.AddExtension.HasValue)
@@ -111,9 +111,9 @@ namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
                     sfd.Filter = options.Filter;
                 }
 
-                if (options.RestoreDirectory.HasValue)
+                if (options.RestoreFolder.HasValue)
                 {
-                    sfd.RestoreDirectory = options.RestoreDirectory.Value;
+                    sfd.RestoreDirectory = options.RestoreFolder.Value;
                 }
 
                 if (options.OverwritePrompt.HasValue)
@@ -284,9 +284,9 @@ namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
         private static void SetOpenFileDialogOptions(OpenFileDialog ofd
             , OpenFileDialogOptions options)
         {
-            if (options.InitialDirectory != null)
+            if (options.InitialFolder != null)
             {
-                ofd.InitialDirectory = options.InitialDirectory;
+                ofd.InitialDirectory = options.InitialFolder;
             }
 
             if (options.CheckFileExists.HasValue)
@@ -299,9 +299,9 @@ namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
                 ofd.Filter = options.Filter;
             }
 
-            if (options.RestoreDirectory.HasValue)
+            if (options.RestoreFolder.HasValue)
             {
-                ofd.RestoreDirectory = options.RestoreDirectory.Value;
+                ofd.RestoreDirectory = options.RestoreFolder.Value;
             }
 
             if (options.Title != null)

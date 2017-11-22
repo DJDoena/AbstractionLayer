@@ -1,25 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    internal sealed class Directory : IDirectory
-    {
-        private readonly ILogger Logger;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-        public Directory(ILogger logger)
+    internal sealed class Folder : IFolder
+    {
+        private ILogger Logger { get; }
+
+        public Folder(ILogger logger)
         {
             Logger = logger;
         }
 
-        public Directory()
+        public Folder()
             : this(null)
         { }
 
-        #region IDirectory
+        #region IFolder
 
-        public String WorkingDirectory
+        public String WorkingFolder
             => (Environment.CurrentDirectory);
 
         public Boolean Exists(String path)

@@ -1,10 +1,10 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.IOServices
+﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
-    public interface IDirectory
+    using System;
+
+    public interface IFolder
     {
-        String WorkingDirectory { get; }
+        String WorkingFolder { get; }
 
         Boolean Exists(String path);
 

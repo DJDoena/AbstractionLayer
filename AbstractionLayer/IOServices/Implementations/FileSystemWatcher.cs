@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
+    using System;
+    using System.Diagnostics;
+
     [DebuggerDisplay("Path={Actual.Path}, Filter={Actual.Filter}")]
     internal sealed class FileSystemWatcher : IFileSystemWatcher
     {
-        private readonly System.IO.FileSystemWatcher Actual;
+        private System.IO.FileSystemWatcher Actual { get; }
 
         public FileSystemWatcher(String path
             , String filter)

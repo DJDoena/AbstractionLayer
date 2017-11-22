@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.UIServices
+﻿namespace DoenaSoft.AbstractionLayer.UIServices
 {
+    using System;
+
     public interface IUIServices
     {
         Result ShowMessageBox(String text

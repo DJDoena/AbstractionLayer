@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.IOServices
+﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
+    using System;
+
     public interface IFileInfo
     {
         String Name { get; }
@@ -10,7 +10,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices
 
         String FullName { get; }
 
-        String DirectoryName { get; }
+        String FolderName { get; }
 
         String NameWithoutExtension { get; }
 

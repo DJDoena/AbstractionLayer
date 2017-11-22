@@ -1,12 +1,12 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.IOServices
+﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
-    public interface IDirectoryInfo
+    using System;
+
+    public interface IFolderInfo
     {
         String Name { get; }
 
-        IDirectoryInfo Root { get; }
+        IFolderInfo Root { get; }
 
         Boolean Exists { get; }
 
@@ -15,6 +15,6 @@ namespace DoenaSoft.AbstractionLayer.IOServices
         void Create();
 
         IFileInfo[] GetFiles(String searchPattern
-            , System.IO.SearchOption option = System.IO.SearchOption.TopDirectoryOnly);
+            , System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
     }
 }

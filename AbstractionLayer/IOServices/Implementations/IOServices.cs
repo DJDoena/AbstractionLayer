@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     public sealed class IOServices : IIOServices
     {
         private IPath m_Path;
 
-        private IDirectory m_Directory;
+        private IFolder m_Folder;
 
         private IFile m_File;
 
-        private readonly ILogger Logger;
+        private ILogger Logger { get; }
 
         public IOServices(ILogger logger)
         {
@@ -38,16 +38,16 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
             }
         }
 
-        public IDirectory Directory
+        public IFolder Folder
         {
             get
             {
-                if (m_Directory == null)
+                if (m_Folder == null)
                 {
-                    m_Directory = new Directory(Logger);
+                    m_Folder = new Folder(Logger);
                 }
 
-                return (m_Directory);
+                return (m_Folder);
             }
         }
 
@@ -64,8 +64,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
             }
         }
 
-        public IDirectoryInfo GetDirectoryInfo(String path)
-            => (new DirectoryInfo(path));
+        public IFolderInfo GetFolderInfo(String path)
+            => (new FolderInfo(path));
 
         public IFileInfo GetFileInfo(String fileName)
             => (new FileInfo(fileName));

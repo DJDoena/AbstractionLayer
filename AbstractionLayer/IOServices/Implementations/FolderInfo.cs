@@ -1,15 +1,15 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    [DebuggerDisplay("Name={Name}, FullName={FullName}")]
-    internal sealed class DirectoryInfo : IDirectoryInfo
-    {
-        private readonly System.IO.DirectoryInfo Actual;
+    using System;
+    using System.Diagnostics;
+    using System.Linq;
 
-        public DirectoryInfo(String path)
+    [DebuggerDisplay("Name={Name}, FullName={FullName}")]
+    internal sealed class FolderInfo : IFolderInfo
+    {
+        private System.IO.DirectoryInfo Actual { get; }
+
+        public FolderInfo(String path)
         {
             Actual = new System.IO.DirectoryInfo(path);
         }
@@ -17,8 +17,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
         public String Name
             => (Actual.Name);
 
-        public IDirectoryInfo Root
-            => (new DirectoryInfo(Actual.Root.FullName));
+        public IFolderInfo Root
+            => (new FolderInfo(Actual.Root.FullName));
 
         public Boolean Exists
             => (Actual.Exists);
@@ -29,13 +29,12 @@ namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
         public void Create()
         {
             Actual.Create();
-
         }
 
         public IFileInfo[] GetFiles(String searchPattern
-            , System.IO.SearchOption option)
+            , System.IO.SearchOption searchOption)
         {
-            System.IO.FileInfo[] source = Actual.GetFiles(searchPattern, option);
+            System.IO.FileInfo[] source = Actual.GetFiles(searchPattern, searchOption);
 
             IFileInfo[] target = source.Select(fi => new FileInfo(fi)).ToArray();
 

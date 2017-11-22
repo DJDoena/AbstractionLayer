@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.IOServices
+﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
+    using System;
+
     public interface ILogger : IDisposable
     {
         void WriteLine(String message

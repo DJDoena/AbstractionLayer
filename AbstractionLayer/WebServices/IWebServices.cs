@@ -1,8 +1,8 @@
-﻿using System;
-using System.Globalization;
-
-namespace DoenaSoft.AbstractionLayer.WebServices
+﻿namespace DoenaSoft.AbstractionLayer.WebServices
 {
+    using System;
+    using System.Globalization;
+
     public interface IWebServices
     {
         IWebRequest CreateWebRequest(String targetUrl

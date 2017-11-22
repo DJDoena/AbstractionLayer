@@ -1,13 +1,13 @@
-﻿using System;
-using System.Text;
-
-namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
+    using System;
+    using System.Text;
+
     public sealed class FileLogger : ILogger
     {
-        private readonly System.IO.StreamWriter StreamWriter;
+        private System.IO.StreamWriter StreamWriter { get; }
 
-        private readonly ILogger InputLogger;
+        private ILogger InputLogger { get; }
 
         public FileLogger(String fileName
             , ILogger inputLogger)

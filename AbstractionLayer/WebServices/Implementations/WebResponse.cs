@@ -1,11 +1,11 @@
-﻿using System;
-using System.IO;
-
-namespace DoenaSoft.AbstractionLayer.WebServices.Implementations
+﻿namespace DoenaSoft.AbstractionLayer.WebServices.Implementations
 {
+    using System;
+    using System.IO;
+
     internal sealed class WebResponse : IWebResponse
     {
-        private readonly System.Net.WebResponse Actual;
+        private System.Net.WebResponse Actual { get; }
 
         public WebResponse(System.Net.WebResponse actual)
         {

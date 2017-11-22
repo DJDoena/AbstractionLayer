@@ -65,8 +65,8 @@
     <Compile Include="UIServices\Implementations\WindowClipboardServices.cs" />
     <Compile Include="UIServices\Implementations\FormClipboardServices.cs" />
     <Compile Include="IOServices\Implementations\ConsoleLogger.cs" />
-    <Compile Include="IOServices\Implementations\Directory.cs" />
-    <Compile Include="IOServices\Implementations\DirectoryInfo.cs" />
+    <Compile Include="IOServices\Implementations\Folder.cs" />
+    <Compile Include="IOServices\Implementations\FolderInfo.cs" />
     <Compile Include="IOServices\Implementations\DriveInfo.cs" />
     <Compile Include="IOServices\Implementations\DualLogger.cs" />
     <Compile Include="IOServices\Implementations\File.cs" />

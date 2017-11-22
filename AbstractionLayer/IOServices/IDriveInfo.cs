@@ -1,14 +1,14 @@
-﻿using System;
-
-namespace DoenaSoft.AbstractionLayer.IOServices
+﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
+    using System;
+
     public interface IDriveInfo
     {
         Boolean IsReady { get; }
 
         String Label { get; }
 
-        String RootDirectory { get; }
+        String RootFolder { get; }
 
         String DriveLetter { get; }
 
