@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
 
     public sealed class IOServices : IIOServices
     {
@@ -75,10 +74,6 @@
             , System.IO.FileAccess access
             , System.IO.FileShare share)
             => (new System.IO.FileStream(fileName, mode, access, share));
-
-        public System.IO.StreamWriter GetStreamWriter(System.IO.Stream stream
-            , Encoding encoding)
-            => (new System.IO.StreamWriter(stream, encoding ?? Encoding.UTF8));
 
         public IEnumerable<IDriveInfo> GetDriveInfos(Nullable<System.IO.DriveType> driveType)
         {

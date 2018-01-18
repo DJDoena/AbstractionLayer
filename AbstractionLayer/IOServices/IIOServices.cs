@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Text;
 
 
     public interface IIOServices
@@ -21,9 +20,6 @@
             , System.IO.FileMode mode
             , System.IO.FileAccess access
             , System.IO.FileShare share);
-
-        System.IO.StreamWriter GetStreamWriter(System.IO.Stream stream,
-            Encoding encoding = null);
 
         IEnumerable<IDriveInfo> GetDriveInfos(Nullable<System.IO.DriveType> driveType = null);
 
