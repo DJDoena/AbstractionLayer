@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IFile"/> for <see cref="System.IO.File"/>.
+    /// </summary>
     internal sealed class File : IFile
     {
         private ILogger Logger { get; }
@@ -17,17 +20,17 @@
 
         #region IFile
 
-        public Boolean Exists(String path)
-            => (System.IO.File.Exists(path));
+        public Boolean Exists(String fileName)
+            => System.IO.File.Exists(fileName);
 
         public void Copy(String sourceFileName
-            , String destFileName
+            , String destinationFileName
             , Boolean overwrite)
         {
             Logger?.WriteLine($"Copy file \"{sourceFileName}\"", true);
-            Logger?.WriteLine($"to        \"{destFileName}\"");
+            Logger?.WriteLine($"to        \"{destinationFileName}\"");
 
-            System.IO.File.Copy(sourceFileName, destFileName, overwrite);
+            System.IO.File.Copy(sourceFileName, destinationFileName, overwrite);
         }
 
         public void Move(String oldFileName
@@ -52,10 +55,10 @@
             System.IO.File.Delete(fileName);
         }
 
-        public void SetAttributes(String fullName
+        public void SetAttributes(String fileName
             , System.IO.FileAttributes fileAttributes)
         {
-            System.IO.File.SetAttributes(fullName, fileAttributes);
+            System.IO.File.SetAttributes(fileName, fileAttributes);
         }
 
         #endregion

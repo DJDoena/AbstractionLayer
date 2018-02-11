@@ -2,14 +2,28 @@
 {
     using System;
 
+    /// <summary>
+    /// Standard implementation of <see cref="ILogger"/> for <see cref="Console"/>.
+    /// </summary>
     public sealed class ConsoleLogger : ILogger
     {
+        /// <summary>
+        /// Writes the message with its parameters and creates a line break and another empty line.
+        /// </summary>
+        /// <param name="message">The message</param>
+        /// <param name="parameters">The message parameter</param>
         public void WriteLine(String message
             , params Object[] parameters)
         {
             WriteLine(message, false, parameters);
         }
 
+        /// <summary>
+        /// Writes the message with its parameters and creates a line break with the option to suppress additional  empty line.
+        /// </summary>
+        /// <param name="message">The message</param>
+        /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
+        /// <param name="parameters">The message parameter</param>
         public void WriteLine(String message
             , Boolean suppressFreeLine
             , params Object[] parameters)
@@ -24,6 +38,10 @@
             }
         }
 
+        /// <summary>
+        /// Reads user input.
+        /// </summary>
+        /// <returns>The user input</returns>
         public String ReadLine()
         {
             String input;
@@ -33,9 +51,17 @@
             return (input);
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         { }
 
+        /// <summary>
+        /// Write the message with its parameters with the expectation that a user input will soon be required.
+        /// </summary>
+        /// <param name="message">The message</param>
+        /// <param name="parameters">The message parameter</param>
         public void WriteLineForInput(String message
             , params Object[] parameters)
         {

@@ -3,6 +3,9 @@
     using System;
     using System.Diagnostics;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IFileSystemWatcher"/> for <see cref="System.IO.FileSystemWatcher"/>.
+    /// </summary>
     [DebuggerDisplay("Path={Actual.Path}, Filter={Actual.Filter}")]
     internal sealed class FileSystemWatcher : IFileSystemWatcher
     {
@@ -16,64 +19,34 @@
 
         #region IFileSystemWatcher
 
-        public Boolean IncludeSubdirectories
+        public Boolean IncludeSubFolders
         {
-            get
-            {
-                return (Actual.IncludeSubdirectories);
-            }
-            set
-            {
-                Actual.IncludeSubdirectories = value;
-            }
+            get => Actual.IncludeSubdirectories;
+            set => Actual.IncludeSubdirectories = value;
         }
 
         public Boolean EnableRaisingEvents
         {
-            get
-            {
-                return (Actual.EnableRaisingEvents);
-            }
-            set
-            {
-                Actual.EnableRaisingEvents = value;
-            }
+            get => Actual.EnableRaisingEvents;
+            set => Actual.EnableRaisingEvents = value;
         }
 
         public event System.IO.FileSystemEventHandler Created
         {
-            add
-            {
-                Actual.Created += value;
-            }
-            remove
-            {
-                Actual.Created -= value;
-            }
+            add => Actual.Created += value;
+            remove => Actual.Created -= value;
         }
 
         public event System.IO.RenamedEventHandler Renamed
         {
-            add
-            {
-                Actual.Renamed += value;
-            }
-            remove
-            {
-                Actual.Renamed -= value;
-            }
+            add => Actual.Renamed += value;
+            remove => Actual.Renamed -= value;
         }
 
         public event System.IO.FileSystemEventHandler Deleted
         {
-            add
-            {
-                Actual.Deleted += value;
-            }
-            remove
-            {
-                Actual.Deleted -= value;
-            }
+            add => Actual.Deleted += value;
+            remove => Actual.Deleted -= value;
         }
 
         #endregion

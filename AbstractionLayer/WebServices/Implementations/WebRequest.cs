@@ -3,6 +3,9 @@
     using System;
     using System.Globalization;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IWebRequest"/> for <see cref="System.Net.WebRequest"/>.
+    /// </summary>
     internal sealed class WebRequest : IWebRequest
     {
         private System.Net.WebRequest Actual { get; }

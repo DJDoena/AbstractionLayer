@@ -2,14 +2,29 @@
 {
     using System;
 
+    /// <summary>
+    /// Contains the options to configure a "save file" dialog.
+    /// </summary>
     public sealed class SaveFileDialogOptions : FileDialogOptions
     {
+        /// <summary>
+        /// Determines if a file extension shall be added if none is provided by the user.
+        /// </summary>
         public Nullable<Boolean> AddExtension { get; set; }
 
+        /// <summary>
+        /// Determines the default file extension.
+        /// </summary>
         public String DefaultExt { get; set; }
 
+        /// <summary>
+        /// Determines if the user should be asked to overwrite the file if it already exists.
+        /// </summary>
         public Nullable<Boolean> OverwritePrompt { get; set; }
 
-        public Nullable<Boolean> ValidateNames { get; set; }
+        /// <summary>
+        /// Determines if the file name shall be validated.
+        /// </summary>
+        public Nullable<Boolean> ValidateName { get; set; }
     }
 }

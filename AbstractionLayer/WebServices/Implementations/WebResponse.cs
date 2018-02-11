@@ -3,6 +3,9 @@
     using System;
     using System.IO;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IWebResponse"/> for <see cref="System.Net.WebResponse"/>.
+    /// </summary>
     internal sealed class WebResponse : IWebResponse
     {
         private System.Net.WebResponse Actual { get; }
@@ -19,10 +22,10 @@
         #region IWebResponse
 
         public String ResponseUri
-            => (Actual.ResponseUri.AbsoluteUri);
+            => Actual.ResponseUri.AbsoluteUri;
 
         public Stream GetResponseStream()
-            => (Actual.GetResponseStream());
+            => Actual.GetResponseStream();
 
         public void Close()
         {

@@ -4,6 +4,9 @@
     using System.Diagnostics;
     using System.IO;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IDriveInfo"/> for <see cref="System.IO.DriveInfo"/>.
+    /// </summary>
     [DebuggerDisplay("DriveLetter={DriveLetter}, Label={Label}")]
     internal sealed class DriveInfo : IDriveInfo
     {
@@ -17,10 +20,10 @@
         #region  IDriveInfo
 
         public Boolean IsReady
-            => (Actual.IsReady);
+            => Actual.IsReady;
 
         public String DriveLetter
-            => (RootFolder.Substring(0, 2));
+            => RootFolder.Substring(0, 2);
 
         public String Label
         {
@@ -38,10 +41,10 @@
         }
 
         public String RootFolder
-            => (Actual.RootDirectory.FullName);
+            => Actual.RootDirectory.FullName;
 
-        public Int64 AvailableFreeSpace
-            => (Actual.AvailableFreeSpace);
+        public UInt64 AvailableFreeSpace
+            => (UInt64)(Actual.AvailableFreeSpace);
 
         #endregion
 

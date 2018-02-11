@@ -1,9 +1,13 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IFolderInfo"/> for <see cref="System.IO.DirectoryInfo"/>.
+    /// </summary>
     [DebuggerDisplay("Name={Name}, FullName={FullName}")]
     internal sealed class FolderInfo : IFolderInfo
     {
@@ -15,28 +19,28 @@
         }
 
         public String Name
-            => (Actual.Name);
+            => Actual.Name;
 
         public IFolderInfo Root
-            => (new FolderInfo(Actual.Root.FullName));
+            => new FolderInfo(Actual.Root.FullName);
 
         public Boolean Exists
-            => (Actual.Exists);
+            => Actual.Exists;
 
         public String FullName
-            => (Actual.FullName);
+            => Actual.FullName;
 
         public void Create()
         {
             Actual.Create();
         }
 
-        public IFileInfo[] GetFiles(String searchPattern
+        public IEnumerable<IFileInfo> GetFiles(String searchPattern
             , System.IO.SearchOption searchOption)
         {
-            System.IO.FileInfo[] source = Actual.GetFiles(searchPattern, searchOption);
+            IEnumerable<System.IO.FileInfo> source = Actual.GetFiles(searchPattern, searchOption);
 
-            IFileInfo[] target = source.Select(fi => new FileInfo(fi)).ToArray();
+            IEnumerable<IFileInfo> target = source.Select<System.IO.FileInfo, IFileInfo>(fi => new FileInfo(fi));
 
             return (target);
         }

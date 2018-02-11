@@ -3,6 +3,9 @@
     using System;
     using System.Diagnostics;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IFileInfo"/> for <see cref="System.IO.FileInfo"/>.
+    /// </summary>
     [DebuggerDisplay("Name={Name}, FullName={FullName}")]
     internal sealed class FileInfo : IFileInfo
     {
@@ -19,48 +22,36 @@
         }
 
         public String Name
-            => (Actual.Name);
+            => Actual.Name;
 
         public String Extension
-            => (Actual.Extension);
+            => Actual.Extension;
 
         public String FullName
-             => (Actual.FullName);
+            => Actual.FullName;
 
         public String FolderName
-            => (Actual.DirectoryName);
+            => Actual.DirectoryName;
 
         public String NameWithoutExtension
-            => (Name.Substring(0, Name.Length - Extension.Length));
+            => Name.Substring(0, Name.Length - Extension.Length);
 
         public Boolean Exists
-            => (Actual.Exists);
+            => Actual.Exists;
 
-        public Int64 Length
-            => (Actual.Length);
+        public UInt64 Length
+            => (UInt64)(Actual.Length);
 
         public DateTime LastWriteTime
         {
-            get
-            {
-                return (Actual.LastWriteTime);
-            }
-            set
-            {
-                Actual.LastWriteTime = value;
-            }
+            get => Actual.LastWriteTime;
+            set => Actual.LastWriteTime = value;
         }
 
         public DateTime CreationTime
         {
-            get
-            {
-                return (Actual.CreationTime);
-            }
-            set
-            {
-                Actual.CreationTime = value;
-            }
+            get => Actual.CreationTime;
+            set => Actual.CreationTime = value;
         }
     }
 }

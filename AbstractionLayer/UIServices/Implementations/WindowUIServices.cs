@@ -4,10 +4,21 @@
     using System.Windows;
     using Microsoft.Win32;
 
+    /// <summary>
+    /// Standard implementation of <see cref="IUIServices"/> for <see cref="Window"/>.
+    /// </summary>
     public sealed class WindowUIServices : IUIServices
     {
         #region UIServices
 
+        /// <summary>
+        /// Shows a MessageBox.
+        /// </summary>
+        /// <param name="text">The main text</param>
+        /// <param name="caption">The MessageBox title</param>
+        /// <param name="genericButtons">The buttons to be shown</param>
+        /// <param name="genericIcon">The MessageBox icon</param>
+        /// <returns>Which button was pressed</returns>
         public Result ShowMessageBox(String text
             , String caption
             , Buttons genericButtons
@@ -24,6 +35,12 @@
             return (genericResult);
         }
 
+        /// <summary>
+        /// Opens a "open file" dialog.
+        /// </summary>
+        /// <param name="options">The dialog options</param>
+        /// <param name="fileName">The selected file name</param>
+        /// <returns>Whether the dialog was confirmed or cancelled</returns>
         public Boolean ShowOpenFileDialog(OpenFileDialogOptions options
            , out String fileName)
         {
@@ -54,6 +71,12 @@
             }
         }
 
+        /// <summary>
+        /// Opens a "open file" dialog.
+        /// </summary>
+        /// <param name="options">The dialog options</param>
+        /// <param name="fileNames">The selected file names</param>
+        /// <returns>Whether the dialog was confirmed or cancelled</returns>
         public Boolean ShowOpenFileDialog(OpenFileDialogOptions options
             , out String[] fileNames)
         {
@@ -84,6 +107,12 @@
             }
         }
 
+        /// <summary>
+        /// Opens a "save file" dialog.
+        /// </summary>
+        /// <param name="options">The dialog options</param>
+        /// <param name="fileName">The selected file name</param>
+        /// <returns>Whether the dialog was confirmed or cancelled</returns>
         public Boolean ShowSaveFileDialog(SaveFileDialogOptions options
             , out String fileName)
         {
@@ -124,9 +153,9 @@
                 sfd.OverwritePrompt = options.OverwritePrompt.HasValue;
             }
 
-            if (options.ValidateNames.HasValue)
+            if (options.ValidateName.HasValue)
             {
-                sfd.ValidateNames = options.ValidateNames.HasValue;
+                sfd.ValidateNames = options.ValidateName.HasValue;
             }
 
             if (options.Title != null)
@@ -155,6 +184,12 @@
             }
         }
 
+        /// <summary>
+        /// Shows a "select folder" dialog.
+        /// </summary>
+        /// <param name="options">The dialog options</param>
+        /// <param name="folder">The selected folder</param>
+        /// <returns>Whether the dialog was confirmed or cancelled</returns>
         public Boolean ShowFolderBrowserDialog(FolderBrowserDialogOptions options
             , out String folder)
         {

@@ -22,47 +22,43 @@
         public String WorkingFolder
             => (Environment.CurrentDirectory);
 
-        public Boolean Exists(String path)
-            => (System.IO.Directory.Exists(path));
+        public Boolean Exists(String folder)
+            => (System.IO.Directory.Exists(folder));
 
-        public void Delete(String path)
+        public void Delete(String folder)
         {
-            Logger?.WriteLine($"Delete folder \"{path}\"");
+            Logger?.WriteLine($"Delete folder \"{folder}\"");
 
-            System.IO.Directory.Delete(path, true);
+            System.IO.Directory.Delete(folder, true);
         }
 
-        public void CreateFolder(String path)
+        public void CreateFolder(String folder)
         {
-            Logger?.WriteLine($"Create folder \"{path}\"");
+            Logger?.WriteLine($"Create folder \"{folder}\"");
 
-            System.IO.Directory.CreateDirectory(path);
+            System.IO.Directory.CreateDirectory(folder);
         }
 
-        public String[] GetFolders(String path
+        public IEnumerable<String> GetFolders(String folder
             , String searchPattern
             , System.IO.SearchOption searchOption)
         {
-            IEnumerable<String> filtered = System.IO.Directory.GetDirectories(path, searchPattern, searchOption);
+            IEnumerable<String> filtered = System.IO.Directory.GetDirectories(folder, searchPattern, searchOption);
 
-            filtered = filtered.OrderBy(item => item);
+            IEnumerable<String> sorted = filtered.OrderBy(item => item);
 
-            String[] folders = filtered.ToArray();
-
-            return (folders);
+            return (sorted);
         }
 
-        public String[] GetFiles(String path
+        public IEnumerable<String> GetFiles(String folder
             , String searchPattern
             , System.IO.SearchOption searchOption)
         {
-            IEnumerable<String> filtered = System.IO.Directory.GetFiles(path, searchPattern, searchOption);
+            IEnumerable<String> filtered = System.IO.Directory.GetFiles(folder, searchPattern, searchOption);
 
-            filtered = filtered.OrderBy(item => item);
+            IEnumerable<String> sorted = filtered.OrderBy(item => item);
 
-            String[] files = filtered.ToArray();
-
-            return (files);
+            return (sorted);
         }
 
         #endregion
