@@ -30,6 +30,24 @@
         public String FullName
             => Actual.FullName;
 
+        public DateTime LastWriteTime
+        {
+            get => Actual.LastWriteTime;
+            set => Actual.LastWriteTime = value;
+        }
+
+        public DateTime CreationTime
+        {
+            get => Actual.CreationTime;
+            set => Actual.CreationTime = value;
+        }
+
+        public DateTime LastAccessTime
+        {
+            get => Actual.LastAccessTime;
+            set => Actual.LastAccessTime = value;
+        }
+
         public void Create()
         {
             Actual.Create();

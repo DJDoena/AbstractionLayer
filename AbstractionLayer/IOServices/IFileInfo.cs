@@ -48,13 +48,18 @@
         UInt64 Length { get; }
 
         /// <summary>
-        /// Returns the timestamp of the last write to the file.
+        /// Gets or sets the time when the current file was last written to.
         /// </summary>
         DateTime LastWriteTime { get; set; }
 
         /// <summary>
-        /// Returns the timestamp of the creation of the file.
+        /// Gets or sets the creation time of the current file.
         /// </summary>
         DateTime CreationTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time the current file was last accessed.
+        /// </summary>
+        DateTime LastAccessTime { get; set; }
     }
 }

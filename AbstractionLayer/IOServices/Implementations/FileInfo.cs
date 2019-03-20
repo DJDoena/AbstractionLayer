@@ -56,5 +56,11 @@
             get => Actual.CreationTime;
             set => Actual.CreationTime = value;
         }
+
+        public DateTime LastAccessTime
+        {
+            get => Actual.LastAccessTime;
+            set => Actual.LastAccessTime = value;
+        }
     }
 }

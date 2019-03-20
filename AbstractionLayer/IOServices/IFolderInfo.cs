@@ -29,6 +29,21 @@
         String FullName { get; }
 
         /// <summary>
+        /// Gets or sets the time when the current folder was last written to.
+        /// </summary>
+        DateTime LastWriteTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the creation time of the current folder.
+        /// </summary>
+        DateTime CreationTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time the current folder was last accessed.
+        /// </summary>
+        DateTime LastAccessTime { get; set; }
+
+        /// <summary>
         /// Creates the folder.
         /// </summary>
         void Create();
