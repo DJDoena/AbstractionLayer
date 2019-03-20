@@ -30,6 +30,9 @@
         public String FullName
             => Actual.FullName;
 
+        public IFolderInfo Folder
+            => new FolderInfo(Actual.DirectoryName);
+
         public String FolderName
             => Actual.DirectoryName;
 

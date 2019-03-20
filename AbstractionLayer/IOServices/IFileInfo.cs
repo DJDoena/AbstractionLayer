@@ -23,6 +23,11 @@
         String FullName { get; }
 
         /// <summary>
+        /// Returns the folder that contains the file.
+        /// </summary>
+        IFolderInfo Folder { get; }
+
+        /// <summary>
         /// Returns the path without the file name.
         /// </summary>
         String FolderName { get; }
