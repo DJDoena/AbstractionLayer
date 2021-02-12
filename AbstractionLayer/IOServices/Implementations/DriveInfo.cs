@@ -25,18 +25,36 @@
         public String DriveLetter
             => RootFolder.Substring(0, 2);
 
-        public String Label
+        public string DriveLabel
         {
             get
             {
-                String driveLabel = DriveLetter;
+                string driveLabel = DriveLetter;
 
                 if (CanReadLabel())
                 {
                     driveLabel += TryReadLabel();
                 }
 
-                return (driveLabel);
+                return driveLabel;
+            }
+        }
+
+        public string VolumeLabel
+        {
+            get
+            {
+                string volumeLabel;
+                if (CanReadLabel())
+                {
+                    volumeLabel = TryReadVolumeLabel();
+                }
+                else
+                {
+                    volumeLabel = string.Empty;
+                }
+
+                return volumeLabel;
             }
         }
 
@@ -53,15 +71,29 @@
 
         private String TryReadLabel()
         {
+            string volumeLabel = TryReadVolumeLabel();
+
+            if (!string.IsNullOrEmpty(volumeLabel))
+            {
+                return " [" + volumeLabel + "]";
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
+
+        private String TryReadVolumeLabel()
+        {
             try
             {
-                String label = " [" + Actual.VolumeLabel + "]";
+                string volumeLabel = Actual.VolumeLabel;
 
-                return (label);
+                return volumeLabel;
             }
             catch (IOException)
             {
-                return (String.Empty);
+                return string.Empty;
             }
         }
     }

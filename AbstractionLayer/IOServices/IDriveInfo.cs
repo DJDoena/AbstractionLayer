@@ -13,23 +13,28 @@
         Boolean IsReady { get; }
 
         /// <summary>
-        /// Returns the label.
+        /// Returns the drive label.
         /// </summary>
-        String Label { get; }
+        string DriveLabel { get; }
+
+        /// <summary>
+        /// Returns the original volume label.
+        /// </summary>
+        string VolumeLabel { get; }
 
         /// <summary>
         /// Returns the root folder.
         /// </summary>
-        String RootFolder { get; }
+        string RootFolder { get; }
 
         /// <summary>
         /// Returns the drive letter.
         /// </summary>
-        String DriveLetter { get; }
+        string DriveLetter { get; }
 
         /// <summary>
         /// Returns the free space in bytes.
         /// </summary>
-        UInt64 AvailableFreeSpace { get; }
+        ulong AvailableFreeSpace { get; }
     }
 }
