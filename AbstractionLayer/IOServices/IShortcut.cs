@@ -1,7 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
-    using System;
-
     /// <summary>
     /// Interface to seperate Shortcut concerns from an concrete implementation.
     /// </summary>
@@ -10,17 +8,17 @@
         /// <summary>
         /// The description.
         /// </summary>
-        String Description { set; }
+        string Description { set; }
 
         /// <summary>
         /// The target path.
         /// </summary>
-        String TargetPath { set; }
+        string TargetPath { set; }
 
         /// <summary>
         /// The working folder.
         /// </summary>
-        String WorkingFolder { set; }
+        string WorkingFolder { set; }
 
         /// <summary>
         /// Saves the Shortcut.

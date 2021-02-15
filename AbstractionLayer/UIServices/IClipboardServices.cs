@@ -10,19 +10,19 @@
         /// <summary>
         /// Returns whether the clipboard contains text.
         /// </summary>
-        Boolean ContainsText { get; }
+        bool ContainsText { get; }
 
         /// <summary>
         /// Returns the text from the clipboard.
         /// </summary>
         /// <returns>the text from the clipboard</returns>
-        String GetText();
+        string GetText();
 
         /// <summary>
         /// Sets the text to the clipboard.
         /// </summary>
         /// <param name="text">The text</param>
         /// <returns>If the setting succeeded</returns>
-        Boolean SetText(String text);
+        bool SetText(string text);
     }
 }

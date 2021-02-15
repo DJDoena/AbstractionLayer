@@ -11,56 +11,97 @@
     [DebuggerDisplay("Name={Name}, FullName={FullName}")]
     internal sealed class FolderInfo : IFolderInfo
     {
-        private System.IO.DirectoryInfo Actual { get; }
+        private readonly System.IO.DirectoryInfo _actual;
 
-        public FolderInfo(String path)
+        public FolderInfo(string path)
         {
-            Actual = new System.IO.DirectoryInfo(path);
+            _actual = new System.IO.DirectoryInfo(path);
         }
 
-        public String Name
-            => Actual.Name;
+        #region IFolderInfo
 
-        public IFolderInfo Root
-            => new FolderInfo(Actual.Root.FullName);
+        public string Name => _actual.Name;
 
-        public Boolean Exists
-            => Actual.Exists;
+        public IFolderInfo Root => new FolderInfo(_actual.Root.FullName);
 
-        public String FullName
-            => Actual.FullName;
+        public bool Exists => _actual.Exists;
+
+        public string FullName => _actual.FullName;
 
         public DateTime LastWriteTime
         {
-            get => Actual.LastWriteTime;
-            set => Actual.LastWriteTime = value;
+            get => _actual.LastWriteTime;
+            set => _actual.LastWriteTime = value;
+        }
+
+        public DateTime LastWriteTimeUtc
+        {
+            get => _actual.LastWriteTimeUtc;
+            set => _actual.LastWriteTimeUtc = value;
         }
 
         public DateTime CreationTime
         {
-            get => Actual.CreationTime;
-            set => Actual.CreationTime = value;
+            get => _actual.CreationTime;
+            set => _actual.CreationTime = value;
+        }
+
+        public DateTime CreationTimeUtc
+        {
+            get => _actual.CreationTimeUtc;
+            set => _actual.CreationTimeUtc = value;
         }
 
         public DateTime LastAccessTime
         {
-            get => Actual.LastAccessTime;
-            set => Actual.LastAccessTime = value;
+            get => _actual.LastAccessTime;
+            set => _actual.LastAccessTime = value;
+        }
+
+        public DateTime LastAccessTimeUtc
+        {
+            get => _actual.LastAccessTimeUtc;
+            set => _actual.LastAccessTimeUtc = value;
         }
 
         public void Create()
         {
-            Actual.Create();
+            _actual.Create();
         }
 
-        public IEnumerable<IFileInfo> GetFiles(String searchPattern
-            , System.IO.SearchOption searchOption)
+        public IEnumerable<IFileInfo> GetFiles(string searchPattern, System.IO.SearchOption searchOption)
         {
-            IEnumerable<System.IO.FileInfo> source = Actual.GetFiles(searchPattern, searchOption);
+            var source = _actual.GetFiles(searchPattern, searchOption);
 
-            IEnumerable<IFileInfo> target = source.Select<System.IO.FileInfo, IFileInfo>(fi => new FileInfo(fi));
+            var target = source.Select<System.IO.FileInfo, IFileInfo>(fi => new FileInfo(fi));
 
-            return (target);
+            return target;
         }
+
+        #region IEquatable<IFolderInfo>
+
+        public bool Equals(IFolderInfo other) => (FullName ?? string.Empty).Equals(other.FullName, StringComparison.OrdinalIgnoreCase);
+
+        #endregion
+
+        #endregion
+
+        public override int GetHashCode() => FullName?.GetHashCode() ?? 0;
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is IFolderInfo other))
+            {
+                return false;
+            }
+            else
+            {
+                var equals = Equals(other);
+
+                return equals;
+            }
+        }
+
+        public override string ToString() => _actual.ToString();
     }
 }

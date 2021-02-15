@@ -5,22 +5,22 @@
     /// <summary>
     /// Interface to seperate FileInfo concerns from an concrete implementation.
     /// </summary>
-    public interface IFileInfo
+    public interface IFileInfo : IEquatable<IFileInfo>
     {
         /// <summary>
         /// Returns the file name including the extension but without the path.
         /// </summary>
-        String Name { get; }
+        string Name { get; }
 
         /// <summary>
         /// Returns the file extension including the leading '.'.
         /// </summary>
-        String Extension { get; }
+        string Extension { get; }
 
         /// <summary>
         /// Returns the full file name including path and extension.
         /// </summary>
-        String FullName { get; }
+        string FullName { get; }
 
         /// <summary>
         /// Returns the folder that contains the file.
@@ -30,22 +30,22 @@
         /// <summary>
         /// Returns the path without the file name.
         /// </summary>
-        String FolderName { get; }
+        string FolderName { get; }
 
         /// <summary>
         /// Returns the file name without path and extension.
         /// </summary>
-        String NameWithoutExtension { get; }
+        string NameWithoutExtension { get; }
 
         /// <summary>
         /// Returns whether the file exists.
         /// </summary>
-        Boolean Exists { get; }
+        bool Exists { get; }
 
         /// <summary>
         /// Returns the size in bytes.
         /// </summary>
-        UInt64 Length { get; }
+        ulong Length { get; }
 
         /// <summary>
         /// Gets or sets the time when the current file was last written to.
@@ -53,13 +53,28 @@
         DateTime LastWriteTime { get; set; }
 
         /// <summary>
+        /// Gets or sets the time (UTC) when the current file was last written to.
+        /// </summary>
+        DateTime LastWriteTimeUtc { get; set; }
+
+        /// <summary>
         /// Gets or sets the creation time of the current file.
         /// </summary>
         DateTime CreationTime { get; set; }
 
         /// <summary>
+        /// Gets or sets the creation time (UTC) of the current file.
+        /// </summary>
+        DateTime CreationTimeUtc { get; set; }
+
+        /// <summary>
         /// Gets or sets the time the current file was last accessed.
         /// </summary>
         DateTime LastAccessTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time (UTC) the current file was last accessed.
+        /// </summary>
+        DateTime LastAccessTimeUtc { get; set; }
     }
 }

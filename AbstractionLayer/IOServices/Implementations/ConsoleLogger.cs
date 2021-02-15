@@ -12,8 +12,7 @@
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLine(String message
-            , params Object[] parameters)
+        public void WriteLine(string message, params object[] parameters)
         {
             WriteLine(message, false, parameters);
         }
@@ -24,11 +23,9 @@
         /// <param name="message">The message</param>
         /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLine(String message
-            , Boolean suppressFreeLine
-            , params Object[] parameters)
+        public void WriteLine(string message, bool suppressFreeLine, params object[] parameters)
         {
-            message = String.Format(message, parameters);
+            message = string.Format(message, parameters);
 
             Console.WriteLine(message);
 
@@ -42,13 +39,11 @@
         /// Reads user input.
         /// </summary>
         /// <returns>The user input</returns>
-        public String ReadLine()
+        public string ReadLine()
         {
-            String input;
+            var input = Console.ReadLine();
 
-            input = Console.ReadLine();
-
-            return (input);
+            return input;
         }
 
         /// <summary>
@@ -62,8 +57,7 @@
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLineForInput(String message
-            , params Object[] parameters)
+        public void WriteLineForInput(string message, params object[] parameters)
         {
             WriteLine(message, true, parameters);
         }

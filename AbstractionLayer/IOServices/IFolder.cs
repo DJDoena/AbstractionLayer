@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -11,25 +10,25 @@
         /// <summary>
         /// Returns the WorkingFolder.
         /// </summary>
-        String WorkingFolder { get; }
+        string WorkingFolder { get; }
 
         /// <summary>
         /// Returns whether a folder exists.
         /// </summary>
         /// <param name="folder">The folder name</param>
-        Boolean Exists(String folder);
+        bool Exists(string folder);
 
         /// <summary>
         /// Deletes a folder,
         /// </summary>
         /// <param name="folder">The folder name</param>
-        void Delete(String folder);
+        void Delete(string folder);
 
         /// <summary>
         /// Creates a folder.
         /// </summary>
         /// <param name="folder">The folder name</param>
-        void CreateFolder(String folder);
+        void CreateFolder(string folder);
 
         /// <summary>
         /// Returns all folders in a folder according to the search pattern and option.
@@ -38,9 +37,7 @@
         /// <param name="searchPattern">The search pattern</param>
         /// <param name="searchOption">The search option</param>
         /// <returns>All folders in the folder according to the search pattern and option</returns>
-        IEnumerable<String> GetFolders(String folder
-            , String searchPattern = "*.*"
-            , System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
+        IEnumerable<string> GetFolders(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Returns all files in a folder according to the search pattern and option.
@@ -49,9 +46,7 @@
         /// <param name="searchPattern">The search pattern</param>
         /// <param name="searchOption">The search option</param>
         /// <returns>All files in the folder according to the search pattern and option</returns>
-        IEnumerable<String> GetFiles(String folder
-            , String searchPattern = "*.*"
-            , System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
+        IEnumerable<string> GetFiles(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
 
     }
 }

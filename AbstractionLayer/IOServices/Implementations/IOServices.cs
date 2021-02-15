@@ -8,13 +8,11 @@
     /// </summary>
     public sealed class IOServices : IIOServices
     {
-        private IPath m_Path;
+        private readonly IPath _path;
 
-        private IFolder m_Folder;
+        private readonly IFolder _folder;
 
-        private IFile m_File;
-
-        private ILogger Logger { get; }
+        private readonly IFile _file;
 
         /// <summary>
         /// Constructor.
@@ -22,7 +20,9 @@
         /// <param name="logger">A logger</param>
         public IOServices(ILogger logger)
         {
-            Logger = logger;
+            _path = new Path();
+            _folder = new Folder(logger);
+            _file = new File(logger);
         }
 
         /// <summary>
@@ -37,66 +37,31 @@
         /// <summary>
         /// Returns an object to deal with paths.
         /// </summary>
-        public IPath Path
-        {
-            get
-            {
-                if (m_Path == null)
-                {
-                    m_Path = new Path();
-                }
-
-                return (m_Path);
-            }
-        }
+        public IPath Path => _path;
 
         /// <summary>
         /// Returns an object to deal with folders.
         /// </summary>
-        public IFolder Folder
-        {
-            get
-            {
-                if (m_Folder == null)
-                {
-                    m_Folder = new Folder(Logger);
-                }
-
-                return (m_Folder);
-            }
-        }
+        public IFolder Folder => _folder;
 
         /// <summary>
         /// Returns an object to deal with files.
         /// </summary>
-        public IFile File
-        {
-            get
-            {
-                if (m_File == null)
-                {
-                    m_File = new File(Logger);
-                }
-
-                return (m_File);
-            }
-        }
+        public IFile File => _file;
 
         /// <summary>
         /// Returns a <see cref="IFolderInfo"/> for a given folder.
         /// </summary>
         /// <param name="folder">The folder</param>
         /// <returns>A <see cref="IFolderInfo"/> for a given folder</returns>
-        public IFolderInfo GetFolderInfo(String folder)
-            => new FolderInfo(folder);
+        public IFolderInfo GetFolderInfo(string folder) => new FolderInfo(folder);
 
         /// <summary>
         /// Returns a <see cref="IFileInfo"/> for a given file name.
         /// </summary>
         /// <param name="fileName">The file name </param>
         /// <returns>A <see cref="IFileInfo"/> for a given file name</returns>
-        public IFileInfo GetFileInfo(String fileName)
-            => new FileInfo(fileName);
+        public IFileInfo GetFileInfo(string fileName) => new FileInfo(fileName);
 
         /// <summary>
         /// Opens a file.
@@ -106,10 +71,7 @@
         /// <param name="access">The <see cref="System.IO.FileAccess"/></param>
         /// <param name="share">The <see cref="System.IO.FileShare"/></param>
         /// <returns>The opened file</returns>
-        public System.IO.Stream GetFileStream(String fileName
-            , System.IO.FileMode mode
-            , System.IO.FileAccess access
-            , System.IO.FileShare share)
+        public System.IO.Stream GetFileStream(string fileName, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share)
             => new System.IO.FileStream(fileName, mode, access, share);
 
         /// <summary>
@@ -117,7 +79,7 @@
         /// </summary>
         /// <param name="driveType">Filter on the <see cref="System.IO.DriveType"/></param>
         /// <returns>All the <see cref="IDriveInfo"/> currently available</returns>
-        public IEnumerable<IDriveInfo> GetDriveInfos(Nullable<System.IO.DriveType> driveType)
+        public IEnumerable<IDriveInfo> GetDriveInfos(System.IO.DriveType? driveType)
         {
             System.IO.DriveInfo[] drives = System.IO.DriveInfo.GetDrives();
 
@@ -125,11 +87,11 @@
             {
                 if (driveType == null)
                 {
-                    yield return (new DriveInfo(drive));
+                    yield return new DriveInfo(drive);
                 }
                 else if (driveType.Value == drive.DriveType)
                 {
-                    yield return (new DriveInfo(drive));
+                    yield return new DriveInfo(drive);
                 }
             }
         }
@@ -139,12 +101,7 @@
         /// </summary>
         /// <param name="driveLetter">the drive letter</param>
         /// <returns>The <see cref="IDriveInfo"/> for the given drive letter</returns>
-        public IDriveInfo GetDriveInfo(String driveLetter)
-        {
-            System.IO.DriveInfo driveInfo = new System.IO.DriveInfo(driveLetter);
-
-            return (new DriveInfo(driveInfo));
-        }
+        public IDriveInfo GetDriveInfo(string driveLetter) => new DriveInfo(new System.IO.DriveInfo(driveLetter));
 
         /// <summary>
         /// Returns a <see cref="IFileSystemWatcher"/> based on the folder and the search pattern.
@@ -152,9 +109,7 @@
         /// <param name="folder">The folder</param>
         /// <param name="searchPattern">The search pattern</param>
         /// <returns>A <see cref="IFileSystemWatcher"/> based on the folder and the search pattern</returns>
-        public IFileSystemWatcher GetFileSystemWatcher(String folder
-            , String searchPattern)
-            => (new FileSystemWatcher(folder, searchPattern));
+        public IFileSystemWatcher GetFileSystemWatcher(string folder, string searchPattern) => (new FileSystemWatcher(folder, searchPattern));
 
         #endregion
     }

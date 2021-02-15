@@ -1,46 +1,38 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    using System;
-
     /// <summary>
     /// Standard implementation of <see cref="IFile"/> for <see cref="System.IO.File"/>.
     /// </summary>
     internal sealed class File : IFile
     {
-        private ILogger Logger { get; }
+        private readonly ILogger _logger;
 
         public File(ILogger logger)
         {
-            Logger = logger;
+            _logger = logger;
         }
 
-        public File()
-            : this(null)
+        public File() : this(null)
         { }
 
         #region IFile
 
-        public Boolean Exists(String fileName)
-            => System.IO.File.Exists(fileName);
+        public bool Exists(string fileName) => System.IO.File.Exists(fileName);
 
-        public void Copy(String sourceFileName
-            , String destinationFileName
-            , Boolean overwrite)
+        public void Copy(string sourceFileName, string destinationFileName, bool overwrite)
         {
-            Logger?.WriteLine($"Copy file \"{sourceFileName}\"", true);
-            Logger?.WriteLine($"to        \"{destinationFileName}\"");
+            _logger?.WriteLine($"Copy file \"{sourceFileName}\"", true);
+            _logger?.WriteLine($"to        \"{destinationFileName}\"");
 
             System.IO.File.Copy(sourceFileName, destinationFileName, overwrite);
         }
 
-        public void Move(String oldFileName
-            , String newFileName
-            , Boolean overwrite = true)
+        public void Move(string oldFileName, string newFileName, bool overwrite = true)
         {
-            Logger?.WriteLine($"Move file \"{oldFileName}\"", true);
-            Logger?.WriteLine($"to        \"{newFileName}\"");
+            _logger?.WriteLine($"Move file \"{oldFileName}\"", true);
+            _logger?.WriteLine($"to        \"{newFileName}\"");
 
-            if ((overwrite) && (Exists(newFileName)))
+            if (overwrite && Exists(newFileName))
             {
                 Delete(newFileName);
             }
@@ -48,15 +40,14 @@
             System.IO.File.Move(oldFileName, newFileName);
         }
 
-        public void Delete(String fileName)
+        public void Delete(string fileName)
         {
-            Logger?.WriteLine($"Delete file \"{fileName}\"");
+            _logger?.WriteLine($"Delete file \"{fileName}\"");
 
             System.IO.File.Delete(fileName);
         }
 
-        public void SetAttributes(String fileName
-            , System.IO.FileAttributes fileAttributes)
+        public void SetAttributes(string fileName, System.IO.FileAttributes fileAttributes)
         {
             System.IO.File.SetAttributes(fileName, fileAttributes);
         }

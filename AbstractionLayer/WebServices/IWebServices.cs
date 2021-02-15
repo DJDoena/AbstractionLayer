@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.WebServices
 {
-    using System;
     using System.Globalization;
 
     /// <summary>
@@ -14,7 +13,6 @@
         /// <param name="targetUrl">The URL</param>
         /// <param name="ci">The language in which the data is requested</param>
         /// <returns>The WebRequest</returns>
-        IWebRequest CreateWebRequest(String targetUrl
-            , CultureInfo ci = null);
+        IWebRequest CreateWebRequest(string targetUrl, CultureInfo ci = null);
     }
 }

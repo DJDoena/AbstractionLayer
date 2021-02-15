@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -13,24 +12,24 @@
         /// </summary>
         /// <param name="parts">the path parts</param>
         /// <returns>The combined path</returns>
-        String Combine(params String[] parts);
+        string Combine(params string[] parts);
 
         /// <summary>
         /// Returns the path of the temp folder.
         /// </summary>
         /// <returns>The path of the temp folder</returns>
-        String GetTempPath();
+        string GetTempPath();
 
         /// <summary>
         /// Returns all characters not allowed in a file name.
         /// </summary>
         /// <returns>All characters not allowed in a file name</returns>
-        IEnumerable<Char> GetInvalidFileNameChars();
+        IEnumerable<char> GetInvalidFileNameChars();
 
         /// <summary>
         /// Returns all characters not allowed in a path.
         /// </summary>
         /// <returns>All characters not allowed in a path</returns>
-        IEnumerable<Char> GetInvalidPathChars();
+        IEnumerable<char> GetInvalidPathChars();
     }
 }

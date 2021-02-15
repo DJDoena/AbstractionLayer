@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.WebServices.Implementations
 {
-    using System;
     using System.Globalization;
 
     /// <summary>
@@ -8,30 +7,33 @@
     /// </summary>
     internal sealed class WebRequest : IWebRequest
     {
-        private System.Net.WebRequest Actual { get; }
+        private readonly System.Net.WebRequest _actual;
 
         #region IWebRequest
 
-        public WebRequest(String targetUrl
-            , CultureInfo ci)
+        public WebRequest(string targetUrl, CultureInfo ci)
         {
-            Actual = System.Net.WebRequest.Create(targetUrl);
+            _actual = System.Net.WebRequest.Create(targetUrl);
 
             if (ci != null)
             {
-                Actual.Headers.Add("Accept-Language: " + ci.Name);
+                _actual.Headers.Add("Accept-Language: " + ci.Name);
             }
 
-            Actual.Proxy = System.Net.WebRequest.GetSystemWebProxy();
+            _actual.Proxy = System.Net.WebRequest.GetSystemWebProxy();
 
-            Actual.Proxy.Credentials = System.Net.CredentialCache.DefaultNetworkCredentials;
+            _actual.Proxy.Credentials = System.Net.CredentialCache.DefaultNetworkCredentials;
         }
 
         public IWebResponse GetResponse()
         {
-            System.Net.WebResponse actual = Actual.GetResponse();
+            var actual = _actual.GetResponse();
 
-            return ((actual != null) ? (new WebResponse(actual)) : null);
+            var result = actual != null
+                ? new WebResponse(actual)
+                : null;
+
+            return result;
         }
 
         #endregion

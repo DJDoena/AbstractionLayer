@@ -6,59 +6,52 @@
 
     internal sealed class Folder : IFolder
     {
-        private ILogger Logger { get; }
+        private readonly ILogger _logger;
 
         public Folder(ILogger logger)
         {
-            Logger = logger;
+            _logger = logger;
         }
 
-        public Folder()
-            : this(null)
+        public Folder() : this(null)
         { }
 
         #region IFolder
 
-        public String WorkingFolder
-            => (Environment.CurrentDirectory);
+        public string WorkingFolder => Environment.CurrentDirectory;
 
-        public Boolean Exists(String folder)
-            => (System.IO.Directory.Exists(folder));
+        public bool Exists(string folder) => System.IO.Directory.Exists(folder);
 
-        public void Delete(String folder)
+        public void Delete(string folder)
         {
-            Logger?.WriteLine($"Delete folder \"{folder}\"");
+            _logger?.WriteLine($"Delete folder \"{folder}\"");
 
             System.IO.Directory.Delete(folder, true);
         }
 
-        public void CreateFolder(String folder)
+        public void CreateFolder(string folder)
         {
-            Logger?.WriteLine($"Create folder \"{folder}\"");
+            _logger?.WriteLine($"Create folder \"{folder}\"");
 
             System.IO.Directory.CreateDirectory(folder);
         }
 
-        public IEnumerable<String> GetFolders(String folder
-            , String searchPattern
-            , System.IO.SearchOption searchOption)
+        public IEnumerable<string> GetFolders(string folder, string searchPattern, System.IO.SearchOption searchOption)
         {
-            IEnumerable<String> filtered = System.IO.Directory.GetDirectories(folder, searchPattern, searchOption);
+            var filtered = System.IO.Directory.GetDirectories(folder, searchPattern, searchOption);
 
-            IEnumerable<String> sorted = filtered.OrderBy(item => item);
+            var sorted = filtered.OrderBy(item => item);
 
             return (sorted);
         }
 
-        public IEnumerable<String> GetFiles(String folder
-            , String searchPattern
-            , System.IO.SearchOption searchOption)
+        public IEnumerable<string> GetFiles(string folder, string searchPattern, System.IO.SearchOption searchOption)
         {
-            IEnumerable<String> filtered = System.IO.Directory.GetFiles(folder, searchPattern, searchOption);
+            var filtered = System.IO.Directory.GetFiles(folder, searchPattern, searchOption);
 
-            IEnumerable<String> sorted = filtered.OrderBy(item => item);
+            var sorted = filtered.OrderBy(item => item);
 
-            return (sorted);
+            return sorted;
         }
 
         #endregion

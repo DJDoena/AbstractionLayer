@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    using System;
     using System.Diagnostics;
     using System.IO;
 
@@ -10,26 +9,24 @@
     [DebuggerDisplay("DriveLetter={DriveLetter}, Label={Label}")]
     internal sealed class DriveInfo : IDriveInfo
     {
-        private System.IO.DriveInfo Actual { get; }
+        private readonly System.IO.DriveInfo _actual;
 
         public DriveInfo(System.IO.DriveInfo driveInfo)
         {
-            Actual = driveInfo;
+            _actual = driveInfo;
         }
 
         #region  IDriveInfo
 
-        public Boolean IsReady
-            => Actual.IsReady;
+        public bool IsReady => _actual.IsReady;
 
-        public String DriveLetter
-            => RootFolder.Substring(0, 2);
+        public string DriveLetter => RootFolder.Substring(0, 2);
 
         public string DriveLabel
         {
             get
             {
-                string driveLabel = DriveLetter;
+                var driveLabel = DriveLetter;
 
                 if (CanReadLabel())
                 {
@@ -44,34 +41,25 @@
         {
             get
             {
-                string volumeLabel;
-                if (CanReadLabel())
-                {
-                    volumeLabel = TryReadVolumeLabel();
-                }
-                else
-                {
-                    volumeLabel = string.Empty;
-                }
+                var volumeLabel = CanReadLabel()
+                    ? TryReadVolumeLabel()
+                    : string.Empty;
 
                 return volumeLabel;
             }
         }
 
-        public String RootFolder
-            => Actual.RootDirectory.FullName;
+        public string RootFolder => _actual.RootDirectory.FullName;
 
-        public UInt64 AvailableFreeSpace
-            => (UInt64)(Actual.AvailableFreeSpace);
+        public ulong AvailableFreeSpace => (ulong)(_actual.AvailableFreeSpace);
 
         #endregion
 
-        private Boolean CanReadLabel()
-            => ((Actual.IsReady) && (String.IsNullOrEmpty(Actual.VolumeLabel) == false));
+        private bool CanReadLabel() => _actual.IsReady && (string.IsNullOrEmpty(_actual.VolumeLabel) == false);
 
-        private String TryReadLabel()
+        private string TryReadLabel()
         {
-            string volumeLabel = TryReadVolumeLabel();
+            var volumeLabel = TryReadVolumeLabel();
 
             if (!string.IsNullOrEmpty(volumeLabel))
             {
@@ -83,11 +71,11 @@
             }
         }
 
-        private String TryReadVolumeLabel()
+        private string TryReadVolumeLabel()
         {
             try
             {
-                string volumeLabel = Actual.VolumeLabel;
+                var volumeLabel = _actual.VolumeLabel;
 
                 return volumeLabel;
             }

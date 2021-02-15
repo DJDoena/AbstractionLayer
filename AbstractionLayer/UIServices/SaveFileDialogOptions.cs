@@ -10,21 +10,21 @@
         /// <summary>
         /// Determines if a file extension shall be added if none is provided by the user.
         /// </summary>
-        public Nullable<Boolean> AddExtension { get; set; }
+        public bool? AddExtension { get; set; }
 
         /// <summary>
         /// Determines the default file extension.
         /// </summary>
-        public String DefaultExt { get; set; }
+        public string DefaultExt { get; set; }
 
         /// <summary>
         /// Determines if the user should be asked to overwrite the file if it already exists.
         /// </summary>
-        public Nullable<Boolean> OverwritePrompt { get; set; }
+        public bool? OverwritePrompt { get; set; }
 
         /// <summary>
         /// Determines if the file name shall be validated.
         /// </summary>
-        public Nullable<Boolean> ValidateName { get; set; }
+        public bool? ValidateName { get; set; }
     }
 }

@@ -28,14 +28,14 @@
         /// </summary>
         /// <param name="folder">The folder</param>
         /// <returns>A <see cref="IFolderInfo"/> for a given folder</returns>
-        IFolderInfo GetFolderInfo(String folder);
+        IFolderInfo GetFolderInfo(string folder);
 
         /// <summary>
         /// Returns a <see cref="IFileInfo"/> for a given file name.
         /// </summary>
         /// <param name="fileName">The file name </param>
         /// <returns>A <see cref="IFileInfo"/> for a given file name</returns>
-        IFileInfo GetFileInfo(String fileName);
+        IFileInfo GetFileInfo(string fileName);
 
         /// <summary>
         /// Opens a file.
@@ -45,24 +45,21 @@
         /// <param name="access">The <see cref="System.IO.FileAccess"/></param>
         /// <param name="share">The <see cref="System.IO.FileShare"/></param>
         /// <returns>The opened file</returns>
-        System.IO.Stream GetFileStream(String fileName
-            , System.IO.FileMode mode
-            , System.IO.FileAccess access
-            , System.IO.FileShare share);
+        System.IO.Stream GetFileStream(string fileName, System.IO.FileMode mode, System.IO.FileAccess access, System.IO.FileShare share);
 
         /// <summary>
         /// Returns all the <see cref="IDriveInfo"/> currently available.
         /// </summary>
         /// <param name="driveType">Filter on the <see cref="System.IO.DriveType"/></param>
         /// <returns>All the <see cref="IDriveInfo"/> currently available</returns>
-        IEnumerable<IDriveInfo> GetDriveInfos(Nullable<System.IO.DriveType> driveType = null);
+        IEnumerable<IDriveInfo> GetDriveInfos(System.IO.DriveType? driveType = null);
 
         /// <summary>
         /// Returns the <see cref="IDriveInfo"/> for the given drive letter.
         /// </summary>
         /// <param name="driveLetter">the drive letter</param>
         /// <returns>The <see cref="IDriveInfo"/> for the given drive letter</returns>
-        IDriveInfo GetDriveInfo(String driveLetter);
+        IDriveInfo GetDriveInfo(string driveLetter);
 
         /// <summary>
         /// Returns a <see cref="IFileSystemWatcher"/> based on the folder and the search pattern.
@@ -70,7 +67,6 @@
         /// <param name="folder">The folder</param>
         /// <param name="searchPattern">The search pattern</param>
         /// <returns>A <see cref="IFileSystemWatcher"/> based on the folder and the search pattern</returns>
-        IFileSystemWatcher GetFileSystemWatcher(String folder
-            , String searchPattern = "*.*");
+        IFileSystemWatcher GetFileSystemWatcher(string folder, string searchPattern = "*.*");
     }
 }

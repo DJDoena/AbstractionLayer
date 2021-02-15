@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    using System;
     using System.Text;
 
     /// <summary>
@@ -8,21 +7,24 @@
     /// </summary>
     public sealed class FileLogger : ILogger
     {
-        private System.IO.StreamWriter StreamWriter { get; }
+        private readonly System.IO.StreamWriter _streamWriter;
 
-        private ILogger InputLogger { get; }
+        private readonly ILogger _inputLogger;
+
+        private bool _isDisposed;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="fileName">The file name to which to log</param>
         /// <param name="inputLogger">A logger that is able to receive user input</param>
-        public FileLogger(String fileName
-            , ILogger inputLogger)
+        public FileLogger(string fileName, ILogger inputLogger)
         {
-            StreamWriter = new System.IO.StreamWriter(fileName, false, Encoding.GetEncoding(1252));
+            _streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.GetEncoding(1252));
 
-            InputLogger = inputLogger;
+            _inputLogger = inputLogger;
+
+            _isDisposed = false;
         }
 
         /// <summary>
@@ -30,8 +32,7 @@
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLine(String message
-            , params Object[] parameters)
+        public void WriteLine(string message, params object[] parameters)
         {
             WriteLine(message, false, parameters);
         }
@@ -42,39 +43,37 @@
         /// <param name="message">The message</param>
         /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLine(String message
-            , Boolean suppressFreeLine
-            , params object[] parameters)
+        public void WriteLine(string message, bool suppressFreeLine, params object[] parameters)
         {
-            message = String.Format(message, parameters);
+            message = string.Format(message, parameters);
 
-            StreamWriter.WriteLine(message);
+            _streamWriter.WriteLine(message);
 
             if (suppressFreeLine == false)
             {
-                StreamWriter.WriteLine();
+                _streamWriter.WriteLine();
             }
         }
 
         /// <summary>
         /// Reads user input.
-        /// The user input is requested from the <see cref="InputLogger"/>.
+        /// The user input is requested from the <see cref="_inputLogger"/>.
         /// </summary>
         /// <returns>The user input</returns>
-        public String ReadLine()
+        public string ReadLine()
         {
-            if (InputLogger != null)
+            if (_inputLogger != null)
             {
-                String input;
-
-                input = InputLogger.ReadLine();
+                var input = _inputLogger.ReadLine();
 
                 WriteLine($"Input: {input}");
 
-                return (input);
+                return input;
             }
-
-            return (null);
+            else
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -82,29 +81,30 @@
         /// </summary>
         public void Dispose()
         {
-            StreamWriter.Close();
-            StreamWriter.Dispose();
-
-            if (InputLogger != null)
+            if (!_isDisposed)
             {
-                InputLogger.Dispose();
+                _streamWriter.Close();
+                _streamWriter.Dispose();
+
+                _inputLogger?.Dispose();
+
+                _isDisposed = true;
             }
         }
 
         /// <summary>
         /// Write the message with its parameters with the expectation that a user input will soon be required.
-        /// The message is also forwarded to the <see cref="InputLogger"/>.
+        /// The message is also forwarded to the <see cref="_inputLogger"/>.
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLineForInput(String message
-            , params Object[] parameters)
+        public void WriteLineForInput(string message, params object[] parameters)
         {
             WriteLine(message, true, parameters);
 
-            if (InputLogger != null)
+            if (_inputLogger != null)
             {
-                InputLogger.WriteLineForInput(message, parameters);
+                _inputLogger.WriteLineForInput(message, parameters);
             }
         }
     }

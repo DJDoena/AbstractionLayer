@@ -9,58 +9,96 @@
     [DebuggerDisplay("Name={Name}, FullName={FullName}")]
     internal sealed class FileInfo : IFileInfo
     {
-        private System.IO.FileInfo Actual { get; }
+        private readonly System.IO.FileInfo _actual;
 
-        public FileInfo(String fileName)
+        public FileInfo(string fileName)
         {
-            Actual = new System.IO.FileInfo(fileName);
+            _actual = new System.IO.FileInfo(fileName);
         }
 
         public FileInfo(System.IO.FileInfo actual)
         {
-            Actual = actual;
+            _actual = actual;
         }
 
-        public String Name
-            => Actual.Name;
+        #region IFileInfo
 
-        public String Extension
-            => Actual.Extension;
+        public string Name => _actual.Name;
 
-        public String FullName
-            => Actual.FullName;
+        public string Extension => _actual.Extension;
 
-        public IFolderInfo Folder
-            => new FolderInfo(Actual.DirectoryName);
+        public string FullName => _actual.FullName;
 
-        public String FolderName
-            => Actual.DirectoryName;
+        public IFolderInfo Folder => new FolderInfo(_actual.DirectoryName);
 
-        public String NameWithoutExtension
-            => Name.Substring(0, Name.Length - Extension.Length);
+        public string FolderName => _actual.DirectoryName;
 
-        public Boolean Exists
-            => Actual.Exists;
+        public string NameWithoutExtension => System.IO.Path.GetFileNameWithoutExtension(_actual.Name);
 
-        public UInt64 Length
-            => (UInt64)(Actual.Length);
+        public bool Exists => _actual.Exists;
+
+        public ulong Length => (ulong)(_actual.Length);
 
         public DateTime LastWriteTime
         {
-            get => Actual.LastWriteTime;
-            set => Actual.LastWriteTime = value;
+            get => _actual.LastWriteTime;
+            set => _actual.LastWriteTime = value;
+        }
+
+        public DateTime LastWriteTimeUtc
+        {
+            get => _actual.LastWriteTimeUtc;
+            set => _actual.LastWriteTimeUtc = value;
         }
 
         public DateTime CreationTime
         {
-            get => Actual.CreationTime;
-            set => Actual.CreationTime = value;
+            get => _actual.CreationTime;
+            set => _actual.CreationTime = value;
+        }
+
+        public DateTime CreationTimeUtc
+        {
+            get => _actual.CreationTimeUtc;
+            set => _actual.CreationTimeUtc = value;
         }
 
         public DateTime LastAccessTime
         {
-            get => Actual.LastAccessTime;
-            set => Actual.LastAccessTime = value;
+            get => _actual.LastAccessTime;
+            set => _actual.LastAccessTime = value;
         }
+
+        public DateTime LastAccessTimeUtc
+        {
+            get => _actual.LastAccessTimeUtc;
+            set => _actual.LastAccessTimeUtc = value;
+        }
+
+        #region IEquatable<IFileInfo>
+
+        public bool Equals(IFileInfo other) => (FullName ?? string.Empty).Equals(other.FullName, StringComparison.OrdinalIgnoreCase);
+
+        #endregion
+
+        #endregion
+
+        public override int GetHashCode() => FullName?.GetHashCode() ?? 0;
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is IFileInfo other))
+            {
+                return false;
+            }
+            else
+            {
+                var equals = Equals(other);
+
+                return equals;
+            }
+        }
+
+        public override string ToString() => _actual.ToString();
     }
 }

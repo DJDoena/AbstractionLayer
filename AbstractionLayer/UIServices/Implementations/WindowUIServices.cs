@@ -16,23 +16,20 @@
         /// </summary>
         /// <param name="text">The main text</param>
         /// <param name="caption">The MessageBox title</param>
-        /// <param name="genericButtons">The buttons to be shown</param>
-        /// <param name="genericIcon">The MessageBox icon</param>
+        /// <param name="buttons">The buttons to be shown</param>
+        /// <param name="icon">The MessageBox icon</param>
         /// <returns>Which button was pressed</returns>
-        public Result ShowMessageBox(String text
-            , String caption
-            , Buttons genericButtons
-            , Icon genericIcon)
+        public Result ShowMessageBox(string text, string caption, Buttons buttons, Icon icon)
         {
-            MessageBoxButton buttons = GetButtons(genericButtons);
+            var windowsButtons = GetButtons(buttons);
 
-            MessageBoxImage icon = GetIcon(genericIcon);
+            var windowsIcon = GetIcon(icon);
 
-            MessageBoxResult result = MessageBox.Show(text, caption, buttons, icon);
+            var windowsResult = MessageBox.Show(text, caption, windowsButtons, windowsIcon);
 
-            Result genericResult = GetResult(result);
+            var result = GetResult(windowsResult);
 
-            return (genericResult);
+            return result;
         }
 
         /// <summary>
@@ -41,33 +38,32 @@
         /// <param name="options">The dialog options</param>
         /// <param name="fileName">The selected file name</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowOpenFileDialog(OpenFileDialogOptions options
-           , out String fileName)
+        public bool ShowOpenFileDialog(OpenFileDialogOptions options, out string fileName)
         {
             if (options == null)
             {
-                throw (new ArgumentNullException(nameof(options)));
+                throw new ArgumentNullException(nameof(options));
             }
 
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
 
             SetOpenFileDialogOptions(ofd, options);
 
             ofd.Multiselect = false;
 
-            Nullable<Boolean> result = ofd.ShowDialog();
+            var result = ofd.ShowDialog();
 
-            if ((result.HasValue) && (result.Value))
+            if (result.HasValue && result.Value)
             {
                 fileName = ofd.FileName;
 
-                return (true);
+                return true;
             }
             else
             {
                 fileName = null;
 
-                return (false);
+                return false;
             }
         }
 
@@ -77,33 +73,32 @@
         /// <param name="options">The dialog options</param>
         /// <param name="fileNames">The selected file names</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowOpenFileDialog(OpenFileDialogOptions options
-            , out String[] fileNames)
+        public bool ShowOpenFileDialog(OpenFileDialogOptions options, out string[] fileNames)
         {
             if (options == null)
             {
-                throw (new ArgumentNullException(nameof(options)));
+                throw new ArgumentNullException(nameof(options));
             }
 
-            OpenFileDialog ofd = new OpenFileDialog();
+            var ofd = new OpenFileDialog();
 
             SetOpenFileDialogOptions(ofd, options);
 
             ofd.Multiselect = true;
 
-            Nullable<Boolean> result = ofd.ShowDialog();
+            var result = ofd.ShowDialog();
 
-            if ((result.HasValue) && (result.Value))
+            if (result.HasValue && result.Value)
             {
                 fileNames = ofd.FileNames;
 
-                return (true);
+                return true;
             }
             else
             {
                 fileNames = null;
 
-                return (false);
+                return false;
             }
         }
 
@@ -113,15 +108,14 @@
         /// <param name="options">The dialog options</param>
         /// <param name="fileName">The selected file name</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowSaveFileDialog(SaveFileDialogOptions options
-            , out String fileName)
+        public bool ShowSaveFileDialog(SaveFileDialogOptions options, out string fileName)
         {
             if (options == null)
             {
                 throw (new ArgumentNullException(nameof(options)));
             }
 
-            SaveFileDialog sfd = new SaveFileDialog();
+            var sfd = new SaveFileDialog();
 
             if (options.InitialFolder != null)
             {
@@ -168,19 +162,19 @@
                 sfd.FileName = options.FileName;
             }
 
-            Nullable<Boolean> result = sfd.ShowDialog();
+            var result = sfd.ShowDialog();
 
-            if ((result.HasValue) && (result.Value))
+            if (result.HasValue && result.Value)
             {
                 fileName = sfd.FileName;
 
-                return (true);
+                return true;
             }
             else
             {
                 fileName = null;
 
-                return (false);
+                return false;
             }
         }
 
@@ -190,14 +184,13 @@
         /// <param name="options">The dialog options</param>
         /// <param name="folder">The selected folder</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowFolderBrowserDialog(FolderBrowserDialogOptions options
-            , out String folder)
+        public bool ShowFolderBrowserDialog(FolderBrowserDialogOptions options, out string folder)
         {
-            using (System.Windows.Forms.FolderBrowserDialog fbd = new System.Windows.Forms.FolderBrowserDialog())
+            using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
             {
                 if (options == null)
                 {
-                    throw (new ArgumentNullException(nameof(options)));
+                    throw new ArgumentNullException(nameof(options));
                 }
 
                 if (options.Description != null)
@@ -224,13 +217,13 @@
                 {
                     folder = fbd.SelectedPath;
 
-                    return (true);
+                    return true;
                 }
                 else
                 {
                     folder = null;
 
-                    return (false);
+                    return false;
                 }
             }
         }
@@ -243,21 +236,21 @@
         {
             switch (buttons)
             {
-                case (Buttons.YesNo):
+                case Buttons.YesNo:
                     {
-                        return (MessageBoxButton.YesNo);
+                        return MessageBoxButton.YesNo;
                     }
-                case (Buttons.YesNoCancel):
+                case Buttons.YesNoCancel:
                     {
-                        return (MessageBoxButton.YesNoCancel);
+                        return MessageBoxButton.YesNoCancel;
                     }
-                case (Buttons.OK):
+                case Buttons.OK:
                     {
-                        return (MessageBoxButton.OK);
+                        return MessageBoxButton.OK;
                     }
                 default:
                     {
-                        throw (new NotSupportedException());
+                        throw new NotSupportedException();
                     }
             }
         }
@@ -266,25 +259,25 @@
         {
             switch (icon)
             {
-                case (Icon.Error):
+                case Icon.Error:
                     {
-                        return (MessageBoxImage.Error);
+                        return MessageBoxImage.Error;
                     }
-                case (Icon.Warning):
+                case Icon.Warning:
                     {
-                        return (MessageBoxImage.Warning);
+                        return MessageBoxImage.Warning;
                     }
-                case (Icon.Information):
+                case Icon.Information:
                     {
-                        return (MessageBoxImage.Information);
+                        return MessageBoxImage.Information;
                     }
-                case (Icon.Question):
+                case Icon.Question:
                     {
-                        return (MessageBoxImage.Question);
+                        return MessageBoxImage.Question;
                     }
                 default:
                     {
-                        throw (new NotSupportedException());
+                        throw new NotSupportedException();
                     }
             }
         }
@@ -293,25 +286,25 @@
         {
             switch (result)
             {
-                case (MessageBoxResult.Yes):
+                case MessageBoxResult.Yes:
                     {
-                        return (Result.Yes);
+                        return Result.Yes;
                     }
-                case (MessageBoxResult.No):
+                case MessageBoxResult.No:
                     {
-                        return (Result.No);
+                        return Result.No;
                     }
-                case (MessageBoxResult.OK):
+                case MessageBoxResult.OK:
                     {
-                        return (Result.OK);
+                        return Result.OK;
                     }
-                case (MessageBoxResult.Cancel):
+                case MessageBoxResult.Cancel:
                     {
-                        return (Result.Cancel);
+                        return Result.Cancel;
                     }
                 default:
                     {
-                        throw (new NotSupportedException());
+                        throw new NotSupportedException();
                     }
             }
         }
@@ -320,8 +313,7 @@
 
         #region OpenFileDialog
 
-        private static void SetOpenFileDialogOptions(OpenFileDialog ofd
-            , OpenFileDialogOptions options)
+        private static void SetOpenFileDialogOptions(OpenFileDialog ofd, OpenFileDialogOptions options)
         {
             if (options.InitialFolder != null)
             {

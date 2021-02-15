@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    using System;
     using System.Diagnostics;
 
     /// <summary>
@@ -9,44 +8,43 @@
     [DebuggerDisplay("Path={Actual.Path}, Filter={Actual.Filter}")]
     internal sealed class FileSystemWatcher : IFileSystemWatcher
     {
-        private System.IO.FileSystemWatcher Actual { get; }
+        private readonly System.IO.FileSystemWatcher _actual;
 
-        public FileSystemWatcher(String path
-            , String filter)
+        public FileSystemWatcher(string path, string filter)
         {
-            Actual = new System.IO.FileSystemWatcher(path, filter);
+            _actual = new System.IO.FileSystemWatcher(path, filter);
         }
 
         #region IFileSystemWatcher
 
-        public Boolean IncludeSubFolders
+        public bool IncludeSubFolders
         {
-            get => Actual.IncludeSubdirectories;
-            set => Actual.IncludeSubdirectories = value;
+            get => _actual.IncludeSubdirectories;
+            set => _actual.IncludeSubdirectories = value;
         }
 
-        public Boolean EnableRaisingEvents
+        public bool EnableRaisingEvents
         {
-            get => Actual.EnableRaisingEvents;
-            set => Actual.EnableRaisingEvents = value;
+            get => _actual.EnableRaisingEvents;
+            set => _actual.EnableRaisingEvents = value;
         }
 
         public event System.IO.FileSystemEventHandler Created
         {
-            add => Actual.Created += value;
-            remove => Actual.Created -= value;
+            add => _actual.Created += value;
+            remove => _actual.Created -= value;
         }
 
         public event System.IO.RenamedEventHandler Renamed
         {
-            add => Actual.Renamed += value;
-            remove => Actual.Renamed -= value;
+            add => _actual.Renamed += value;
+            remove => _actual.Renamed -= value;
         }
 
         public event System.IO.FileSystemEventHandler Deleted
         {
-            add => Actual.Deleted += value;
-            remove => Actual.Deleted -= value;
+            add => _actual.Deleted += value;
+            remove => _actual.Deleted -= value;
         }
 
         #endregion

@@ -1,7 +1,6 @@
 ﻿namespace DoenaSoft.AbstractionLayer.WebServices
 {
     using System;
-    using System.IO;
 
     /// <summary>
     /// Interface to access WebResponse.
@@ -11,13 +10,13 @@
         /// <summary>
         /// Returns the ResponseUri.
         /// </summary>
-        String ResponseUri { get; }
+        string ResponseUri { get; }
 
         /// <summary>
         /// Returns the ResponseStream.
         /// </summary>
         /// <returns>The ResponseStream</returns>
-        Stream GetResponseStream();
+        System.IO.Stream GetResponseStream();
 
         /// <summary>
         /// Closes the WebResponse.

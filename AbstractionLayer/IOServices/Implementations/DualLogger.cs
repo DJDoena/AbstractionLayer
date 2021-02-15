@@ -7,19 +7,19 @@
     /// </summary>
     public sealed class DualLogger : ILogger
     {
-        private ILogger ConsoleLogger { get; }
+        private readonly ILogger _consoleLogger;
 
-        private ILogger FileLogger { get; }
+        private readonly ILogger _fileLogger;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="fileName">The file name to which to log</param>
-        public DualLogger(String fileName)
+        public DualLogger(string fileName)
         {
-            ConsoleLogger = new ConsoleLogger();
+            _consoleLogger = new ConsoleLogger();
 
-            FileLogger = new FileLogger(fileName, null);
+            _fileLogger = new FileLogger(fileName, null);
         }
 
         /// <summary>
@@ -27,12 +27,11 @@
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLine(String message
-            , params Object[] parameters)
+        public void WriteLine(string message, params object[] parameters)
         {
-            ConsoleLogger.WriteLine(message, parameters);
+            _consoleLogger.WriteLine(message, parameters);
 
-            FileLogger.WriteLine(message, parameters);
+            _fileLogger.WriteLine(message, parameters);
         }
 
         /// <summary>
@@ -41,26 +40,24 @@
         /// <param name="message">The message</param>
         /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLine(String message
-            , Boolean suppressFreeLine
-            , params Object[] parameters)
+        public void WriteLine(string message, bool suppressFreeLine, params object[] parameters)
         {
-            ConsoleLogger.WriteLine(message, suppressFreeLine, parameters);
+            _consoleLogger.WriteLine(message, suppressFreeLine, parameters);
 
-            FileLogger.WriteLine(message, suppressFreeLine, parameters);
+            _fileLogger.WriteLine(message, suppressFreeLine, parameters);
         }
 
         /// <summary>
         /// Reads user input.
         /// </summary>
         /// <returns>The user input</returns>
-        public String ReadLine()
+        public string ReadLine()
         {
-            String input = ConsoleLogger.ReadLine();
+            string input = _consoleLogger.ReadLine();
 
-            FileLogger.WriteLine($"Input: {input}");
+            _fileLogger.WriteLine($"Input: {input}");
 
-            return (input);
+            return input;
         }
 
         /// <summary>
@@ -68,9 +65,9 @@
         /// </summary>
         public void Dispose()
         {
-            ConsoleLogger.Dispose();
+            _consoleLogger.Dispose();
 
-            FileLogger.Dispose();
+            _fileLogger.Dispose();
         }
 
         /// <summary>
@@ -78,12 +75,11 @@
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        public void WriteLineForInput(String message
-            , params Object[] parameters)
+        public void WriteLineForInput(string message, params object[] parameters)
         {
-            ConsoleLogger.WriteLineForInput(message, parameters);
+            _consoleLogger.WriteLineForInput(message, parameters);
 
-            FileLogger.WriteLineForInput(message, parameters);
+            _fileLogger.WriteLineForInput(message, parameters);
         }
     }
 }

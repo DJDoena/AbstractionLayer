@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.UIServices.Implementations
 {
-    using System;
     using System.Windows.Forms;
 
     /// <summary>
@@ -11,32 +10,30 @@
         /// <summary>
         /// Returns whether the clipboard contains text.
         /// </summary>
-        public Boolean ContainsText
-            => Clipboard.ContainsText(TextDataFormat.Text);
+        public bool ContainsText => Clipboard.ContainsText(TextDataFormat.Text);
 
         /// <summary>
         /// Returns the text from the clipboard.
         /// </summary>
         /// <returns>the text from the clipboard</returns>
-        public String GetText()
-            => Clipboard.GetText();
+        public string GetText() => Clipboard.GetText();
 
         /// <summary>
         /// Sets the text to the clipboard.
         /// </summary>
         /// <param name="text">The text</param>
         /// <returns>If the setting succeeded</returns>
-        public Boolean SetText(String text)
+        public bool SetText(string text)
         {
             try
             {
                 Clipboard.SetText(text);
 
-                return (true);
+                return true;
             }
             catch
             {
-                return (false);
+                return false;
             }
         }
     }

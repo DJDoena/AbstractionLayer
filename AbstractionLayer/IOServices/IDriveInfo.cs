@@ -1,7 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
-    using System;
-
     /// <summary>
     /// Interface to seperate DriveInfo concerns from an concrete implementation.
     /// </summary>
@@ -10,7 +8,7 @@
         /// <summary>
         /// Returns whether tghe drive is ready for read/write operations.
         /// </summary>
-        Boolean IsReady { get; }
+        bool IsReady { get; }
 
         /// <summary>
         /// Returns the drive label.

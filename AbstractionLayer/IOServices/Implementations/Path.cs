@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -13,15 +12,15 @@
         /// </summary>
         /// <param name="parts">the path parts</param>
         /// <returns>The combined path</returns>
-        public String Combine(params String[] parts)
+        public string Combine(params string[] parts)
         {
-            String path = null;
+            string path = null;
 
             if ((parts != null) && (parts.Length > 0))
             {
                 path = parts[0];
 
-                for (Int32 i = 1; i < parts.Length; i++)
+                for (var i = 1; i < parts.Length; i++)
                 {
                     path = System.IO.Path.Combine(path, parts[i]);
                 }
@@ -34,21 +33,18 @@
         /// Returns the path of the temp folder.
         /// </summary>
         /// <returns>The path of the temp folder</returns>
-        public String GetTempPath()
-            => System.IO.Path.GetTempPath();
+        public string GetTempPath() => System.IO.Path.GetTempPath();
 
         /// <summary>
         /// Returns all characters not allowed in a file name.
         /// </summary>
         /// <returns>All characters not allowed in a file name</returns>
-        public IEnumerable<Char> GetInvalidFileNameChars()
-            => System.IO.Path.GetInvalidFileNameChars();
+        public IEnumerable<char> GetInvalidFileNameChars() => System.IO.Path.GetInvalidFileNameChars();
 
         /// <summary>
         /// Returns all characters not allowed in a path.
         /// </summary>
         /// <returns>All characters not allowed in a path</returns>
-        public IEnumerable<Char> GetInvalidPathChars()
-            => System.IO.Path.GetInvalidPathChars();
+        public IEnumerable<char> GetInvalidPathChars() => System.IO.Path.GetInvalidPathChars();
     }
 }

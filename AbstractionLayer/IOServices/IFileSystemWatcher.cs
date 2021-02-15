@@ -10,12 +10,12 @@
         /// <summary>
         /// Starts/Ends the observation of the file system.
         /// </summary>
-        Boolean EnableRaisingEvents { get; set; }
+        bool EnableRaisingEvents { get; set; }
 
         /// <summary>
         /// Determines whether sub folders are included in the observation.
         /// </summary>
-        Boolean IncludeSubFolders { get; set; }
+        bool IncludeSubFolders { get; set; }
 
         /// <summary>
         /// Is raised when a file is created.

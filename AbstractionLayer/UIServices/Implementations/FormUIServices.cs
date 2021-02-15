@@ -15,23 +15,20 @@
         /// </summary>
         /// <param name="text">The main text</param>
         /// <param name="caption">The MessageBox title</param>
-        /// <param name="genericButtons">The buttons to be shown</param>
-        /// <param name="genericIcon">The MessageBox icon</param>
+        /// <param name="buttons">The buttons to be shown</param>
+        /// <param name="icon">The MessageBox icon</param>
         /// <returns>Which button was pressed</returns>
-        public Result ShowMessageBox(String text
-            , String caption
-            , Buttons genericButtons
-            , Icon genericIcon)
+        public Result ShowMessageBox(string text, string caption, Buttons buttons, Icon icon)
         {
-            MessageBoxButtons buttons = GetButtons(genericButtons);
+            var formsButtons = GetButtons(buttons);
 
-            MessageBoxIcon icon = GetIcon(genericIcon);
+            var formsIcon = GetIcon(icon);
 
-            DialogResult result = MessageBox.Show(text, caption, buttons, icon);
+            var formsResult = MessageBox.Show(text, caption, formsButtons, formsIcon);
 
-            Result genericResult = GetResult(result);
+            var result = GetResult(formsResult);
 
-            return (genericResult);
+            return result;
         }
 
         /// <summary>
@@ -40,12 +37,11 @@
         /// <param name="options">The dialog options</param>
         /// <param name="fileName">The selected file name</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowOpenFileDialog(OpenFileDialogOptions options
-           , out String fileName)
+        public bool ShowOpenFileDialog(OpenFileDialogOptions options, out string fileName)
         {
             if (options == null)
             {
-                throw (new ArgumentNullException(nameof(options)));
+                throw new ArgumentNullException(nameof(options));
             }
 
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -58,13 +54,13 @@
                 {
                     fileName = ofd.FileName;
 
-                    return (true);
+                    return true;
                 }
                 else
                 {
                     fileName = null;
 
-                    return (false);
+                    return false;
                 }
             }
         }
@@ -75,12 +71,11 @@
         /// <param name="options">The dialog options</param>
         /// <param name="fileNames">The selected file names</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowOpenFileDialog(OpenFileDialogOptions options
-            , out String[] fileNames)
+        public bool ShowOpenFileDialog(OpenFileDialogOptions options, out string[] fileNames)
         {
             if (options == null)
             {
-                throw (new ArgumentNullException(nameof(options)));
+                throw new ArgumentNullException(nameof(options));
             }
 
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -93,13 +88,13 @@
                 {
                     fileNames = ofd.FileNames;
 
-                    return (true);
+                    return true;
                 }
                 else
                 {
                     fileNames = null;
 
-                    return (false);
+                    return false;
                 }
             }
         }
@@ -110,12 +105,11 @@
         /// <param name="options">The dialog options</param>
         /// <param name="fileName">The selected file name</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowSaveFileDialog(SaveFileDialogOptions options
-            , out String fileName)
+        public bool ShowSaveFileDialog(SaveFileDialogOptions options, out string fileName)
         {
             if (options == null)
             {
-                throw (new ArgumentNullException(nameof(options)));
+                throw new ArgumentNullException(nameof(options));
             }
 
             using (SaveFileDialog sfd = new SaveFileDialog())
@@ -169,13 +163,13 @@
                 {
                     fileName = sfd.FileName;
 
-                    return (true);
+                    return true;
                 }
                 else
                 {
                     fileName = null;
 
-                    return (false);
+                    return false;
                 }
             }
         }
@@ -186,14 +180,13 @@
         /// <param name="options">The dialog options</param>
         /// <param name="folder">The selected folder</param>
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
-        public Boolean ShowFolderBrowserDialog(FolderBrowserDialogOptions options
-            , out String folder)
+        public bool ShowFolderBrowserDialog(FolderBrowserDialogOptions options, out string folder)
         {
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
                 if (options == null)
                 {
-                    throw (new ArgumentNullException(nameof(options)));
+                    throw new ArgumentNullException(nameof(options));
                 }
 
                 if (options.Description != null)
@@ -220,13 +213,13 @@
                 {
                     folder = fbd.SelectedPath;
 
-                    return (true);
+                    return true;
                 }
                 else
                 {
                     folder = null;
 
-                    return (false);
+                    return false;
                 }
             }
         }
@@ -239,21 +232,21 @@
         {
             switch (buttons)
             {
-                case (Buttons.YesNo):
+                case Buttons.YesNo:
                     {
-                        return (MessageBoxButtons.YesNo);
+                        return MessageBoxButtons.YesNo;
                     }
-                case (Buttons.YesNoCancel):
+                case Buttons.YesNoCancel:
                     {
-                        return (MessageBoxButtons.YesNoCancel);
+                        return MessageBoxButtons.YesNoCancel;
                     }
-                case (Buttons.OK):
+                case Buttons.OK:
                     {
-                        return (MessageBoxButtons.OK);
+                        return MessageBoxButtons.OK;
                     }
                 default:
                     {
-                        throw (new NotSupportedException());
+                        throw new NotSupportedException();
                     }
             }
         }
@@ -262,25 +255,25 @@
         {
             switch (icon)
             {
-                case (Icon.Error):
+                case Icon.Error:
                     {
-                        return (MessageBoxIcon.Error);
+                        return MessageBoxIcon.Error;
                     }
                 case (Icon.Warning):
                     {
-                        return (MessageBoxIcon.Warning);
+                        return MessageBoxIcon.Warning;
                     }
-                case (Icon.Information):
+                case Icon.Information:
                     {
-                        return (MessageBoxIcon.Information);
+                        return MessageBoxIcon.Information;
                     }
-                case (Icon.Question):
+                case Icon.Question:
                     {
-                        return (MessageBoxIcon.Question);
+                        return MessageBoxIcon.Question;
                     }
                 default:
                     {
-                        throw (new NotSupportedException());
+                        throw new NotSupportedException();
                     }
             }
         }
@@ -289,25 +282,25 @@
         {
             switch (result)
             {
-                case (DialogResult.Yes):
+                case DialogResult.Yes:
                     {
-                        return (Result.Yes);
+                        return Result.Yes;
                     }
-                case (DialogResult.No):
+                case DialogResult.No:
                     {
-                        return (Result.No);
+                        return Result.No;
                     }
-                case (DialogResult.OK):
+                case DialogResult.OK:
                     {
                         return (Result.OK);
                     }
-                case (DialogResult.Cancel):
+                case DialogResult.Cancel:
                     {
-                        return (Result.Cancel);
+                        return Result.Cancel;
                     }
                 default:
                     {
-                        throw (new NotSupportedException());
+                        throw new NotSupportedException();
                     }
             }
         }
@@ -316,8 +309,7 @@
 
         #region OpenFileDialog
 
-        private static void SetOpenFileDialogOptions(OpenFileDialog ofd
-            , OpenFileDialogOptions options)
+        private static void SetOpenFileDialogOptions(OpenFileDialog ofd, OpenFileDialogOptions options)
         {
             if (options.InitialFolder != null)
             {

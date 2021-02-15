@@ -12,8 +12,7 @@
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        void WriteLine(String message
-            , params Object[] parameters);
+        void WriteLine(string message, params object[] parameters);
 
         /// <summary>
         /// Writes the message with its parameters and creates a line break with the option to suppress additional  empty line.
@@ -21,9 +20,7 @@
         /// <param name="message">The message</param>
         /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
         /// <param name="parameters">The message parameter</param>
-        void WriteLine(String message
-            , Boolean suppressFreeLine
-            , params Object[] parameters);
+        void WriteLine(string message, bool suppressFreeLine, params object[] parameters);
 
         /// <summary>
         /// Write the message with its parameters with the expectation that a user input will soon be required.
@@ -31,13 +28,12 @@
         /// </summary>
         /// <param name="message">The message</param>
         /// <param name="parameters">The message parameter</param>
-        void WriteLineForInput(String message
-            , params Object[] parameters);
+        void WriteLineForInput(string message, params object[] parameters);
 
         /// <summary>
         /// Reads user input.
         /// </summary>
         /// <returns>The user input</returns>
-        String ReadLine();
+        string ReadLine();
     }
 }
