@@ -34,7 +34,7 @@
         /// Creates a folder.
         /// </summary>
         /// <param name="folder">The folder name</param>
-        void CreateFolder(string folder);
+        IFolderInfo CreateFolder(string folder);
 
         /// <summary>
         /// Returns all folders in a folder according to the search pattern and option.
@@ -43,7 +43,7 @@
         /// <param name="searchPattern">The search pattern</param>
         /// <param name="searchOption">The search option</param>
         /// <returns>All folders in the folder according to the search pattern and option</returns>
-        IEnumerable<string> GetFolders(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
+        IEnumerable<string> GetFolderNames(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
 
         /// <summary>
         /// Returns all files in a folder according to the search pattern and option.
@@ -52,7 +52,24 @@
         /// <param name="searchPattern">The search pattern</param>
         /// <param name="searchOption">The search option</param>
         /// <returns>All files in the folder according to the search pattern and option</returns>
-        IEnumerable<string> GetFiles(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
+        IEnumerable<string> GetFileNames(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
 
+        /// <summary>
+        /// Returns all folders in a folder according to the search pattern and option.
+        /// </summary>
+        /// <param name="folder">The folder name</param>
+        /// <param name="searchPattern">The search pattern</param>
+        /// <param name="searchOption">The search option</param>
+        /// <returns>All folders in the folder according to the search pattern and option</returns>
+        IEnumerable<IFolderInfo> GetFolderInfos(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
+
+        /// <summary>
+        /// Returns all files in a folder according to the search pattern and option.
+        /// </summary>
+        /// <param name="folder">The folder name</param>
+        /// <param name="searchPattern">The search pattern</param>
+        /// <param name="searchOption">The search option</param>
+        /// <returns>All files in the folder according to the search pattern and option</returns>
+        IEnumerable<IFileInfo> GetFileInfos(string folder, string searchPattern = "*.*", System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
     }
 }

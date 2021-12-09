@@ -11,14 +11,13 @@
     {
         private readonly System.IO.FileInfo _actual;
 
-        public FileInfo(string fileName)
+        public FileInfo(string fileName) : this(new System.IO.FileInfo(fileName))
         {
-            _actual = new System.IO.FileInfo(fileName);
         }
 
         public FileInfo(System.IO.FileInfo actual)
         {
-            _actual = actual;
+            _actual = actual ?? throw new ArgumentNullException(nameof(actual));
         }
 
         #region IFileInfo

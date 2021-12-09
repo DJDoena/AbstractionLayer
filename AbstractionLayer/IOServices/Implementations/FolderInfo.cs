@@ -13,9 +13,13 @@
     {
         private readonly System.IO.DirectoryInfo _actual;
 
-        public FolderInfo(string path)
+        public FolderInfo(string path) : this(new System.IO.DirectoryInfo(path))
         {
-            _actual = new System.IO.DirectoryInfo(path);
+        }
+
+        public FolderInfo(System.IO.DirectoryInfo actual)
+        {
+            _actual = actual ?? throw new ArgumentNullException(nameof(actual));
         }
 
         #region IFolderInfo
@@ -73,7 +77,7 @@
         {
             var source = _actual.GetFiles(searchPattern, searchOption);
 
-            var target = source.Select<System.IO.FileInfo, IFileInfo>(fi => new FileInfo(fi));
+            var target = source.Select(fi => new FileInfo(fi));
 
             return target;
         }

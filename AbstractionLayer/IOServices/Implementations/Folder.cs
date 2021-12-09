@@ -32,14 +32,16 @@
             System.IO.Directory.Delete(folder, true);
         }
 
-        public void CreateFolder(string folder)
+        public IFolderInfo CreateFolder(string folder)
         {
             _logger?.WriteLine($"Create folder \"{folder}\"");
 
-            System.IO.Directory.CreateDirectory(folder);
+            var actual = System.IO.Directory.CreateDirectory(folder);
+
+            return new FolderInfo(actual);
         }
 
-        public IEnumerable<string> GetFolders(string folder, string searchPattern, System.IO.SearchOption searchOption)
+        public IEnumerable<string> GetFolderNames(string folder, string searchPattern, System.IO.SearchOption searchOption)
         {
             var filtered = System.IO.Directory.GetDirectories(folder, searchPattern, searchOption);
 
@@ -48,7 +50,7 @@
             return sorted;
         }
 
-        public IEnumerable<string> GetFiles(string folder, string searchPattern, System.IO.SearchOption searchOption)
+        public IEnumerable<string> GetFileNames(string folder, string searchPattern, System.IO.SearchOption searchOption)
         {
             var filtered = System.IO.Directory.GetFiles(folder, searchPattern, searchOption);
 
@@ -56,6 +58,10 @@
 
             return sorted;
         }
+
+        public IEnumerable<IFolderInfo> GetFolderInfos(string folder, string searchPattern, System.IO.SearchOption searchOption) => this.GetFolderNames(folder, searchPattern, searchOption).Select(f => new FolderInfo(f));
+
+        public IEnumerable<IFileInfo> GetFileInfos(string folder, string searchPattern, System.IO.SearchOption searchOption) => this.GetFileNames(folder, searchPattern, searchOption).Select(f => new FileInfo(f));
 
         #endregion
     }
