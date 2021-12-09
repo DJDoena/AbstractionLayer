@@ -13,7 +13,7 @@
         /// <summary>
         /// Warning.
         /// </summary>
-        Warning, 
+        Warning,
 
         /// <summary>
         /// Information.

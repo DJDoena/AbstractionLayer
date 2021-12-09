@@ -19,6 +19,12 @@
         bool Exists(string folder);
 
         /// <summary>
+        /// Returns the full path for a folder.
+        /// </summary>
+        /// <param name="folder">The folder name</param>
+        string GetFullPath(string folder);
+
+        /// <summary>
         /// Deletes a folder,
         /// </summary>
         /// <param name="folder">The folder name</param>

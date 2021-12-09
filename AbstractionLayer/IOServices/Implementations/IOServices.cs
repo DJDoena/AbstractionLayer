@@ -1,6 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices.Implementations
 {
-    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -28,9 +27,9 @@
         /// <summary>
         /// Constructor.
         /// </summary>
-        public IOServices()
-            : this(null)
-        { }
+        public IOServices() : this(null)
+        {
+        }
 
         #region IIOServices
 
@@ -81,7 +80,7 @@
         /// <returns>All the <see cref="IDriveInfo"/> currently available</returns>
         public IEnumerable<IDriveInfo> GetDriveInfos(System.IO.DriveType? driveType)
         {
-            System.IO.DriveInfo[] drives = System.IO.DriveInfo.GetDrives();
+            var drives = System.IO.DriveInfo.GetDrives();
 
             foreach (System.IO.DriveInfo drive in drives)
             {

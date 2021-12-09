@@ -21,13 +21,13 @@
         /// <returns>Which button was pressed</returns>
         public Result ShowMessageBox(string text, string caption, Buttons buttons, Icon icon)
         {
-            var windowsButtons = GetButtons(buttons);
+            var windowsButtons = this.GetButtons(buttons);
 
-            var windowsIcon = GetIcon(icon);
+            var windowsIcon = this.GetIcon(icon);
 
             var windowsResult = MessageBox.Show(text, caption, windowsButtons, windowsIcon);
 
-            var result = GetResult(windowsResult);
+            var result = this.GetResult(windowsResult);
 
             return result;
         }

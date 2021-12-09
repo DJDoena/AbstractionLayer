@@ -34,7 +34,7 @@
         /// <param name="parameters">The message parameter</param>
         public void WriteLine(string message, params object[] parameters)
         {
-            WriteLine(message, false, parameters);
+            this.WriteLine(message, false, parameters);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@
             {
                 var input = _inputLogger.ReadLine();
 
-                WriteLine($"Input: {input}");
+                this.WriteLine($"Input: {input}");
 
                 return input;
             }
@@ -100,7 +100,7 @@
         /// <param name="parameters">The message parameter</param>
         public void WriteLineForInput(string message, params object[] parameters)
         {
-            WriteLine(message, true, parameters);
+            this.WriteLine(message, true, parameters);
 
             if (_inputLogger != null)
             {

@@ -53,7 +53,7 @@
         /// <returns>The user input</returns>
         public string ReadLine()
         {
-            string input = _consoleLogger.ReadLine();
+            var input = _consoleLogger.ReadLine();
 
             _fileLogger.WriteLine($"Input: {input}");
 

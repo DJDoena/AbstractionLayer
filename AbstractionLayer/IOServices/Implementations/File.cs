@@ -32,9 +32,9 @@
             _logger?.WriteLine($"Move file \"{oldFileName}\"", true);
             _logger?.WriteLine($"to        \"{newFileName}\"");
 
-            if (overwrite && Exists(newFileName))
+            if (overwrite && this.Exists(newFileName))
             {
-                Delete(newFileName);
+                this.Delete(newFileName);
             }
 
             System.IO.File.Move(oldFileName, newFileName);

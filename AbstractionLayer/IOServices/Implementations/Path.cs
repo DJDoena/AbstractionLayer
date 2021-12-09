@@ -12,22 +12,7 @@
         /// </summary>
         /// <param name="parts">the path parts</param>
         /// <returns>The combined path</returns>
-        public string Combine(params string[] parts)
-        {
-            string path = null;
-
-            if ((parts != null) && (parts.Length > 0))
-            {
-                path = parts[0];
-
-                for (var i = 1; i < parts.Length; i++)
-                {
-                    path = System.IO.Path.Combine(path, parts[i]);
-                }
-            }
-
-            return (path);
-        }
+        public string Combine(params string[] parts) => System.IO.Path.Combine(parts);
 
         /// <summary>
         /// Returns the path of the temp folder.

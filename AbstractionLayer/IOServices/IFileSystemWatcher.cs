@@ -1,7 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
-    using System;
-
     /// <summary>
     /// Interface to seperate FileSystemWatcher concerns from an concrete implementation.
     /// </summary>

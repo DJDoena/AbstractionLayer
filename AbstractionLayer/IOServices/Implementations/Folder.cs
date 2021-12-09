@@ -14,13 +14,16 @@
         }
 
         public Folder() : this(null)
-        { }
+        {
+        }
 
         #region IFolder
 
         public string WorkingFolder => Environment.CurrentDirectory;
 
         public bool Exists(string folder) => System.IO.Directory.Exists(folder);
+
+        public string GetFullPath(string folder) => System.IO.Path.GetFullPath(folder);
 
         public void Delete(string folder)
         {
@@ -42,7 +45,7 @@
 
             var sorted = filtered.OrderBy(item => item);
 
-            return (sorted);
+            return sorted;
         }
 
         public IEnumerable<string> GetFiles(string folder, string searchPattern, System.IO.SearchOption searchOption)

@@ -80,27 +80,15 @@
 
         #region IEquatable<IFolderInfo>
 
-        public bool Equals(IFolderInfo other) => (FullName ?? string.Empty).Equals(other.FullName, StringComparison.OrdinalIgnoreCase);
+        public bool Equals(IFolderInfo other) => other != null && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
 
         #endregion
 
         #endregion
 
-        public override int GetHashCode() => FullName?.GetHashCode() ?? 0;
+        public override int GetHashCode() => this.FullName?.GetHashCode() ?? 0;
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is IFolderInfo other))
-            {
-                return false;
-            }
-            else
-            {
-                var equals = Equals(other);
-
-                return equals;
-            }
-        }
+        public override bool Equals(object obj) => this.Equals(obj as IFolderInfo);
 
         public override string ToString() => _actual.ToString();
     }

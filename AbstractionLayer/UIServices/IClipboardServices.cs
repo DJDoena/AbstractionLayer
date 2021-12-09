@@ -1,7 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.UIServices
 {
-    using System;
-
     /// <summary>
     /// Interface to seperate clipboard concerns from an concrete implementation.
     /// </summary>

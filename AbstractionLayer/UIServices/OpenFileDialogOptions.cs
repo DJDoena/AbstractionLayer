@@ -1,7 +1,5 @@
 ﻿namespace DoenaSoft.AbstractionLayer.UIServices
 {
-    using System;
-
     /// <summary>
     /// Contains the options to configure a "open file" dialog.
     /// </summary>

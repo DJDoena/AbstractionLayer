@@ -14,7 +14,7 @@
         /// <param name="parameters">The message parameter</param>
         public void WriteLine(string message, params object[] parameters)
         {
-            WriteLine(message, false, parameters);
+            this.WriteLine(message, false, parameters);
         }
 
         /// <summary>
@@ -50,7 +50,8 @@
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         public void Dispose()
-        { }
+        {
+        }
 
         /// <summary>
         /// Write the message with its parameters with the expectation that a user input will soon be required.
@@ -59,7 +60,7 @@
         /// <param name="parameters">The message parameter</param>
         public void WriteLineForInput(string message, params object[] parameters)
         {
-            WriteLine(message, true, parameters);
+            this.WriteLine(message, true, parameters);
         }
     }
 }

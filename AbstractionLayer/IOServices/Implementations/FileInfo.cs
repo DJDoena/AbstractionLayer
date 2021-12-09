@@ -37,7 +37,7 @@
 
         public bool Exists => _actual.Exists;
 
-        public ulong Length => (ulong)(_actual.Length);
+        public ulong Length => (ulong)_actual.Length;
 
         public DateTime LastWriteTime
         {
@@ -77,27 +77,15 @@
 
         #region IEquatable<IFileInfo>
 
-        public bool Equals(IFileInfo other) => (FullName ?? string.Empty).Equals(other.FullName, StringComparison.OrdinalIgnoreCase);
+        public bool Equals(IFileInfo other) => other != null && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
 
         #endregion
 
         #endregion
 
-        public override int GetHashCode() => FullName?.GetHashCode() ?? 0;
+        public override int GetHashCode() => this.FullName?.GetHashCode() ?? 0;
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is IFileInfo other))
-            {
-                return false;
-            }
-            else
-            {
-                var equals = Equals(other);
-
-                return equals;
-            }
-        }
+        public override bool Equals(object obj) => this.Equals(obj as IFileInfo);
 
         public override string ToString() => _actual.ToString();
     }

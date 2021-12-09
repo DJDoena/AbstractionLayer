@@ -11,7 +11,7 @@
         {
             _actual = actual;
 
-            IsDisposed = false;
+            this.IsDisposed = false;
         }
 
         private bool IsDisposed { get; set; }
@@ -24,7 +24,7 @@
 
         public void Close()
         {
-            Dispose();
+            this.Dispose();
         }
 
         #endregion
@@ -33,12 +33,12 @@
 
         public void Dispose()
         {
-            if (!IsDisposed)
+            if (!this.IsDisposed)
             {
                 _actual.Close();
                 _actual.Dispose();
 
-                IsDisposed = true;
+                this.IsDisposed = true;
             }
         }
 
