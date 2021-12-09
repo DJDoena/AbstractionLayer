@@ -7,7 +7,7 @@
     /// Standard implementation of <see cref="IFileInfo"/> for <see cref="System.IO.FileInfo"/>.
     /// </summary>
     [DebuggerDisplay("Name={Name}, FullName={FullName}")]
-    public sealed class FileInfo : IFileInfo
+    public sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IFileInfo>, IComparable<FileInfo>
     {
         private readonly System.IO.FileInfo _actual;
 
@@ -17,7 +17,7 @@
         }
 
         /// <param name="actual">The actual file system wrapper for the file</param>
-        public FileInfo(System.IO.FileInfo actual)
+        internal FileInfo(System.IO.FileInfo actual)
         {
             _actual = actual ?? throw new ArgumentNullException(nameof(actual));
         }
@@ -123,9 +123,38 @@
         /// <summary>
         /// Compares this instance with <paramref name="other"/> if they refer to the same file.
         /// </summary>
-        public bool Equals(IFileInfo other) => other != null && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+        public bool Equals(IFileInfo other) => this.GetEquality(other);
 
         #endregion
+
+        #endregion
+
+        #region IEquatable<FileInfo>
+
+        /// <summary>
+        /// Compares this instance with <paramref name="other"/> if they refer to the same file.
+        /// </summary>
+        public bool Equals(FileInfo other) => this.GetEquality(other);
+
+        #endregion
+
+        #region IComparable<IFileInfo>
+
+        /// <summary>
+        /// Compares to this file path to another's.
+        /// </summary>
+        /// <param name="other">the other file</param>
+        public int CompareTo(IFileInfo other) => this.GetComparison(other);
+
+        #endregion
+
+        #region IComparable<FileInfo>
+
+        /// <summary>
+        /// Compares to this file path to another's.
+        /// </summary>
+        /// <param name="other">the other file</param>
+        public int CompareTo(FileInfo other) => this.GetComparison(other);
 
         #endregion
 
@@ -137,11 +166,27 @@
         /// <summary>
         /// Compares this instance with <paramref name="obj"/> if they refer to the same file.
         /// </summary>
-        public override bool Equals(object obj) => this.Equals(obj as IFileInfo);
+        public override bool Equals(object obj) => this.GetEquality(obj as IFileInfo);
 
         /// <summary>
         /// Returns the path as a string.
         /// </summary>
         public override string ToString() => _actual.ToString();
+
+        private bool GetEquality(IFileInfo other) => other != null && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+
+        private int GetComparison(IFileInfo other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            else
+            {
+                var result = string.Compare(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+
+                return result;
+            }
+        }
     }
 }
