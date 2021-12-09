@@ -29,6 +29,13 @@
         void Move(string oldFileName, string newFileName, bool overwrite = true);
 
         /// <summary>
+        /// Creates a file and opens a stream for writing.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns>the stream to write in</returns>
+        System.IO.Stream Create(string fileName);
+
+        /// <summary>
         /// Deletes a file.
         /// </summary>
         /// <param name="fileName">The file name</param>

@@ -13,7 +13,8 @@
         }
 
         public File() : this(null)
-        { }
+        {
+        }
 
         #region IFile
 
@@ -39,6 +40,8 @@
 
             System.IO.File.Move(oldFileName, newFileName);
         }
+
+        public System.IO.Stream Create(string fileName) => System.IO.File.Create(fileName);
 
         public void Delete(string fileName)
         {

@@ -69,6 +69,6 @@
         /// <param name="searchPattern">The search pattern</param>
         /// <param name="searchOption">The search option</param>
         /// <returns>All files in the folder according to the search pattern and option</returns>
-        IEnumerable<IFileInfo> GetFiles(string searchPattern, System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
+        IEnumerable<IFileInfo> GetFileInfos(string searchPattern, System.IO.SearchOption searchOption = System.IO.SearchOption.TopDirectoryOnly);
     }
 }
