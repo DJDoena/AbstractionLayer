@@ -4,7 +4,7 @@
     <id>DoenaSoft.AbstractionLayer</id>
     <version>2.0.1</version>
     <title>DoenaSoft.AbstractionLayer</title>
-    <authors>DJ Doena.</authors>
+    <authors>DJ Doena</authors>
     <icon>images\djdsoft.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
