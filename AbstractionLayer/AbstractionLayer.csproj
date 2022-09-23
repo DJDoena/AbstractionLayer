@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
-    <AssemblyName>AbstractionLayer</AssemblyName>
+    <AssemblyName>DoenaSoft.AbstractionLayer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\x86\Debug\AbstractionLayer.xml</DocumentationFile>
+    <DocumentationFile>bin\x86\Debug\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
@@ -30,7 +30,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\x86\Release\AbstractionLayer.xml</DocumentationFile>
+    <DocumentationFile>bin\x86\Release\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -47,7 +47,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\x64\Debug\AbstractionLayer.xml</DocumentationFile>
+    <DocumentationFile>bin\x64\Debug\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
@@ -57,7 +57,7 @@
     <DebugType>full</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
-    <DocumentationFile>bin\x64\Release\AbstractionLayer.xml</DocumentationFile>
+    <DocumentationFile>bin\x64\Release\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -113,6 +113,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AbstractionLayer.snk" />
+    <None Include="ToolBox.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="djdsoft.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

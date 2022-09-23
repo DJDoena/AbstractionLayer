@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>DoenaSoft.AbstractionLayer</id>
+    <version>2.0.1</version>
+    <title>DoenaSoft.AbstractionLayer</title>
+    <authors>DJ Doena.</authors>
+    <icon>images\djdsoft.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/DJDoena/DoenaSoft.ToolBox</projectUrl>
+    <description>Gives an interface layer for file I/O as well as Windows Forms / WPF UI components for mocking and unit-testing</description>
+    <copyright>2016 - 2022</copyright>
+    <tags>unit-testing, I/O, Forms, WPF</tags>
+  </metadata>
+  <files>
+    <file src="bin\x64\Release\DoenaSoft.AbstractionLayer.dll" target="lib\net452\DoenaSoft.AbstractionLayer.dll" />
+    <file src="bin\x64\Release\DoenaSoft.AbstractionLayer.xml" target="lib\net452\DoenaSoft.AbstractionLayer.xml" />
+    <file src="djdsoft.png" target="images\" />
+</files>
+</package>
