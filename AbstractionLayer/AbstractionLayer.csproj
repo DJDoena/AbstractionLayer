@@ -112,8 +112,8 @@
     <Compile Include="WebServices\IWebServices.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AbstractionLayer.nuspec" />
     <None Include="AbstractionLayer.snk" />
-    <None Include="ToolBox.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <None Include="djdsoft.png" />
