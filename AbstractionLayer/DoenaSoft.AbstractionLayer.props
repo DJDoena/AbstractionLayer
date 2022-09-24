@@ -4,7 +4,7 @@
     <Reference Include="DoenaSoft.AbstractionLayer" Condition="'$(Platform)' == 'x86'">
       <HintPath>$(MSBuildThisFileDirectory)..\x86\DoenaSoft.AbstractionLayer.dll</HintPath>
     </Reference>
-    <Reference Include="DoenaSoft.CalculateDvdDiscId" Condition="'$(Platform)' == 'x64'">
+    <Reference Include="DoenaSoft.AbstractionLayer" Condition="'$(Platform)' == 'x64'">
       <HintPath>$(MSBuildThisFileDirectory)..\x64\DoenaSoft.AbstractionLayer.dll</HintPath>
     </Reference>
   </ItemGroup>
