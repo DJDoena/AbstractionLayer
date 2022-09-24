@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DoenaSoft.AbstractionLayer</id>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
     <title>DoenaSoft.AbstractionLayer</title>
     <authors>DJ Doena</authors>
     <icon>images\djdsoft.png</icon>
@@ -14,8 +14,14 @@
     <tags>unit-testing, I/O, Forms, WPF</tags>
   </metadata>
   <files>
-    <file src="bin\x64\Release\DoenaSoft.AbstractionLayer.dll" target="lib\net452\DoenaSoft.AbstractionLayer.dll" />
-    <file src="bin\x64\Release\DoenaSoft.AbstractionLayer.xml" target="lib\net452\DoenaSoft.AbstractionLayer.xml" />
+    <file src="bin\x64\Release\DoenaSoft.AbstractionLayer.dll" target="build\x64\DoenaSoft.AbstractionLayer.dll" />
+    <file src="bin\x64\Release\DoenaSoft.AbstractionLayer.xml" target="build\x64\DoenaSoft.AbstractionLayer.xml" />
+
+    <file src="bin\x86\Release\DoenaSoft.AbstractionLayer.dll" target="build\x86\DoenaSoft.AbstractionLayer.dll" />
+    <file src="bin\x86\Release\DoenaSoft.AbstractionLayer.xml" target="build\x86\DoenaSoft.AbstractionLayer.xml" />
+
+    <file src="DoenaSoft.AbstractionLayer.props" target="build\net452" />
+
     <file src="djdsoft.png" target="images\" />
 </files>
 </package>

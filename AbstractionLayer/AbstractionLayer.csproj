@@ -114,6 +114,7 @@
   <ItemGroup>
     <None Include="AbstractionLayer.nuspec" />
     <None Include="AbstractionLayer.snk" />
+    <None Include="DoenaSoft.AbstractionLayer.props" />
   </ItemGroup>
   <ItemGroup>
     <None Include="djdsoft.png" />
