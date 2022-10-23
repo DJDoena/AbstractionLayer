@@ -65,7 +65,7 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DocumentationFile>bin\x64\Debug\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>7.3</LangVersion>
@@ -75,7 +75,7 @@
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>bin\x64\Release\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\DoenaSoft.AbstractionLayer.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
