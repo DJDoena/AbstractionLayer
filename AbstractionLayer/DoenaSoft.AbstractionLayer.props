@@ -7,7 +7,7 @@
     <Reference Include="DoenaSoft.AbstractionLayer" Condition="'$(Platform)' == 'x64'">
       <HintPath>$(MSBuildThisFileDirectory)..\x64\DoenaSoft.AbstractionLayer.dll</HintPath>
     </Reference>
-    <Reference Include="DoenaSoft.AbstractionLayer" Condition="'$(Platform)' == 'x64'">
+    <Reference Include="DoenaSoft.AbstractionLayer" Condition="'$(Platform)' == 'AnyCPU'">
       <HintPath>$(MSBuildThisFileDirectory)..\DoenaSoft.AbstractionLayer.dll</HintPath>
     </Reference>
   </ItemGroup>
