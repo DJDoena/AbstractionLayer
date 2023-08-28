@@ -1,5 +1,4 @@
 ﻿using System.Globalization;
-using System.Net;
 
 namespace DoenaSoft.AbstractionLayer.WebServices
 {
@@ -15,7 +14,7 @@ namespace DoenaSoft.AbstractionLayer.WebServices
         /// <param name="proxy">The proxy server</param>
         /// <param name="ci">The language in which the data is requested</param>
         /// <returns>The WebRequest</returns>
-        public IWebRequest CreateWebRequest(string targetUrl, IWebProxy proxy = null, CultureInfo ci = null)
+        public IWebRequest CreateWebRequest(string targetUrl, System.Net.IWebProxy proxy = null, CultureInfo ci = null)
             => new WebRequest(targetUrl, proxy, ci);
 
         /// <summary>
@@ -23,7 +22,7 @@ namespace DoenaSoft.AbstractionLayer.WebServices
         /// </summary>
         /// <param name="proxy">The proxy server</param>
         /// <returns>The WebClient</returns>
-        public IWebClient CreateWebClient(IWebProxy proxy = null)
+        public IWebClient CreateWebClient(System.Net.IWebProxy proxy = null)
         {
             throw new System.NotImplementedException();
         }
