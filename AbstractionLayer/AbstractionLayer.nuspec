@@ -5,7 +5,7 @@
     <version>2.9.0</version>
     <title>DoenaSoft.AbstractionLayer</title>
     <authors>DJ Doena</authors>
-    <icon>images\djdsoft.ico</icon>
+    <icon>images\djdsoft.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/DJDoena/AbstractionLayer</projectUrl>
@@ -25,6 +25,6 @@
 
     <file src="DoenaSoft.AbstractionLayer.props" target="build\netstandard20" />
 
-    <file src="..\djdsoft.ico" target="images\" />
+    <file src="..\djdsoft.png" target="images\" />
 </files>
 </package>
