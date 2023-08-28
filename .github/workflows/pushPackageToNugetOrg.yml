@@ -32,7 +32,7 @@ jobs:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
       
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.7
+        uses: NuGet/setup-nuget@v1.2.0
       
       - name: Build x64
         run: dotnet build ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} -c=Release --no-incremental /p:Platform=x64
