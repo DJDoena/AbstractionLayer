@@ -34,7 +34,7 @@ namespace DoenaSoft.AbstractionLayer.WebServices
 
         public async Task<IWebResponse> GetResponseAsync()
         {
-            var actual = await _actual.GetResponseAsync();
+            var actual = await _actual.GetResponseAsync().ConfigureAwait(false);
 
             var result = actual != null
                 ? new WebResponse(actual)
