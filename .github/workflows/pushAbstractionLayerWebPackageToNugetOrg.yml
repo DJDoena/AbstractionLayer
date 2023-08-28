@@ -6,6 +6,8 @@ on:
   push:
     branches:
       - master
+    paths:
+      - AbstractionLayer.Web
   workflow_dispatch:
       
 env:
