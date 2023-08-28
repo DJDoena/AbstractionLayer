@@ -35,7 +35,7 @@ jobs:
         run: dotnet build ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} -c=Release --no-incremental /p:Platform=AnyCPU
 
       - name: Pack
-        run: dotnet pack ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} --no-build -c=Release -o=./
+        run: dotnet pack ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} --no-build -c=Release -o=./${{ env.PROJECT_FOLDER }}/
           
       - name: Push generated package to Nuget.org
         run: dotnet nuget push ${{ env.PROJECT_FOLDER }}/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source "${{env.SOURCE_URL}}" --skip-duplicate
