@@ -25,7 +25,7 @@ namespace DoenaSoft.AbstractionLayer.WebServices
         /// <summary>
         ///  When overridden in a derived class, gets the URI of the Internet resource that actually responded to the request.
         /// </summary>
-        Uri ResponseUri { get; }
+        string ResponseUri { get; }
 
         /// <summary>
         /// When overridden by a descendant class, closes the response stream.
