@@ -41,7 +41,7 @@ jobs:
         run: dotnet build ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} -c=Release --no-incremental /p:Platform=AnyCPU
 
       - name: Pack Nuget
-        run: dotnet.exe pack ${{ env.PROJECT_FOLDER }}\${{ env.NUGET_SPEC }} -OutputDirectory ${{ env.PROJECT_FOLDER }}
+        run: dotnet pack ${{ env.PROJECT_FOLDER }}\${{ env.NUGET_SPEC }} -OutputDirectory ${{ env.PROJECT_FOLDER }}
 
       - name: Push Nuget
-        run: dotnet.exe push ${{ env.PROJECT_FOLDER }}\*.nupkg -ApiKey ${{secrets.NUGET_API_KEY}} -Source "${{env.SOURCE_URL}}"
+        run: dotnet push ${{ env.PROJECT_FOLDER }}\*.nupkg -ApiKey ${{secrets.NUGET_API_KEY}} -Source "${{env.SOURCE_URL}}"
