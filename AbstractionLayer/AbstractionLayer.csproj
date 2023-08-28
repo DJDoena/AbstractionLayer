@@ -6,6 +6,7 @@
 		<OutputType>Library</OutputType>
 		<RootNamespace>DoenaSoft.DoenaSoft.AbstractionLayer</RootNamespace>
 		<AssemblyName>DoenaSoft.AbstractionLayer</AssemblyName>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<ApplicationIcon>..\djdsoft.ico</ApplicationIcon>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>AbstractionLayer.snk</AssemblyOriginatorKeyFile>
