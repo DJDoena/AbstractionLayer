@@ -12,6 +12,8 @@
             _actual = new System.Net.WebClient();
         }
 
+        private bool IsDisposed { get; set; }
+
         #region IWebClient
 
         public System.Net.ICredentials Credentials
@@ -58,6 +60,20 @@
 
         public void DownloadFile(string address, string fileName)
             => _actual.DownloadFile(address, fileName);
+
+        #endregion
+
+        #region IDisposable 
+
+        public void Dispose()
+        {
+            if (!this.IsDisposed)
+            {
+                _actual.Dispose();
+
+                this.IsDisposed = true;
+            }
+        }
 
         #endregion
     }

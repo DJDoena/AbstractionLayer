@@ -20,8 +20,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; I/O; Forms; WPF</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.0.2</Version>
-		<FileVersion>1.0.2</FileVersion>
+		<Version>1.0.3</Version>
+		<FileVersion>1.0.3</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

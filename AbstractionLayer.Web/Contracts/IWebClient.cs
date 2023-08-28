@@ -1,9 +1,11 @@
-﻿namespace DoenaSoft.AbstractionLayer.WebServices
+﻿using System;
+
+namespace DoenaSoft.AbstractionLayer.WebServices
 {
     /// <summary>
     /// Interface to access WebClient.
     /// </summary>
-    public interface IWebClient
+    public interface IWebClient : IDisposable
     {
         /// <summary>
         /// Gets or sets the network credentials that are sent to the host and used to authenticate the request.
