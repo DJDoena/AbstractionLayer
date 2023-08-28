@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - AbstractionLayer.WPF
+      - AbstractionLayer.WPF/**
   workflow_dispatch:
       
 env:

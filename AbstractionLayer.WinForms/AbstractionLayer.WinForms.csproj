@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net452;net6.0-windows</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Platforms>AnyCPU</Platforms>
 		<OutputType>Library</OutputType>
@@ -21,8 +21,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; I/O; Forms; WPF</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.0.0</Version>
-		<FileVersion>1.0.0</FileVersion>
+		<Version>1.1.0</Version>
+		<FileVersion>1.1.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

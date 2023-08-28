@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - AbstractionLayer.WinForms
+      - AbstractionLayer.WinForms/**
   workflow_dispatch:
       
 env:

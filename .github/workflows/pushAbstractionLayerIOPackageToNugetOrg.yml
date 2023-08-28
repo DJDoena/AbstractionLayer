@@ -7,7 +7,7 @@ on:
     branches:
       - master
     paths:
-      - AbstractionLayer.IO
+      - AbstractionLayer.IO/**
   workflow_dispatch:
       
 env:
