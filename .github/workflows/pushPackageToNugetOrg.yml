@@ -18,7 +18,7 @@ env:
   
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     name: Update NuGet package
     steps:
       - name: Checkout repository
@@ -30,7 +30,10 @@ jobs:
           source-url: ${{env.SOURCE_URL}}  
         env:
           NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}
-          
+      
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.7
+      
       - name: Build x64
         run: dotnet build ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} -c=Release --no-incremental /p:Platform=x64
 
@@ -41,7 +44,7 @@ jobs:
         run: dotnet build ${{ env.PROJECT_FOLDER }}/${{ env.PROJECT_FILE }} -c=Release --no-incremental /p:Platform=AnyCPU
 
       - name: Pack Nuget
-        run: dotnet pack ${{ env.PROJECT_FOLDER }}\${{ env.NUGET_SPEC }}
+        run: nuget.exe pack ${{ env.PROJECT_FOLDER }}\${{ env.NUGET_SPEC }} -OutputDirectory ${{ env.PROJECT_FOLDER }}
 
       - name: Push Nuget
-        run: dotnet push ${{ env.PROJECT_FOLDER }}\*.nupkg -ApiKey ${{secrets.NUGET_API_KEY}} -Source "${{env.SOURCE_URL}}"
+        run: nuget.exe push ${{ env.PROJECT_FOLDER }}\*.nupkg -ApiKey ${{secrets.NUGET_API_KEY}} -Source "${{env.SOURCE_URL}}"
