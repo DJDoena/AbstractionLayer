@@ -7,13 +7,13 @@ on:
     branches:
       - master
     paths:
-      - AbstractionLayer/**
+      - AbstractionLayer.UI/**
   workflow_dispatch:
       
 env:
   SOURCE_URL: https://api.nuget.org/v3/index.json
-  PROJECT_FILE: AbstractionLayer.csproj
-  PROJECT_FOLDER: AbstractionLayer
+  PROJECT_FILE: AbstractionLayer.UI.csproj
+  PROJECT_FOLDER: AbstractionLayer.UI
   BUILD_CONFIGURATION: Release
   
 jobs:
