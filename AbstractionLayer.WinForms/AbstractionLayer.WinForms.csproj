@@ -21,8 +21,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; I/O; Forms; WPF</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.1.1</Version>
-		<FileVersion>1.1.1</FileVersion>
+		<Version>1.1.2</Version>
+		<FileVersion>1.1.2</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,7 +33,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DoenaSoft.AbstractionLayer" Version="3.0.3" />
+		<PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="1.0.0" />
 	</ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
 
 namespace DoenaSoft.AbstractionLayer.Commands
 {
@@ -9,7 +8,7 @@ namespace DoenaSoft.AbstractionLayer.Commands
     /// <summary>
     /// Base class for commands with parameters.
     /// </summary>
-    public abstract class AbstractParameterizedRelayCommand : ICommand
+    public abstract class AbstractParameterizedRelayCommand : System.Windows.Input.ICommand
     {
         private ParameterizedCanExecuteDelegate CanExecuteCallback { get; }
 
@@ -47,14 +46,14 @@ namespace DoenaSoft.AbstractionLayer.Commands
             {
                 if (this.CanExecuteCallback != null)
                 {
-                    CommandManager.RequerySuggested += value;
+                    System.Windows.Input.CommandManager.RequerySuggested += value;
                 }
             }
             remove
             {
                 if (this.CanExecuteCallback != null)
                 {
-                    CommandManager.RequerySuggested -= value;
+                    System.Windows.Input.CommandManager.RequerySuggested -= value;
                 }
             }
         }

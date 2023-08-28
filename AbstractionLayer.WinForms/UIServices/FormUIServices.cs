@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Windows.Forms;
 
 namespace DoenaSoft.AbstractionLayer.UIServices
 {
     /// <summary>
-    /// Standard implementation of <see cref="IUIServices"/> for <see cref="Form"/>.
+    /// Standard implementation of <see cref="IUIServices"/> for <see cref="System.Windows.Forms.Form"/>.
     /// </summary>
     public sealed class FormUIServices : IUIServices
     {
@@ -24,7 +23,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
             var formsIcon = GetIcon(icon);
 
-            var formsResult = MessageBox.Show(text, caption, formsButtons, formsIcon);
+            var formsResult = System.Windows.Forms.MessageBox.Show(text, caption, formsButtons, formsIcon);
 
             var result = GetResult(formsResult);
 
@@ -44,13 +43,13 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                 throw new ArgumentNullException(nameof(options));
             }
 
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (var ofd = new System.Windows.Forms.OpenFileDialog())
             {
                 SetOpenFileDialogOptions(ofd, options);
 
                 ofd.Multiselect = false;
 
-                if (ofd.ShowDialog() == DialogResult.OK)
+                if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     fileName = ofd.FileName;
 
@@ -78,13 +77,13 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                 throw new ArgumentNullException(nameof(options));
             }
 
-            using (OpenFileDialog ofd = new OpenFileDialog())
+            using (var ofd = new System.Windows.Forms.OpenFileDialog())
             {
                 SetOpenFileDialogOptions(ofd, options);
 
                 ofd.Multiselect = true;
 
-                if (ofd.ShowDialog() == DialogResult.OK)
+                if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     fileNames = ofd.FileNames;
 
@@ -112,7 +111,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                 throw new ArgumentNullException(nameof(options));
             }
 
-            using (SaveFileDialog sfd = new SaveFileDialog())
+            using (var sfd = new System.Windows.Forms.SaveFileDialog())
             {
                 if (options.InitialFolder != null)
                 {
@@ -159,7 +158,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                     sfd.FileName = options.FileName;
                 }
 
-                if (sfd.ShowDialog() == DialogResult.OK)
+                if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     fileName = sfd.FileName;
 
@@ -182,7 +181,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         /// <returns>Whether the dialog was confirmed or cancelled</returns>
         public bool ShowFolderBrowserDialog(FolderBrowserDialogOptions options, out string folder)
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            using (var fbd = new System.Windows.Forms.FolderBrowserDialog())
             {
                 if (options == null)
                 {
@@ -209,7 +208,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                     fbd.ShowNewFolderButton = options.ShowNewFolderButton.Value;
                 }
 
-                if (fbd.ShowDialog() == DialogResult.OK)
+                if (fbd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     folder = fbd.SelectedPath;
 
@@ -228,21 +227,21 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
         #region MessageBox
 
-        private MessageBoxButtons GetButtons(Buttons buttons)
+        private System.Windows.Forms.MessageBoxButtons GetButtons(Buttons buttons)
         {
             switch (buttons)
             {
                 case Buttons.YesNo:
                     {
-                        return MessageBoxButtons.YesNo;
+                        return System.Windows.Forms.MessageBoxButtons.YesNo;
                     }
                 case Buttons.YesNoCancel:
                     {
-                        return MessageBoxButtons.YesNoCancel;
+                        return System.Windows.Forms.MessageBoxButtons.YesNoCancel;
                     }
                 case Buttons.OK:
                     {
-                        return MessageBoxButtons.OK;
+                        return System.Windows.Forms.MessageBoxButtons.OK;
                     }
                 default:
                     {
@@ -251,25 +250,25 @@ namespace DoenaSoft.AbstractionLayer.UIServices
             }
         }
 
-        private MessageBoxIcon GetIcon(Icon icon)
+        private System.Windows.Forms.MessageBoxIcon GetIcon(Icon icon)
         {
             switch (icon)
             {
                 case Icon.Error:
                     {
-                        return MessageBoxIcon.Error;
+                        return System.Windows.Forms.MessageBoxIcon.Error;
                     }
                 case Icon.Warning:
                     {
-                        return MessageBoxIcon.Warning;
+                        return System.Windows.Forms.MessageBoxIcon.Warning;
                     }
                 case Icon.Information:
                     {
-                        return MessageBoxIcon.Information;
+                        return System.Windows.Forms.MessageBoxIcon.Information;
                     }
                 case Icon.Question:
                     {
-                        return MessageBoxIcon.Question;
+                        return System.Windows.Forms.MessageBoxIcon.Question;
                     }
                 default:
                     {
@@ -278,23 +277,23 @@ namespace DoenaSoft.AbstractionLayer.UIServices
             }
         }
 
-        private Result GetResult(DialogResult result)
+        private Result GetResult(System.Windows.Forms.DialogResult result)
         {
             switch (result)
             {
-                case DialogResult.Yes:
+                case System.Windows.Forms.DialogResult.Yes:
                     {
                         return Result.Yes;
                     }
-                case DialogResult.No:
+                case System.Windows.Forms.DialogResult.No:
                     {
                         return Result.No;
                     }
-                case DialogResult.OK:
+                case System.Windows.Forms.DialogResult.OK:
                     {
                         return Result.OK;
                     }
-                case DialogResult.Cancel:
+                case System.Windows.Forms.DialogResult.Cancel:
                     {
                         return Result.Cancel;
                     }
@@ -309,7 +308,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
         #region OpenFileDialog
 
-        private static void SetOpenFileDialogOptions(OpenFileDialog ofd, OpenFileDialogOptions options)
+        private static void SetOpenFileDialogOptions(System.Windows.Forms.OpenFileDialog ofd, OpenFileDialogOptions options)
         {
             if (options.InitialFolder != null)
             {

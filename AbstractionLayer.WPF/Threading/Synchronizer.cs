@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Threading;
 
 namespace DoenaSoft.AbstractionLayer.Threading
 {
@@ -8,13 +7,13 @@ namespace DoenaSoft.AbstractionLayer.Threading
     /// </summary>
     public sealed class Synchronizer : ISynchronizer
     {
-        private Dispatcher Dispatcher { get; }
+        private System.Windows.Threading.Dispatcher Dispatcher { get; }
 
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="dispatcher">The dispatcher to invoke methods on the UI thread</param>
-        public Synchronizer(Dispatcher dispatcher)
+        public Synchronizer(System.Windows.Threading.Dispatcher dispatcher)
         {
             Dispatcher = dispatcher;
         }
@@ -26,7 +25,7 @@ namespace DoenaSoft.AbstractionLayer.Threading
         /// </summary>
         /// <param name="func">The function</param>
         public T InvokeOnUIThread<T>(Func<T> func)
-          => Dispatcher.CheckAccess() ? func() : Dispatcher.Invoke(func);
+            => Dispatcher.CheckAccess() ? func() : Dispatcher.Invoke(func);
 
         /// <summary>
         /// Invokes an action on the UI thread.

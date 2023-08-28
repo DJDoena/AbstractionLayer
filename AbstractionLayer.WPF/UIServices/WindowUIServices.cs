@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Windows;
-using Microsoft.Win32;
 
 namespace DoenaSoft.AbstractionLayer.UIServices
 {
     /// <summary>
-    /// Standard implementation of <see cref="IUIServices"/> for <see cref="Window"/>.
+    /// Standard implementation of <see cref="IUIServices"/> for <see cref="System.Windows.Window"/>.
     /// </summary>
     public sealed class WindowUIServices : IUIServices
     {
@@ -25,7 +23,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
             var windowsIcon = GetIcon(icon);
 
-            var windowsResult = MessageBox.Show(text, caption, windowsButtons, windowsIcon);
+            var windowsResult = System.Windows.MessageBox.Show(text, caption, windowsButtons, windowsIcon);
 
             var result = GetResult(windowsResult);
 
@@ -45,7 +43,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                 throw new ArgumentNullException(nameof(options));
             }
 
-            var ofd = new OpenFileDialog();
+            var ofd = new Microsoft.Win32.OpenFileDialog();
 
             SetOpenFileDialogOptions(ofd, options);
 
@@ -80,7 +78,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                 throw new ArgumentNullException(nameof(options));
             }
 
-            var ofd = new OpenFileDialog();
+            var ofd = new Microsoft.Win32.OpenFileDialog();
 
             SetOpenFileDialogOptions(ofd, options);
 
@@ -115,7 +113,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
                 throw new ArgumentNullException(nameof(options));
             }
 
-            var sfd = new SaveFileDialog();
+            var sfd = new Microsoft.Win32.SaveFileDialog();
 
             if (options.InitialFolder != null)
             {
@@ -232,21 +230,21 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
         #region MessageBox
 
-        private MessageBoxButton GetButtons(Buttons buttons)
+        private System.Windows.MessageBoxButton GetButtons(Buttons buttons)
         {
             switch (buttons)
             {
                 case Buttons.YesNo:
                     {
-                        return MessageBoxButton.YesNo;
+                        return System.Windows.MessageBoxButton.YesNo;
                     }
                 case Buttons.YesNoCancel:
                     {
-                        return MessageBoxButton.YesNoCancel;
+                        return System.Windows.MessageBoxButton.YesNoCancel;
                     }
                 case Buttons.OK:
                     {
-                        return MessageBoxButton.OK;
+                        return System.Windows.MessageBoxButton.OK;
                     }
                 default:
                     {
@@ -255,25 +253,25 @@ namespace DoenaSoft.AbstractionLayer.UIServices
             }
         }
 
-        private MessageBoxImage GetIcon(Icon icon)
+        private System.Windows.MessageBoxImage GetIcon(Icon icon)
         {
             switch (icon)
             {
                 case Icon.Error:
                     {
-                        return MessageBoxImage.Error;
+                        return System.Windows.MessageBoxImage.Error;
                     }
                 case Icon.Warning:
                     {
-                        return MessageBoxImage.Warning;
+                        return System.Windows.MessageBoxImage.Warning;
                     }
                 case Icon.Information:
                     {
-                        return MessageBoxImage.Information;
+                        return System.Windows.MessageBoxImage.Information;
                     }
                 case Icon.Question:
                     {
-                        return MessageBoxImage.Question;
+                        return System.Windows.MessageBoxImage.Question;
                     }
                 default:
                     {
@@ -282,23 +280,23 @@ namespace DoenaSoft.AbstractionLayer.UIServices
             }
         }
 
-        private Result GetResult(MessageBoxResult result)
+        private Result GetResult(System.Windows.MessageBoxResult result)
         {
             switch (result)
             {
-                case MessageBoxResult.Yes:
+                case System.Windows.MessageBoxResult.Yes:
                     {
                         return Result.Yes;
                     }
-                case MessageBoxResult.No:
+                case System.Windows.MessageBoxResult.No:
                     {
                         return Result.No;
                     }
-                case MessageBoxResult.OK:
+                case System.Windows.MessageBoxResult.OK:
                     {
                         return Result.OK;
                     }
-                case MessageBoxResult.Cancel:
+                case System.Windows.MessageBoxResult.Cancel:
                     {
                         return Result.Cancel;
                     }
@@ -313,7 +311,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
         #region OpenFileDialog
 
-        private static void SetOpenFileDialogOptions(OpenFileDialog ofd, OpenFileDialogOptions options)
+        private static void SetOpenFileDialogOptions(Microsoft.Win32.OpenFileDialog ofd, OpenFileDialogOptions options)
         {
             if (options.InitialFolder != null)
             {

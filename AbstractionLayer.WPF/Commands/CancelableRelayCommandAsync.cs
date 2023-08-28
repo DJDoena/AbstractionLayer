@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace DoenaSoft.AbstractionLayer.Commands
 {
@@ -49,7 +48,7 @@ namespace DoenaSoft.AbstractionLayer.Commands
 
                 var task = Task.Run(() => ExecuteCallback(ct), ct);
 
-                task.ContinueWith(t => CommandManager.InvalidateRequerySuggested(), TaskScheduler.FromCurrentSynchronizationContext());
+                task.ContinueWith(t => System.Windows.Input.CommandManager.InvalidateRequerySuggested(), TaskScheduler.FromCurrentSynchronizationContext());
             }
         }
 
