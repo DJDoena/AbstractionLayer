@@ -1,18 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+		<UseWindowsForms>true</UseWindowsForms>
 		<Platforms>AnyCPU</Platforms>
 		<OutputType>Library</OutputType>
 		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
-		<AssemblyName>DoenaSoft.AbstractionLayer</AssemblyName>
+		<AssemblyName>DoenaSoft.AbstractionLayer.WinForms</AssemblyName>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<SignAssembly>True</SignAssembly>
-		<AssemblyOriginatorKeyFile>AbstractionLayer.snk</AssemblyOriginatorKeyFile>
-		<Title>DoenaSoft.AbstractionLayer</Title>
+		<AssemblyOriginatorKeyFile>AbstractionLayer.WinForms.snk</AssemblyOriginatorKeyFile>
+		<Title>DoenaSoft.AbstractionLayer.WinForms</Title>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
-		<Description>Gives an interface layer for file I/O as well as Windows Forms / WPF UI components for mocking and unit-testing</Description>
+		<Description>Gives an interface layer for web I/O for mocking and unit-testing</Description>
 		<Copyright>2016 - 2023</Copyright>
 		<PackageProjectUrl>https://github.com/DJDoena/AbstractionLayer</PackageProjectUrl>
 		<PackageIcon>djdsoft.png</PackageIcon>
@@ -20,8 +21,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; I/O; Forms; WPF</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>3.0.1</Version>
-		<FileVersion>3.0.1</FileVersion>
+		<Version>1.0.0</Version>
+		<FileVersion>1.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -29,6 +30,10 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DoenaSoft.AbstractionLayer" Version="3.0.1" />
 	</ItemGroup>
 
 </Project>

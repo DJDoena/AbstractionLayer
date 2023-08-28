@@ -1,6 +1,6 @@
 #In this script it is important to set the RepositoryUrl in the *.csproj file
 
-name: NuGet Generation for DoenaSoft.AbstractionLayer
+name: NuGet Generation for DoenaSoft.AbstractionLayer.WinForms
 
 on:
   push:
@@ -10,8 +10,8 @@ on:
       
 env:
   SOURCE_URL: https://api.nuget.org/v3/index.json
-  PROJECT_FILE: AbstractionLayer.csproj
-  PROJECT_FOLDER: AbstractionLayer
+  PROJECT_FILE: AbstractionLayer.WinForms.csproj
+  PROJECT_FOLDER: AbstractionLayer.WinForms
   BUILD_CONFIGURATION: Release
   
 jobs:
