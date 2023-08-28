@@ -1,4 +1,6 @@
-﻿namespace DoenaSoft.AbstractionLayer.WebServices
+﻿using System.Threading.Tasks;
+
+namespace DoenaSoft.AbstractionLayer.WebServices
 {
     /// <summary>
     /// Interface to access WebRequest.
@@ -9,6 +11,6 @@
         /// Returns a WebResponse.
         /// </summary>
         /// <returns>The WebResponse</returns>
-        IWebResponse GetResponse();
+        Task<IWebResponse> GetResponseAsync();
     }
 }
