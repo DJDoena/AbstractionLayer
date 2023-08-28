@@ -18,16 +18,28 @@
 
         #region IWebResponse
 
+        public long ContentLength
+        {
+            get => _actual.ContentLength;
+            set => _actual.ContentLength = value;
+        }
+
+        public string ContentType
+        {
+            get => _actual.ContentType;
+            set => _actual.ContentType = value;
+        }
+
+        public System.Net.WebHeaderCollection Headers => _actual.Headers;
+
         public string ResponseUri
             => _actual.ResponseUri.AbsoluteUri;
 
+        public void Close()
+            => this.Dispose();
+
         public System.IO.Stream GetResponseStream()
             => _actual.GetResponseStream();
-
-        public void Close()
-        {
-            this.Dispose();
-        }
 
         #endregion
 

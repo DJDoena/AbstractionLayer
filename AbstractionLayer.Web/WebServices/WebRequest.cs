@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using System.Threading.Tasks;
 
 namespace DoenaSoft.AbstractionLayer.WebServices
 {
@@ -11,7 +12,7 @@ namespace DoenaSoft.AbstractionLayer.WebServices
 
         #region IWebRequest
 
-        public WebRequest(string targetUrl, CultureInfo ci)
+        public WebRequest(string targetUrl, System.Net.IWebProxy proxy, CultureInfo ci)
         {
             _actual = System.Net.WebRequest.Create(targetUrl);
 
@@ -20,14 +21,20 @@ namespace DoenaSoft.AbstractionLayer.WebServices
                 _actual.Headers.Add("Accept-Language: " + ci.Name);
             }
 
-            _actual.Proxy = System.Net.WebRequest.GetSystemWebProxy();
-
-            _actual.Proxy.Credentials = System.Net.CredentialCache.DefaultNetworkCredentials;
+            if (proxy != null)
+            {
+                _actual.Proxy = proxy;
+            }
+            else
+            {
+                _actual.Proxy = System.Net.WebRequest.GetSystemWebProxy();
+                _actual.Proxy.Credentials = System.Net.CredentialCache.DefaultNetworkCredentials;
+            }
         }
 
-        public IWebResponse GetResponse()
+        public async Task<IWebResponse> GetResponseAsync()
         {
-            var actual = _actual.GetResponse();
+            var actual = await _actual.GetResponseAsync();
 
             var result = actual != null
                 ? new WebResponse(actual)
