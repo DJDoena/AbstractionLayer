@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32922.545
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLayer", "AbstractionLayer\AbstractionLayer.csproj", "{DB80B0A8-CCB6-4FA1-BFAA-B96F41F7B125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLayer", "AbstractionLayer.UI\AbstractionLayer.UI.csproj", "{DB80B0A8-CCB6-4FA1-BFAA-B96F41F7B125}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLayer.Web", "AbstractionLayer.Web\AbstractionLayer.Web.csproj", "{184E117F-9A60-4262-9C41-749CFE44949A}"
 EndProject
