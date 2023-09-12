@@ -22,8 +22,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; WPF</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.1.6</Version>
-		<FileVersion>1.1.6</FileVersion>
+		<Version>1.1.7</Version>
+		<FileVersion>1.1.7</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
@@ -35,7 +35,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="1.0.1" />
+	  <PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="1.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
