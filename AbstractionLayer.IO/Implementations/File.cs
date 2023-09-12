@@ -1,6 +1,4 @@
-﻿using DoenaSoft.AbstractionLayer.IOServices;
-
-namespace DoenaSoft.AbstractionLayer.IOServices
+﻿namespace DoenaSoft.AbstractionLayer.IOServices
 {
     /// <summary>
     /// Standard implementation of <see cref="IFile"/> for <see cref="System.IO.File"/>.
@@ -36,9 +34,9 @@ namespace DoenaSoft.AbstractionLayer.IOServices
             _logger?.WriteLine($"Move file \"{oldFileName}\"", true);
             _logger?.WriteLine($"to        \"{newFileName}\"");
 
-            if (overwrite && Exists(newFileName))
+            if (overwrite && this.Exists(newFileName))
             {
-                Delete(newFileName);
+                this.Delete(newFileName);
             }
 
             System.IO.File.Move(oldFileName, newFileName);

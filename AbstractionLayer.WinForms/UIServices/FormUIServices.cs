@@ -19,13 +19,13 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         /// <returns>Which button was pressed</returns>
         public Result ShowMessageBox(string text, string caption, Buttons buttons, Icon icon)
         {
-            var formsButtons = GetButtons(buttons);
+            var formsButtons = this.GetButtons(buttons);
 
-            var formsIcon = GetIcon(icon);
+            var formsIcon = this.GetIcon(icon);
 
             var formsResult = System.Windows.Forms.MessageBox.Show(text, caption, formsButtons, formsIcon);
 
-            var result = GetResult(formsResult);
+            var result = this.GetResult(formsResult);
 
             return result;
         }

@@ -196,7 +196,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices
             }
             else
             {
-                var result = string.Compare(FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+                var result = string.Compare(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
 
                 return result;
             }

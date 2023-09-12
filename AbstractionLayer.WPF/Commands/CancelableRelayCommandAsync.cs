@@ -46,7 +46,7 @@ namespace DoenaSoft.AbstractionLayer.Commands
 
                 var ct = this.CancellationTokenSource.Token;
 
-                var task = Task.Run(() => ExecuteCallback(ct), ct);
+                var task = Task.Run(() => this.ExecuteCallback(ct), ct);
 
                 task.ContinueWith(t => System.Windows.Input.CommandManager.InvalidateRequerySuggested(), TaskScheduler.FromCurrentSynchronizationContext());
             }

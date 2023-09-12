@@ -59,9 +59,9 @@ namespace DoenaSoft.AbstractionLayer.IOServices
             return sorted;
         }
 
-        public IEnumerable<IFolderInfo> GetFolderInfos(string folder, string searchPattern, System.IO.SearchOption searchOption) => GetFolderNames(folder, searchPattern, searchOption).Select(f => new FolderInfo(f));
+        public IEnumerable<IFolderInfo> GetFolderInfos(string folder, string searchPattern, System.IO.SearchOption searchOption) => this.GetFolderNames(folder, searchPattern, searchOption).Select(f => new FolderInfo(f));
 
-        public IEnumerable<IFileInfo> GetFileInfos(string folder, string searchPattern, System.IO.SearchOption searchOption) => GetFileNames(folder, searchPattern, searchOption).Select(f => new FileInfo(f));
+        public IEnumerable<IFileInfo> GetFileInfos(string folder, string searchPattern, System.IO.SearchOption searchOption) => this.GetFileNames(folder, searchPattern, searchOption).Select(f => new FileInfo(f));
 
         #endregion
     }

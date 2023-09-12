@@ -124,7 +124,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices
         /// Compares this instance with <paramref name="other"/> if they refer to the same file.
         /// </summary>
         public bool Equals(IFileInfo other)
-            => GetEquality(other);
+            => this.GetEquality(other);
 
         #endregion
 
@@ -166,7 +166,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices
         /// Returns a hashcode based on the full path of the file.
         /// </summary>
         public override int GetHashCode()
-            => FullName?.GetHashCode() ?? 0;
+            => this.FullName?.GetHashCode() ?? 0;
 
         /// <summary>
         /// Compares this instance with <paramref name="obj"/> if they refer to the same file.

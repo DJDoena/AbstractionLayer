@@ -24,7 +24,7 @@ namespace DoenaSoft.AbstractionLayer.Commands
         /// </summary>
         public override void Execute(object parameter)
         {
-            if (CanExecute(parameter))
+            if (this.CanExecute(parameter))
             {
                 var task = Task.Run(() => this.ExecuteCallback());
 

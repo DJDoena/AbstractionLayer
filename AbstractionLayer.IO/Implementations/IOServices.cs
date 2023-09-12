@@ -82,7 +82,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices
         {
             var drives = System.IO.DriveInfo.GetDrives();
 
-            foreach (System.IO.DriveInfo drive in drives)
+            foreach (var drive in drives)
             {
                 if (driveType == null)
                 {

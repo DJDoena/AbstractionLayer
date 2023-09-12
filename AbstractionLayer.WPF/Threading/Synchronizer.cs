@@ -15,7 +15,7 @@ namespace DoenaSoft.AbstractionLayer.Threading
         /// <param name="dispatcher">The dispatcher to invoke methods on the UI thread</param>
         public Synchronizer(System.Windows.Threading.Dispatcher dispatcher)
         {
-            Dispatcher = dispatcher;
+            this.Dispatcher = dispatcher;
         }
 
         #region ISynchronizer
@@ -25,7 +25,7 @@ namespace DoenaSoft.AbstractionLayer.Threading
         /// </summary>
         /// <param name="func">The function</param>
         public T InvokeOnUIThread<T>(Func<T> func)
-            => Dispatcher.CheckAccess() ? func() : Dispatcher.Invoke(func);
+            => this.Dispatcher.CheckAccess() ? func() : this.Dispatcher.Invoke(func);
 
         /// <summary>
         /// Invokes an action on the UI thread.
@@ -33,13 +33,13 @@ namespace DoenaSoft.AbstractionLayer.Threading
         /// <param name="action">The action</param>
         public void InvokeOnUIThread(Action action)
         {
-            if (Dispatcher.CheckAccess())
+            if (this.Dispatcher.CheckAccess())
             {
                 action();
             }
             else
             {
-                Dispatcher.Invoke(action);
+                this.Dispatcher.Invoke(action);
             }
         }
 

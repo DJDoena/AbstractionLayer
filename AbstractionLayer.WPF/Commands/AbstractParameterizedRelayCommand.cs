@@ -18,7 +18,7 @@ namespace DoenaSoft.AbstractionLayer.Commands
         /// <param name="canExecuteCallback">Defines the method that determines whether the command can execute in its current state</param>
         protected AbstractParameterizedRelayCommand(ParameterizedCanExecuteDelegate canExecuteCallback = null)
         {
-            CanExecuteCallback = canExecuteCallback;
+            this.CanExecuteCallback = canExecuteCallback;
         }
 
         #region ICommand 

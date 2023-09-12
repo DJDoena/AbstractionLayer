@@ -20,17 +20,17 @@ namespace DoenaSoft.AbstractionLayer.IOServices
 
         public bool IsReady => _actual.IsReady;
 
-        public string DriveLetter => RootFolder.Substring(0, 2);
+        public string DriveLetter => this.RootFolder.Substring(0, 2);
 
         public string DriveLabel
         {
             get
             {
-                var driveLabel = DriveLetter;
+                var driveLabel = this.DriveLetter;
 
-                if (CanReadLabel())
+                if (this.CanReadLabel())
                 {
-                    driveLabel += TryReadLabel();
+                    driveLabel += this.TryReadLabel();
                 }
 
                 return driveLabel;
@@ -41,8 +41,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices
         {
             get
             {
-                var volumeLabel = CanReadLabel()
-                    ? TryReadVolumeLabel()
+                var volumeLabel = this.CanReadLabel()
+                    ? this.TryReadVolumeLabel()
                     : string.Empty;
 
                 return volumeLabel;
@@ -60,7 +60,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices
 
         private string TryReadLabel()
         {
-            var volumeLabel = TryReadVolumeLabel();
+            var volumeLabel = this.TryReadVolumeLabel();
 
             if (!string.IsNullOrEmpty(volumeLabel))
             {
