@@ -1,0 +1,1 @@
+# Gives an interface layer for mocking and unit-testing

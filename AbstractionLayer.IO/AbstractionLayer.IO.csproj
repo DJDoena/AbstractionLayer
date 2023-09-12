@@ -12,20 +12,28 @@
 		<Title>DoenaSoft.AbstractionLayer.IO</Title>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
-		<Description>Gives an interface layer for I/O for mocking and unit-testing</Description>
+		<Description>Gives an interface layer for file I/O for mocking and unit-testing</Description>
 		<Copyright>2016 - 2023</Copyright>
 		<PackageProjectUrl>https://github.com/DJDoena/AbstractionLayer</PackageProjectUrl>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<RepositoryUrl>https://github.com/DJDoena/AbstractionLayer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>unit-testing; I/O</PackageTags>
+		<PackageTags>unit-testing; mocking; I/O</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.0.2</Version>
-		<FileVersion>1.0.2</FileVersion>
+		<Version>1.0.3</Version>
+		<FileVersion>1.0.3</FileVersion>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\djdsoft.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="readme.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

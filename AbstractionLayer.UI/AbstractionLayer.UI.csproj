@@ -18,14 +18,22 @@
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<RepositoryUrl>https://github.com/DJDoena/AbstractionLayer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>unit-testing; Forms; WPF</PackageTags>
+		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.0.1</Version>
-		<FileVersion>1.0.1</FileVersion>
+		<Version>1.0.2</Version>
+		<FileVersion>1.0.2</FileVersion>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\djdsoft.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="readme.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>

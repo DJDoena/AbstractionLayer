@@ -13,16 +13,17 @@
 		<Title>DoenaSoft.AbstractionLayer.WinForms</Title>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
-		<Description>Gives an interface layer for web I/O for mocking and unit-testing</Description>
+		<Description>Gives an interface layer for Windows Forms UI components for mocking and unit-testing</Description>
 		<Copyright>2016 - 2023</Copyright>
 		<PackageProjectUrl>https://github.com/DJDoena/AbstractionLayer</PackageProjectUrl>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<RepositoryUrl>https://github.com/DJDoena/AbstractionLayer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>unit-testing; I/O; Forms; WPF</PackageTags>
+		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.1.3</Version>
-		<FileVersion>1.1.3</FileVersion>
+		<Version>1.1.4</Version>
+		<FileVersion>1.1.4</FileVersion>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -34,6 +35,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="1.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="readme.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 </Project>

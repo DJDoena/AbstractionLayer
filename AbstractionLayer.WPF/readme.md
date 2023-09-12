@@ -1,0 +1,1 @@
+# Gives an interface layer for WPF UI components for mocking and unit-testing
