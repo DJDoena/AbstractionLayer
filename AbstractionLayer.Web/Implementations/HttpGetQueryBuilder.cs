@@ -61,7 +61,9 @@ namespace DoenaSoft.AbstractionLayer.WebServices
 
             foreach (var keyValue in _queryParameters)
             {
-                queryBuilder.Append($"{Uri.EscapeDataString(keyValue.Key)}={Uri.EscapeDataString(keyValue.Value)}");
+                queryBuilder.Append(Uri.EscapeDataString(keyValue.Key));
+                queryBuilder.Append('=');
+                queryBuilder.Append(Uri.EscapeDataString(keyValue.Value));
 
                 keyIndex++;
 
