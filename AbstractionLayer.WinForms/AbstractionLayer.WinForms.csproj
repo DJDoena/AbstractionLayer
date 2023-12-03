@@ -21,10 +21,11 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.1.4</Version>
-		<FileVersion>1.1.4</FileVersion>
+		<Version>1.1.5</Version>
+		<FileVersion>1.1.5</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<DebugType>full</DebugType>
+		<IncludeSymbols>true</IncludeSymbols>
 	</PropertyGroup>
 
 	<ItemGroup>
