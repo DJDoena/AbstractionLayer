@@ -23,6 +23,7 @@
 		<Version>1.0.2</Version>
 		<FileVersion>1.0.2</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<DebugType>full</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>

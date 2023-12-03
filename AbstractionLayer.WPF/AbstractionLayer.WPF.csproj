@@ -25,6 +25,7 @@
 		<Version>1.1.5</Version>
 		<FileVersion>1.1.5</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<DebugType>full</DebugType>
 	</PropertyGroup>
 
 	<ItemGroup>
