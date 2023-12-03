@@ -24,7 +24,14 @@ namespace DoenaSoft.AbstractionLayer.WebServices
         /// <returns>The WebClient</returns>
         public IWebClient CreateWebClient(System.Net.IWebProxy proxy = null)
         {
-            throw new System.NotImplementedException();
+            var webClient = new WebClient();
+
+            if (proxy != null)
+            {
+                webClient.Proxy = proxy;
+            }
+
+            return webClient;
         }
     }
 }
