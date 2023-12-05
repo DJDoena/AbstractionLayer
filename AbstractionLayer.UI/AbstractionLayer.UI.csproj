@@ -20,11 +20,12 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.0.4</Version>
-		<FileVersion>1.0.4</FileVersion>
+		<Version>1.0.5</Version>
+		<FileVersion>1.0.5</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<DebugType>portable</DebugType>
 		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>

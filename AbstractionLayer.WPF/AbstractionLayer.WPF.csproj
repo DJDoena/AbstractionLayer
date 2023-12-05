@@ -22,11 +22,12 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; WPF</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.1.7</Version>
-		<FileVersion>1.1.7</FileVersion>
+		<Version>1.1.8</Version>
+		<FileVersion>1.1.8</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<DebugType>portable</DebugType>
 		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>
