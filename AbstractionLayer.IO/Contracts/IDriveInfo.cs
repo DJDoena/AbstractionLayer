@@ -21,9 +21,14 @@
         string VolumeLabel { get; }
 
         /// <summary>
+        /// Returns the root folder name.
+        /// </summary>
+        string RootFolderName { get; }
+
+        /// <summary>
         /// Returns the root folder.
         /// </summary>
-        string RootFolder { get; }
+        IFolderInfo RootFolder { get; }
 
         /// <summary>
         /// Returns the drive letter.

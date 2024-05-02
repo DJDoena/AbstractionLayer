@@ -6,7 +6,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices
     /// <summary>
     /// Standard implementation of <see cref="IDriveInfo"/> for <see cref="System.IO.DriveInfo"/>.
     /// </summary>
-    [DebuggerDisplay("DriveLetter={DriveLetter}, Label={Label}")]
+    [DebuggerDisplay("DriveLetter={DriveLetter}, Label={DriveLabel}")]
     internal sealed class DriveInfo : IDriveInfo
     {
         private readonly System.IO.DriveInfo _actual;
@@ -18,9 +18,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices
 
         #region  IDriveInfo
 
-        public bool IsReady => _actual.IsReady;
+        public bool IsReady 
+            => _actual.IsReady;
 
-        public string DriveLetter => this.RootFolder.Substring(0, 2);
+        public string DriveLetter 
+            => this.RootFolderName.Substring(0, 2);
 
         public string DriveLabel
         {
@@ -49,9 +51,14 @@ namespace DoenaSoft.AbstractionLayer.IOServices
             }
         }
 
-        public string RootFolder => _actual.RootDirectory.FullName;
+        public string RootFolderName
+            => _actual.RootDirectory.FullName;
 
-        public ulong AvailableFreeSpace => (ulong)_actual.AvailableFreeSpace;
+        public IFolderInfo RootFolder
+            => new FolderInfo(_actual.RootDirectory);
+
+        public ulong AvailableFreeSpace
+            => (ulong)_actual.AvailableFreeSpace;
 
         #endregion
 
