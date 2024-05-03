@@ -14,17 +14,21 @@ internal sealed class Folder : IFolder
         _logger = logger;
     }
 
-    public Folder() : this(null)
+    public Folder()
+        : this(null)
     {
     }
 
     #region IFolder
 
-    public string WorkingFolder => Environment.CurrentDirectory;
+    public string WorkingFolderName
+        => Environment.CurrentDirectory;
 
-    public bool Exists(string folder) => SIO.Directory.Exists(folder);
+    public bool Exists(string folder)
+        => SIO.Directory.Exists(folder);
 
-    public string GetFullPath(string folder) => SIO.Path.GetFullPath(folder);
+    public string GetFullPath(string folder)
+        => SIO.Path.GetFullPath(folder);
 
     public void Delete(string folder)
     {
@@ -42,37 +46,44 @@ internal sealed class Folder : IFolder
         return new FolderInfo(actual);
     }
 
-    public IEnumerable<string> GetFolderNames(string folder, string searchPattern, SIO.SearchOption searchOption)
-    {
-        var filtered = SIO.Directory.GetDirectories(folder, searchPattern, searchOption);
+    public IEnumerable<string> GetFolderNames(string folder
+        , string searchPattern
+        , SIO.SearchOption searchOption)
+        => SIO.Directory.GetDirectories(folder, searchPattern, searchOption)
+            .OrderBy(item => item);
 
-        var sorted = filtered.OrderBy(item => item);
-
-        return sorted;
-    }
-
-    public IEnumerable<string> GetFileNames(string folder, string searchPattern, SIO.SearchOption searchOption)
-    {
-        var filtered = SIO.Directory.GetFiles(folder, searchPattern, searchOption);
-
-        var sorted = filtered.OrderBy(item => item);
-
-        return sorted;
-    }
-
-    public IEnumerable<IFolderInfo> GetFolderInfos(string folder, string searchPattern, SIO.SearchOption searchOption)
+    public IEnumerable<IFolderInfo> GetFolders(string folder
+        , string searchPattern
+        , SIO.SearchOption searchOption)
         => this.GetFolderNames(folder, searchPattern, searchOption)
             .Select(f => new FolderInfo(f));
 
-    public IEnumerable<IFolderInfo> GetDirectories(string folder, string searchPattern, SIO.SearchOption searchOption)
-        => this.GetFolderInfos(folder, searchPattern, searchOption);
+    public IEnumerable<IFolderInfo> GetFolderInfos(string folder
+        , string searchPattern
+        , SIO.SearchOption searchOption)
+        => this.GetFolders(folder, searchPattern, searchOption);
 
-    public IEnumerable<IFileInfo> GetFileInfos(string folder, string searchPattern, SIO.SearchOption searchOption)
+    public IEnumerable<IFolderInfo> GetDirectories(string folder
+        , string searchPattern
+        , SIO.SearchOption searchOption)
+        => this.GetFolders(folder, searchPattern, searchOption);
+
+    public IEnumerable<IFileInfo> GetFileInfos(string folder
+        , string searchPattern
+        , SIO.SearchOption searchOption)
+        => this.GetFiles(folder, searchPattern, searchOption);
+
+    public IEnumerable<string> GetFileNames(string folder
+        , string searchPattern
+        , SIO.SearchOption searchOption)
+        => SIO.Directory.GetFiles(folder, searchPattern, searchOption)
+            .OrderBy(item => item);
+
+    public IEnumerable<IFileInfo> GetFiles(string folder
+        , string searchPattern
+        , SIO.SearchOption searchOption)
         => this.GetFileNames(folder, searchPattern, searchOption)
             .Select(f => new FileInfo(f));
-
-    public IEnumerable<IFileInfo> GetFiles(string folder, string searchPattern, SIO.SearchOption searchOption)
-        => this.GetFileInfos(folder, searchPattern, searchOption);
 
     #endregion
 }

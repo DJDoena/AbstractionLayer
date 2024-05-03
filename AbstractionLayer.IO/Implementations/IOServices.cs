@@ -14,10 +14,7 @@ public sealed class IOServices : IIOServices
 
     private readonly IFile _file;
 
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    /// <param name="logger">A logger</param>
+    /// <summary />
     public IOServices(ILogger logger)
     {
         _path = new Path();
@@ -25,10 +22,9 @@ public sealed class IOServices : IIOServices
         _file = new File(logger);
     }
 
-    /// <summary>
-    /// Constructor.
-    /// </summary>
-    public IOServices() : this(null)
+    /// <summary />
+    public IOServices()
+        : this(null)
     {
     }
 
@@ -37,31 +33,36 @@ public sealed class IOServices : IIOServices
     /// <summary>
     /// Returns an object to deal with paths.
     /// </summary>
-    public IPath Path => _path;
+    public IPath Path
+        => _path;
 
     /// <summary>
     /// Returns an object to deal with folders.
     /// </summary>
-    public IFolder Folder => _folder;
+    public IFolder Folder
+        => _folder;
 
     /// <summary>
     /// Returns an object to deal with files.
     /// </summary>
-    public IFile File => _file;
+    public IFile File
+        => _file;
 
     /// <summary>
     /// Returns a <see cref="IFolderInfo"/> for a given folder.
     /// </summary>
     /// <param name="folder">The folder</param>
     /// <returns>A <see cref="IFolderInfo"/> for a given folder</returns>
-    public IFolderInfo GetFolderInfo(string folder) => new FolderInfo(folder);
+    public IFolderInfo GetFolderInfo(string folder)
+        => new FolderInfo(folder);
 
     /// <summary>
     /// Returns a <see cref="IFileInfo"/> for a given file name.
     /// </summary>
     /// <param name="fileName">The file name </param>
     /// <returns>A <see cref="IFileInfo"/> for a given file name</returns>
-    public IFileInfo GetFileInfo(string fileName) => new FileInfo(fileName);
+    public IFileInfo GetFileInfo(string fileName)
+        => new FileInfo(fileName);
 
     /// <summary>
     /// Opens a file.
@@ -101,7 +102,8 @@ public sealed class IOServices : IIOServices
     /// </summary>
     /// <param name="driveLetter">the drive letter</param>
     /// <returns>The <see cref="IDriveInfo"/> for the given drive letter</returns>
-    public IDriveInfo GetDriveInfo(string driveLetter) => new DriveInfo(new SIO.DriveInfo(driveLetter));
+    public IDriveInfo GetDriveInfo(string driveLetter)
+        => new DriveInfo(new SIO.DriveInfo(driveLetter));
 
     /// <summary>
     /// Returns a <see cref="IFileSystemWatcher"/> based on the folder and the search pattern.
@@ -109,7 +111,8 @@ public sealed class IOServices : IIOServices
     /// <param name="folder">The folder</param>
     /// <param name="searchPattern">The search pattern</param>
     /// <returns>A <see cref="IFileSystemWatcher"/> based on the folder and the search pattern</returns>
-    public IFileSystemWatcher GetFileSystemWatcher(string folder, string searchPattern) => new FileSystemWatcher(folder, searchPattern);
+    public IFileSystemWatcher GetFileSystemWatcher(string folder, string searchPattern)
+        => new FileSystemWatcher(folder, searchPattern);
 
     #endregion
 }
