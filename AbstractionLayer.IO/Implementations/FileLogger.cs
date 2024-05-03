@@ -1,106 +1,106 @@
 ﻿using System.Text;
+using SIO = System.IO;
 
-namespace DoenaSoft.AbstractionLayer.IOServices
+namespace DoenaSoft.AbstractionLayer.IOServices;
+
+/// <summary>
+/// Standard implementation of <see cref="ILogger"/> for a file.
+/// </summary>
+public sealed class FileLogger : ILogger
 {
+    private readonly SIO.StreamWriter _streamWriter;
+
+    private readonly ILogger _inputLogger;
+
+    private bool _isDisposed;
+
     /// <summary>
-    /// Standard implementation of <see cref="ILogger"/> for a file.
+    /// Constructor
     /// </summary>
-    public sealed class FileLogger : ILogger
+    /// <param name="fileName">The file name to which to log</param>
+    /// <param name="inputLogger">A logger that is able to receive user input</param>
+    public FileLogger(string fileName, ILogger inputLogger)
     {
-        private readonly System.IO.StreamWriter _streamWriter;
+        _streamWriter = new SIO.StreamWriter(fileName, false, Encoding.GetEncoding(1252));
 
-        private readonly ILogger _inputLogger;
+        _inputLogger = inputLogger;
 
-        private bool _isDisposed;
+        _isDisposed = false;
+    }
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="fileName">The file name to which to log</param>
-        /// <param name="inputLogger">A logger that is able to receive user input</param>
-        public FileLogger(string fileName, ILogger inputLogger)
+    /// <summary>
+    /// Writes the message with its parameters and creates a line break and another empty line.
+    /// </summary>
+    /// <param name="message">The message</param>
+    /// <param name="parameters">The message parameter</param>
+    public void WriteLine(string message, params object[] parameters)
+        => this.WriteLine(message, false, parameters);
+
+    /// <summary>
+    /// Writes the message with its parameters and creates a line break with the option to suppress additional  empty line.
+    /// </summary>
+    /// <param name="message">The message</param>
+    /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
+    /// <param name="parameters">The message parameter</param>
+    public void WriteLine(string message, bool suppressFreeLine, params object[] parameters)
+    {
+        message = string.Format(message, parameters);
+
+        _streamWriter.WriteLine(message);
+
+        if (suppressFreeLine == false)
         {
-            _streamWriter = new System.IO.StreamWriter(fileName, false, Encoding.GetEncoding(1252));
-
-            _inputLogger = inputLogger;
-
-            _isDisposed = false;
+            _streamWriter.WriteLine();
         }
+    }
 
-        /// <summary>
-        /// Writes the message with its parameters and creates a line break and another empty line.
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="parameters">The message parameter</param>
-        public void WriteLine(string message, params object[] parameters)
-            => this.WriteLine(message, false, parameters);
-
-        /// <summary>
-        /// Writes the message with its parameters and creates a line break with the option to suppress additional  empty line.
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
-        /// <param name="parameters">The message parameter</param>
-        public void WriteLine(string message, bool suppressFreeLine, params object[] parameters)
+    /// <summary>
+    /// Reads user input.
+    /// The user input is requested from the <see cref="_inputLogger"/>.
+    /// </summary>
+    /// <returns>The user input</returns>
+    public string ReadLine()
+    {
+        if (_inputLogger != null)
         {
-            message = string.Format(message, parameters);
+            var input = _inputLogger.ReadLine();
 
-            _streamWriter.WriteLine(message);
+            this.WriteLine($"Input: {input}");
 
-            if (suppressFreeLine == false)
-            {
-                _streamWriter.WriteLine();
-            }
+            return input;
         }
-
-        /// <summary>
-        /// Reads user input.
-        /// The user input is requested from the <see cref="_inputLogger"/>.
-        /// </summary>
-        /// <returns>The user input</returns>
-        public string ReadLine()
+        else
         {
-            if (_inputLogger != null)
-            {
-                var input = _inputLogger.ReadLine();
-
-                this.WriteLine($"Input: {input}");
-
-                return input;
-            }
-            else
-            {
-                return null;
-            }
+            return null;
         }
+    }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+        if (!_isDisposed)
         {
-            if (!_isDisposed)
-            {
-                _streamWriter.Close();
-                _streamWriter.Dispose();
+            _streamWriter.Close();
+            _streamWriter.Dispose();
 
-                _inputLogger?.Dispose();
+            _inputLogger?.Dispose();
 
-                _isDisposed = true;
-            }
+            _isDisposed = true;
         }
+    }
 
-        /// <summary>
-        /// Write the message with its parameters with the expectation that a user input will soon be required.
-        /// The message is also forwarded to the <see cref="_inputLogger"/>.
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="parameters">The message parameter</param>
-        public void WriteLineForInput(string message, params object[] parameters)
-        {
-            this.WriteLine(message, true, parameters);
+    /// <summary>
+    /// Write the message with its parameters with the expectation that a user input will soon be required.
+    /// The message is also forwarded to the <see cref="_inputLogger"/>.
+    /// </summary>
+    /// <param name="message">The message</param>
+    /// <param name="parameters">The message parameter</param>
+    public void WriteLineForInput(string message, params object[] parameters)
+    {
+        this.WriteLine(message, true, parameters);
 
-            _inputLogger?.WriteLineForInput(message, parameters);
-        }
+        _inputLogger?.WriteLineForInput(message, parameters);
     }
 }

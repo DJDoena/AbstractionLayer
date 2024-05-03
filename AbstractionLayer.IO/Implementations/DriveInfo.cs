@@ -1,96 +1,95 @@
 ﻿using System.Diagnostics;
-using System.IO;
+using SIO = System.IO;
 
-namespace DoenaSoft.AbstractionLayer.IOServices
+namespace DoenaSoft.AbstractionLayer.IOServices;
+
+/// <summary>
+/// Standard implementation of <see cref="IDriveInfo"/> for <see cref="SIO.DriveInfo"/>.
+/// </summary>
+[DebuggerDisplay("DriveLetter={DriveLetter}, Label={DriveLabel}")]
+internal sealed class DriveInfo : IDriveInfo
 {
-    /// <summary>
-    /// Standard implementation of <see cref="IDriveInfo"/> for <see cref="System.IO.DriveInfo"/>.
-    /// </summary>
-    [DebuggerDisplay("DriveLetter={DriveLetter}, Label={DriveLabel}")]
-    internal sealed class DriveInfo : IDriveInfo
+    private readonly SIO.DriveInfo _actual;
+
+    public DriveInfo(SIO.DriveInfo driveInfo)
     {
-        private readonly System.IO.DriveInfo _actual;
+        _actual = driveInfo;
+    }
 
-        public DriveInfo(System.IO.DriveInfo driveInfo)
+    #region  IDriveInfo
+
+    public bool IsReady
+        => _actual.IsReady;
+
+    public string DriveLetter
+        => this.RootFolderName.Substring(0, 2);
+
+    public string DriveLabel
+    {
+        get
         {
-            _actual = driveInfo;
+            var driveLabel = this.DriveLetter;
+
+            if (this.CanReadLabel())
+            {
+                driveLabel += this.TryReadLabel();
+            }
+
+            return driveLabel;
         }
+    }
 
-        #region  IDriveInfo
-
-        public bool IsReady 
-            => _actual.IsReady;
-
-        public string DriveLetter 
-            => this.RootFolderName.Substring(0, 2);
-
-        public string DriveLabel
+    public string VolumeLabel
+    {
+        get
         {
-            get
-            {
-                var driveLabel = this.DriveLetter;
+            var volumeLabel = this.CanReadLabel()
+                ? this.TryReadVolumeLabel()
+                : string.Empty;
 
-                if (this.CanReadLabel())
-                {
-                    driveLabel += this.TryReadLabel();
-                }
-
-                return driveLabel;
-            }
+            return volumeLabel;
         }
+    }
 
-        public string VolumeLabel
+    public string RootFolderName
+        => _actual.RootDirectory.FullName;
+
+    public IFolderInfo RootFolder
+        => new FolderInfo(_actual.RootDirectory);
+
+    public ulong AvailableFreeSpace
+        => (ulong)_actual.AvailableFreeSpace;
+
+    #endregion
+
+    private bool CanReadLabel()
+        => _actual.IsReady && string.IsNullOrEmpty(_actual.VolumeLabel) == false;
+
+    private string TryReadLabel()
+    {
+        var volumeLabel = this.TryReadVolumeLabel();
+
+        if (!string.IsNullOrEmpty(volumeLabel))
         {
-            get
-            {
-                var volumeLabel = this.CanReadLabel()
-                    ? this.TryReadVolumeLabel()
-                    : string.Empty;
-
-                return volumeLabel;
-            }
+            return " [" + volumeLabel + "]";
         }
-
-        public string RootFolderName
-            => _actual.RootDirectory.FullName;
-
-        public IFolderInfo RootFolder
-            => new FolderInfo(_actual.RootDirectory);
-
-        public ulong AvailableFreeSpace
-            => (ulong)_actual.AvailableFreeSpace;
-
-        #endregion
-
-        private bool CanReadLabel()
-            => _actual.IsReady && string.IsNullOrEmpty(_actual.VolumeLabel) == false;
-
-        private string TryReadLabel()
+        else
         {
-            var volumeLabel = this.TryReadVolumeLabel();
-
-            if (!string.IsNullOrEmpty(volumeLabel))
-            {
-                return " [" + volumeLabel + "]";
-            }
-            else
-            {
-                return string.Empty;
-            }
+            return string.Empty;
         }
+    }
 
-        private string TryReadVolumeLabel()
+    private string TryReadVolumeLabel()
+    {
+        try
         {
-            try
-            {
-                var volumeLabel = _actual.VolumeLabel;
+            var volumeLabel = _actual.VolumeLabel;
 
-                return volumeLabel;
-            }
-            catch (IOException)
-            {
-                return string.Empty;
-            }
+            return volumeLabel;
+        }
+        catch (SIO.IOException)
+        {
+            return string.Empty;
         }
     }
 }

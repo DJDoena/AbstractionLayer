@@ -1,85 +1,84 @@
 ﻿using System;
 
-namespace DoenaSoft.AbstractionLayer.IOServices
+namespace DoenaSoft.AbstractionLayer.IOServices;
+
+/// <summary>
+/// Standard implementation of <see cref="ILogger"/> for dual logging to <see cref="Console"/> and a file.
+/// </summary>
+public sealed class DualLogger : ILogger
 {
+    private readonly ILogger _consoleLogger;
+
+    private readonly ILogger _fileLogger;
+
     /// <summary>
-    /// Standard implementation of <see cref="ILogger"/> for dual logging to <see cref="Console"/> and a file.
+    /// Constructor.
     /// </summary>
-    public sealed class DualLogger : ILogger
+    /// <param name="fileName">The file name to which to log</param>
+    public DualLogger(string fileName)
     {
-        private readonly ILogger _consoleLogger;
+        _consoleLogger = new ConsoleLogger();
 
-        private readonly ILogger _fileLogger;
+        _fileLogger = new FileLogger(fileName, null);
+    }
 
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <param name="fileName">The file name to which to log</param>
-        public DualLogger(string fileName)
-        {
-            _consoleLogger = new ConsoleLogger();
+    /// <summary>
+    /// Writes the message with its parameters and creates a line break and another empty line.
+    /// </summary>
+    /// <param name="message">The message</param>
+    /// <param name="parameters">The message parameter</param>
+    public void WriteLine(string message, params object[] parameters)
+    {
+        _consoleLogger.WriteLine(message, parameters);
 
-            _fileLogger = new FileLogger(fileName, null);
-        }
+        _fileLogger.WriteLine(message, parameters);
+    }
 
-        /// <summary>
-        /// Writes the message with its parameters and creates a line break and another empty line.
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="parameters">The message parameter</param>
-        public void WriteLine(string message, params object[] parameters)
-        {
-            _consoleLogger.WriteLine(message, parameters);
+    /// <summary>
+    /// Writes the message with its parameters and creates a line break with the option to suppress additional  empty line.
+    /// </summary>
+    /// <param name="message">The message</param>
+    /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
+    /// <param name="parameters">The message parameter</param>
+    public void WriteLine(string message, bool suppressFreeLine, params object[] parameters)
+    {
+        _consoleLogger.WriteLine(message, suppressFreeLine, parameters);
 
-            _fileLogger.WriteLine(message, parameters);
-        }
+        _fileLogger.WriteLine(message, suppressFreeLine, parameters);
+    }
 
-        /// <summary>
-        /// Writes the message with its parameters and creates a line break with the option to suppress additional  empty line.
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="suppressFreeLine">whether to suppress an additional empty line</param>
-        /// <param name="parameters">The message parameter</param>
-        public void WriteLine(string message, bool suppressFreeLine, params object[] parameters)
-        {
-            _consoleLogger.WriteLine(message, suppressFreeLine, parameters);
+    /// <summary>
+    /// Reads user input.
+    /// </summary>
+    /// <returns>The user input</returns>
+    public string ReadLine()
+    {
+        var input = _consoleLogger.ReadLine();
 
-            _fileLogger.WriteLine(message, suppressFreeLine, parameters);
-        }
+        _fileLogger.WriteLine($"Input: {input}");
 
-        /// <summary>
-        /// Reads user input.
-        /// </summary>
-        /// <returns>The user input</returns>
-        public string ReadLine()
-        {
-            var input = _consoleLogger.ReadLine();
+        return input;
+    }
 
-            _fileLogger.WriteLine($"Input: {input}");
+    /// <summary>
+    /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+    /// </summary>
+    public void Dispose()
+    {
+        _consoleLogger.Dispose();
 
-            return input;
-        }
+        _fileLogger.Dispose();
+    }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            _consoleLogger.Dispose();
+    /// <summary>
+    /// Write the message with its parameters with the expectation that a user input will soon be required.
+    /// </summary>
+    /// <param name="message">The message</param>
+    /// <param name="parameters">The message parameter</param>
+    public void WriteLineForInput(string message, params object[] parameters)
+    {
+        _consoleLogger.WriteLineForInput(message, parameters);
 
-            _fileLogger.Dispose();
-        }
-
-        /// <summary>
-        /// Write the message with its parameters with the expectation that a user input will soon be required.
-        /// </summary>
-        /// <param name="message">The message</param>
-        /// <param name="parameters">The message parameter</param>
-        public void WriteLineForInput(string message, params object[] parameters)
-        {
-            _consoleLogger.WriteLineForInput(message, parameters);
-
-            _fileLogger.WriteLineForInput(message, parameters);
-        }
+        _fileLogger.WriteLineForInput(message, parameters);
     }
 }

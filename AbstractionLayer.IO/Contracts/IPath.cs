@@ -1,35 +1,47 @@
-﻿namespace DoenaSoft.AbstractionLayer.IOServices
+﻿using System.Collections.Generic;
+
+namespace DoenaSoft.AbstractionLayer.IOServices;
+
+/// <summary>
+/// Interface to seperate path concerns from an concrete implementation.
+/// </summary>
+public interface IPath
 {
-    using System.Collections.Generic;
+    /// <summary>
+    /// Combines multiple path segments to each other, ensuring that they are properly concatenated.
+    /// </summary>
+    /// <param name="parts">the path parts</param>
+    /// <returns>The combined path</returns>
+    string Combine(params string[] parts);
 
     /// <summary>
-    /// Interface to seperate path concerns from an concrete implementation.
+    /// Returns the path of the temp folder.
     /// </summary>
-    public interface IPath
-    {
-        /// <summary>
-        /// Combines multiple path segments to each other, ensuring that they are properly concatenated.
-        /// </summary>
-        /// <param name="parts">the path parts</param>
-        /// <returns>The combined path</returns>
-        string Combine(params string[] parts);
+    /// <returns>The path of the temp folder</returns>
+    string GetTempPath();
 
-        /// <summary>
-        /// Returns the path of the temp folder.
-        /// </summary>
-        /// <returns>The path of the temp folder</returns>
-        string GetTempPath();
+    /// <summary>
+    /// Returns all characters not allowed in a file name.
+    /// </summary>
+    /// <returns>All characters not allowed in a file name</returns>
+    IEnumerable<char> GetInvalidFileNameChars();
 
-        /// <summary>
-        /// Returns all characters not allowed in a file name.
-        /// </summary>
-        /// <returns>All characters not allowed in a file name</returns>
-        IEnumerable<char> GetInvalidFileNameChars();
+    /// <summary>
+    /// Returns all characters not allowed in a path.
+    /// </summary>
+    /// <returns>All characters not allowed in a path</returns>
+    IEnumerable<char> GetInvalidPathChars();
 
-        /// <summary>
-        /// Returns all characters not allowed in a path.
-        /// </summary>
-        /// <returns>All characters not allowed in a path</returns>
-        IEnumerable<char> GetInvalidPathChars();
-    }
+    /// <summary>
+    /// Returns the absolute path for the specified path string.
+    /// </summary>
+    /// <param name="path">the file or directory for which to obtain absolute path information</param>
+    /// <returns>the fully qualified location of path, such as "C:\MyFile.txt"</returns>
+    string GetFullPath(string path);
+
+    /// <summary>
+    /// Creates a uniquely named, zero-byte temporary file on disk and returns the full path of that file.
+    /// </summary>
+    /// <returns>the full path of the temporary file</returns>
+    string GetTempFileName();
 }
