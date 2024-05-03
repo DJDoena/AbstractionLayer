@@ -47,15 +47,6 @@ public interface IFolder
     IEnumerable<string> GetFolderNames(string folder, string searchPattern = "*.*", SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
     /// <summary>
-    /// Returns all files in a folder according to the search pattern and option.
-    /// </summary>
-    /// <param name="folder">The folder name</param>
-    /// <param name="searchPattern">The search pattern</param>
-    /// <param name="searchOption">The search option</param>
-    /// <returns>All files in the folder according to the search pattern and option</returns>
-    IEnumerable<string> GetFileNames(string folder, string searchPattern = "*.*", SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
-
-    /// <summary>
     /// Returns all folders in a folder according to the search pattern and option.
     /// </summary>
     /// <param name="folder">The folder name</param>
@@ -65,6 +56,24 @@ public interface IFolder
     IEnumerable<IFolderInfo> GetFolderInfos(string folder, string searchPattern = "*.*", SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
     /// <summary>
+    /// Returns all folders in a folder according to the search pattern and option.
+    /// </summary>
+    /// <param name="folder">The folder name</param>
+    /// <param name="searchPattern">The search pattern</param>
+    /// <param name="searchOption">The search option</param>
+    /// <returns>All folders in the folder according to the search pattern and option</returns>
+    IEnumerable<IFolderInfo> GetDirectories(string folder, string searchPattern = "*.*", SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+
+    /// <summary>
+    /// Returns all files in a folder according to the search pattern and option.
+    /// </summary>
+    /// <param name="folder">The folder name</param>
+    /// <param name="searchPattern">The search pattern</param>
+    /// <param name="searchOption">The search option</param>
+    /// <returns>All files in the folder according to the search pattern and option</returns>
+    IEnumerable<string> GetFileNames(string folder, string searchPattern = "*.*", SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+
+    /// <summary>
     /// Returns all files in a folder according to the search pattern and option.
     /// </summary>
     /// <param name="folder">The folder name</param>
@@ -72,4 +81,13 @@ public interface IFolder
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
     IEnumerable<IFileInfo> GetFileInfos(string folder, string searchPattern = "*.*", SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+
+    /// <summary>
+    /// Returns all files in a folder according to the search pattern and option.
+    /// </summary>
+    /// <param name="folder">The folder name</param>
+    /// <param name="searchPattern">The search pattern</param>
+    /// <param name="searchOption">The search option</param>
+    /// <returns>All files in the folder according to the search pattern and option</returns>
+    IEnumerable<IFileInfo> GetFiles(string folder, string searchPattern = "*.*", SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 }

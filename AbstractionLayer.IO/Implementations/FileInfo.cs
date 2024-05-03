@@ -8,7 +8,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// Standard implementation of <see cref="IFileInfo"/> for <see cref="SIO.FileInfo"/>.
 /// </summary>
 [DebuggerDisplay("Name={Name}, FullName={FullName}")]
-public sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IFileInfo>, IComparable<FileInfo>
+internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IFileInfo>, IComparable<FileInfo>
 {
     private readonly SIO.FileInfo _actual;
 

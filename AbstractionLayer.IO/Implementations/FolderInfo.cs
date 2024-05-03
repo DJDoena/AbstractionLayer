@@ -10,7 +10,7 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// Standard implementation of <see cref="IFolderInfo"/> for <see cref="SIO.DirectoryInfo"/>.
 /// </summary>
 [DebuggerDisplay("Name={Name}, FullName={FullName}")]
-public sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, IComparable<IFolderInfo>, IComparable<FolderInfo>
+internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, IComparable<IFolderInfo>, IComparable<FolderInfo>
 {
     private readonly SIO.DirectoryInfo _actual;
 
@@ -124,13 +124,46 @@ public sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, IComparabl
         return target;
     }
 
+    /// <summary>
+    /// Returns all files in the folder according to the search pattern and option.
+    /// </summary>
+    /// <param name="searchPattern">The search pattern</param>
+    /// <param name="searchOption">The search option</param>
+    /// <returns>All files in the folder according to the search pattern and option</returns>
+    public IEnumerable<IFileInfo> GetFiles(string searchPattern, SIO.SearchOption searchOption)
+        => this.GetFileInfos(searchPattern, searchOption);
+
+    /// <summary>
+    /// Returns all folders in the folder according to the search pattern and option.
+    /// </summary>
+    /// <param name="searchPattern">The search pattern</param>
+    /// <param name="searchOption">The search option</param>
+    /// <returns>All folders in the folder according to the search pattern and option</returns>
+    public IEnumerable<IFolderInfo> GetFolderInfos(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
+    {
+        var source = _actual.GetDirectories(searchPattern, searchOption);
+
+        var target = source.Select(f => new FolderInfo(f));
+
+        return target;
+    }
+
+    /// <summary>
+    /// Returns all folders in the folder according to the search pattern and option.
+    /// </summary>
+    /// <param name="searchPattern">The search pattern</param>
+    /// <param name="searchOption">The search option</param>
+    /// <returns>All folders in the folder according to the search pattern and option</returns>
+    public IEnumerable<IFolderInfo> GetDirectories(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
+        => this.GetFolderInfos(searchPattern, searchOption);
+
     #region IEquatable<IFolderInfo>
 
     /// <summary>
     /// Compares this instance with <paramref name="other"/> if they refer to the same folder.
     /// </summary>
     public bool Equals(IFolderInfo other)
-        => this.GetEquality(other);
+    => this.GetEquality(other);
 
     #endregion
 
