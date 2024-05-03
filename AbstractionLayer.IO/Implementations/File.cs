@@ -56,5 +56,13 @@ internal sealed class File : IFile
     public void SetAttributes(string fileName, SIO.FileAttributes fileAttributes)
         => SIO.File.SetAttributes(fileName, fileAttributes);
 
+    /// <summary>
+    /// Creates or opens a file for writing UTF-8 encoded text. If the file already exists, its contents are overwritten.
+    /// </summary>
+    /// <param name="path">the file to be opened for writing</param>
+    /// <returns>a <see cref="SIO.StreamWriter "/> that writes to the specified file using UTF-8 encoding</returns>
+    public SIO.StreamWriter CreateText(string path)
+        => SIO.File.CreateText(path);
+
     #endregion
 }

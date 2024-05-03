@@ -59,4 +59,16 @@ internal sealed class Path : IPath
     /// <returns>the string returned by System.IO.Path.GetFileName(System.String), minus the last period (.) and all characters following it</returns>
     public string GetFileNameWithoutExtension(string path)
         => SIO.Path.GetFileNameWithoutExtension(path);
+
+    /// <summary>
+    /// Returns the extension of the specified path string.
+    /// </summary>
+    /// <param name="path">the path string from which to get the extension</param>
+    /// <returns>
+    /// The extension of the specified path (including the period "."), or null, or <see cref="string.Empty"/>.
+    /// If path is null, it  returns null.
+    /// If path does not have extension information, it returns <see cref="string.Empty"/>.
+    /// </returns>
+    public string GetExtension(string path)
+        => SIO.Path.GetExtension(path);
 }

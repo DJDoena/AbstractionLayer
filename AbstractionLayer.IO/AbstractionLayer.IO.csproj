@@ -21,8 +21,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; I/O</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>2.0.4</Version>
-		<FileVersion>2.0.4</FileVersion>
+		<Version>2.0.5</Version>
+		<FileVersion>2.0.5</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<DebugType>portable</DebugType>
 		<IncludeSymbols>true</IncludeSymbols>

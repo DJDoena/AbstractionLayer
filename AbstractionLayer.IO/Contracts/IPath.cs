@@ -51,4 +51,15 @@ public interface IPath
     /// <param name="path">the path of the file</param>
     /// <returns>the string returned by System.IO.Path.GetFileName(System.String), minus the last period (.) and all characters following it</returns>
     string GetFileNameWithoutExtension(string path);
+
+    /// <summary>
+    /// Returns the extension of the specified path string.
+    /// </summary>
+    /// <param name="path">the path string from which to get the extension</param>
+    /// <returns>
+    /// The extension of the specified path (including the period "."), or null, or <see cref="string.Empty"/>.
+    /// If path is null, it  returns null.
+    /// If path does not have extension information, it returns <see cref="string.Empty"/>.
+    /// </returns>
+    string GetExtension(string path);
 }

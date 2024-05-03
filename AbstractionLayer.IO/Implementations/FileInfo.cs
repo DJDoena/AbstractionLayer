@@ -13,7 +13,8 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
     private readonly SIO.FileInfo _actual;
 
     /// <param name="fileName">The fully qualified name of the file, or the relative file name. Do not end the path with the directory separator character.</param>
-    public FileInfo(string fileName) : this(new SIO.FileInfo(fileName))
+    public FileInfo(string fileName)
+        : this(new SIO.FileInfo(fileName))
     {
     }
 
@@ -28,42 +29,57 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
     /// <summary>
     /// Returns the file name including the extension but without the path.
     /// </summary>
-    public string Name => _actual.Name;
+    public string Name
+        => _actual.Name;
 
     /// <summary>
     /// Returns the file extension including the leading '.'.
     /// </summary>
-    public string Extension => _actual.Extension;
+    public string Extension
+        => _actual.Extension;
 
     /// <summary>
     /// Returns the full file name including path and extension.
     /// </summary>
-    public string FullName => _actual.FullName;
+    public string FullName
+        => _actual.FullName;
 
     /// <summary>
     /// Returns the folder that contains the file.
     /// </summary>
-    public IFolderInfo Folder => new FolderInfo(_actual.DirectoryName);
+    public IFolderInfo Folder
+        => new FolderInfo(_actual.DirectoryName);
 
     /// <summary>
     /// Returns the path without the file name.
     /// </summary>
-    public string FolderName => _actual.DirectoryName;
+    public string FolderName
+        => _actual.DirectoryName;
+
+    /// <summary>
+    /// Returns the path without the file name.
+    /// </summary>
+    public string GetDirectoryName
+        => this.FolderName;
+
 
     /// <summary>
     /// Returns the file name without path and extension.
     /// </summary>
-    public string NameWithoutExtension => SIO.Path.GetFileNameWithoutExtension(_actual.Name);
+    public string NameWithoutExtension
+        => SIO.Path.GetFileNameWithoutExtension(_actual.Name);
 
     /// <summary>
     /// Returns whether the file exists.
     /// </summary>
-    public bool Exists => _actual.Exists;
+    public bool Exists
+        => _actual.Exists;
 
     /// <summary>
     /// Returns the size in bytes.
     /// </summary>
-    public ulong Length => (ulong)_actual.Length;
+    public ulong Length
+        => (ulong)_actual.Length;
 
     /// <summary>
     /// Gets or sets the time when the current file was last written to.

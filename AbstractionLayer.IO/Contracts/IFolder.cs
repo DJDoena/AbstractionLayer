@@ -60,7 +60,6 @@ public interface IFolder
         , string searchPattern = "*.*"
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
-    [Obsolete($"use {nameof(GetFolders)} instead")]
     /// <summary>
     /// Returns all folders in a folder according to the search pattern and option.
     /// </summary>
@@ -68,11 +67,11 @@ public interface IFolder
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
+    [Obsolete($"use {nameof(GetFolders)} instead")]
     IEnumerable<IFolderInfo> GetFolderInfos(string folder
         , string searchPattern = "*.*"
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
-    [Obsolete($"use {nameof(GetFolders)} instead")]
     /// <summary>
     /// Returns all folders in a folder according to the search pattern and option.
     /// </summary>
@@ -80,6 +79,7 @@ public interface IFolder
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
+    [Obsolete($"use {nameof(GetFolders)} instead")]
     IEnumerable<IFolderInfo> GetDirectories(string folder
         , string searchPattern = "*.*"
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
@@ -95,7 +95,6 @@ public interface IFolder
         , string searchPattern = "*.*"
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
-    [Obsolete($"use {nameof(GetFiles)} instead")]
     /// <summary>
     /// Returns all files in a folder according to the search pattern and option.
     /// </summary>
@@ -103,6 +102,8 @@ public interface IFolder
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
+
+    [Obsolete($"use {nameof(GetFiles)} instead")]
     IEnumerable<IFileInfo> GetFileInfos(string folder
         , string searchPattern = "*.*"
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);

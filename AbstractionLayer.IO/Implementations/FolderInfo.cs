@@ -15,7 +15,8 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     private readonly SIO.DirectoryInfo _actual;
 
     /// <param name="path">The fully qualified name of the folder, or the relative folder name.</param>
-    public FolderInfo(string path) : this(new SIO.DirectoryInfo(path))
+    public FolderInfo(string path)
+        : this(new SIO.DirectoryInfo(path))
     {
     }
 
@@ -30,22 +31,26 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// <summary>
     /// Returns the folder name without the path.
     /// </summary>
-    public string Name => _actual.Name;
+    public string Name
+        => _actual.Name;
 
     /// <summary>
     /// Returns the root folder.
     /// </summary>
-    public IFolderInfo Root => new FolderInfo(_actual.Root.FullName);
+    public IFolderInfo Root
+        => new FolderInfo(_actual.Root.FullName);
 
     /// <summary>
     /// Returns whether the folder exists.
     /// </summary>
-    public bool Exists => _actual.Exists;
+    public bool Exists
+        => _actual.Exists;
 
     /// <summary>
     /// Returns the full folder name including path.
     /// </summary>
-    public string FullName => _actual.FullName;
+    public string FullName
+        => _actual.FullName;
 
     /// <summary>
     /// Gets or sets the time when the current folder was last written to.
@@ -116,13 +121,8 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
     public IEnumerable<IFileInfo> GetFileInfos(string searchPattern, SIO.SearchOption searchOption)
-    {
-        var source = _actual.GetFiles(searchPattern, searchOption);
-
-        var target = source.Select(f => new FileInfo(f));
-
-        return target;
-    }
+        => _actual.GetFiles(searchPattern, searchOption)
+            .Select(f => new FileInfo(f));
 
     /// <summary>
     /// Returns all files in the folder according to the search pattern and option.
@@ -139,14 +139,10 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFolderInfo> GetFolderInfos(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
-    {
-        var source = _actual.GetDirectories(searchPattern, searchOption);
-
-        var target = source.Select(f => new FolderInfo(f));
-
-        return target;
-    }
+    public IEnumerable<IFolderInfo> GetFolderInfos(string searchPattern
+        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
+        => _actual.GetDirectories(searchPattern, searchOption)
+            .Select(f => new FolderInfo(f));
 
     /// <summary>
     /// Returns all folders in the folder according to the search pattern and option.
@@ -154,7 +150,8 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFolderInfo> GetDirectories(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
+    public IEnumerable<IFolderInfo> GetDirectories(string searchPattern
+        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
         => this.GetFolderInfos(searchPattern, searchOption);
 
     #region IEquatable<IFolderInfo>
@@ -220,7 +217,8 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
         => _actual.ToString();
 
     private bool GetEquality(IFolderInfo other)
-        => other != null && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+        => other != null
+        && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
 
     private int GetComparison(IFolderInfo other)
     {

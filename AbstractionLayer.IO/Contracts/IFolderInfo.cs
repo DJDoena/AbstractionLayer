@@ -70,7 +70,8 @@ public interface IFolderInfo : IEquatable<IFolderInfo>
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
-    IEnumerable<IFileInfo> GetFileInfos(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+    IEnumerable<IFileInfo> GetFileInfos(string searchPattern
+        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
     /// <summary>
     /// Returns all files in the folder according to the search pattern and option.
@@ -78,7 +79,8 @@ public interface IFolderInfo : IEquatable<IFolderInfo>
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
-    IEnumerable<IFileInfo> GetFiles(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+    IEnumerable<IFileInfo> GetFiles(string searchPattern
+        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
     /// <summary>
     /// Returns all folders in the folder according to the search pattern and option.
@@ -86,7 +88,8 @@ public interface IFolderInfo : IEquatable<IFolderInfo>
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
-    IEnumerable<IFolderInfo> GetFolderInfos(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+    IEnumerable<IFolderInfo> GetFolderInfos(string searchPattern
+        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
     /// <summary>
     /// Returns all folders in the folder according to the search pattern and option.
@@ -94,5 +97,6 @@ public interface IFolderInfo : IEquatable<IFolderInfo>
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
-    IEnumerable<IFolderInfo> GetDirectories(string searchPattern, SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+    IEnumerable<IFolderInfo> GetDirectories(string searchPattern
+        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 }

@@ -49,4 +49,11 @@ public interface IFile
     /// <param name="fileName">The file name</param>
     /// <param name="fileAttributes">File attribute flags</param>
     void SetAttributes(string fileName, SIO.FileAttributes fileAttributes);
+
+    /// <summary>
+    /// Creates or opens a file for writing UTF-8 encoded text. If the file already exists, its contents are overwritten.
+    /// </summary>
+    /// <param name="path">the file to be opened for writing</param>
+    /// <returns>a <see cref="SIO.StreamWriter "/> that writes to the specified file using UTF-8 encoding</returns>
+    SIO.StreamWriter CreateText(string path);
 }

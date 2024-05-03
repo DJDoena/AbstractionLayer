@@ -33,6 +33,12 @@ public interface IFileInfo : IEquatable<IFileInfo>
     string FolderName { get; }
 
     /// <summary>
+    /// Returns the path without the file name.
+    /// </summary>
+    [Obsolete($"use {nameof(FolderName)} instead")]
+    public string GetDirectoryName { get; }
+
+    /// <summary>
     /// Returns the file name without path and extension.
     /// </summary>
     string NameWithoutExtension { get; }
