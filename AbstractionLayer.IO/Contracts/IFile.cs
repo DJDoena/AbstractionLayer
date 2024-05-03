@@ -8,6 +8,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 public interface IFile
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Returns whether a file exists.
     /// </summary>
     /// <param name="fileName">The file name</param>

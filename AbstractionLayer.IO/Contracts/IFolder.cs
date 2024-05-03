@@ -10,6 +10,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 public interface IFolder
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Returns the WorkingFolder.
     /// </summary>
     string WorkingFolderName { get; }

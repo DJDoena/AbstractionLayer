@@ -10,6 +10,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 public interface IFolderInfo : IEquatable<IFolderInfo>
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Returns the folder name without the path.
     /// </summary>
     string Name { get; }

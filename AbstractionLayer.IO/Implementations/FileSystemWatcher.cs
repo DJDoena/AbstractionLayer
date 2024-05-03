@@ -11,8 +11,17 @@ internal sealed class FileSystemWatcher : IFileSystemWatcher
 {
     private readonly SIO.FileSystemWatcher _actual;
 
-    public FileSystemWatcher(string path, string filter)
+    /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
+
+    public FileSystemWatcher(IIOServices ioServices
+        , string path
+        , string filter)
     {
+        this.IOServices = ioServices;
+
         _actual = new SIO.FileSystemWatcher(path, filter);
     }
 

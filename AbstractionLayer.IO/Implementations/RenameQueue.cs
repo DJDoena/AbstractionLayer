@@ -11,15 +11,18 @@ public sealed class RenameQueue : IRenameQueue
 {
     private readonly object _lock;
 
-    private readonly IIOServices _ioServices;
-
     private Dictionary<string, string> _renames;
+
+    /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
 
     /// <summary />
     /// <param name="ioServices">the IO services; will use <see cref="IOServices"/> when not set</param>
     public RenameQueue(IIOServices ioServices = null)
     {
-        _ioServices = ioServices ?? new IOServices();
+        this.IOServices = ioServices ?? new IOServices();
 
         _lock = new object();
     }
@@ -46,7 +49,7 @@ public sealed class RenameQueue : IRenameQueue
     /// <param name="sourceFileName">the source file name</param>
     /// <param name="targetFileName">the target file name</param>
     public void Add(string sourceFileName, string targetFileName)
-        => this.Add(_ioServices.GetFileInfo(sourceFileName), targetFileName);
+        => this.Add(this.IOServices.GetFileInfo(sourceFileName), targetFileName);
 
     /// <summary>
     /// Adds a file to the queue and ensures that the target file does not exist on disc nor is the target file name of a previous rename.
@@ -54,7 +57,7 @@ public sealed class RenameQueue : IRenameQueue
     /// <param name="sourceFile">the source file</param>
     /// <param name="targetFileName">the target file name</param>
     public void Add(SIO.FileInfo sourceFile, string targetFileName)
-        => this.Add(_ioServices.GetFileInfo(sourceFile.FullName), targetFileName);
+        => this.Add(this.IOServices.GetFileInfo(sourceFile.FullName), targetFileName);
 
     /// <summary>
     /// Adds a file to the queue and ensures that the target file does not exist on disc nor is the target file name of a previous rename.
@@ -65,16 +68,16 @@ public sealed class RenameQueue : IRenameQueue
     {
         this.EnsureInit();
 
-        var sourceFileName = _ioServices.Path.GetFullPath(sourceFile.FullName);
+        var sourceFileName = this.IOServices.Path.GetFullPath(sourceFile.FullName);
 
-        targetFileName = _ioServices.Path.GetFullPath(targetFileName);
+        targetFileName = this.IOServices.Path.GetFullPath(targetFileName);
 
         if (sourceFileName == targetFileName)
         {
             return;
         }
 
-        if (_ioServices.File.Exists(targetFileName))
+        if (this.IOServices.File.Exists(targetFileName))
         {
             throw new Exception($"Target file '{targetFileName}' already exists on disk!");
         }
@@ -105,15 +108,15 @@ public sealed class RenameQueue : IRenameQueue
             {
                 foreach (var kvp in _renames)
                 {
-                    var sourceFile = _ioServices.GetFileInfo(kvp.Value);
+                    var sourceFile = this.IOServices.GetFileInfo(kvp.Value);
 
-                    var targetFile = _ioServices.GetFileInfo(kvp.Key);
+                    var targetFile = this.IOServices.GetFileInfo(kvp.Key);
 
                     Console.WriteLine($@"{sourceFile.FolderName}\{sourceFile.Name} -> {targetFile.Name}");
 
                     sourceFile.MoveTo(targetFile.FullName);
 
-                    _ioServices.File.SetAttributes(targetFile.FullName, SIO.FileAttributes.Archive);
+                    this.IOServices.File.SetAttributes(targetFile.FullName, SIO.FileAttributes.Archive);
                 }
             }
             finally

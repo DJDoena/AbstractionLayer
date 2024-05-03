@@ -14,15 +14,22 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
 {
     private readonly SIO.DirectoryInfo _actual;
 
-    /// <param name="path">The fully qualified name of the folder, or the relative folder name.</param>
-    public FolderInfo(string path)
-        : this(new SIO.DirectoryInfo(path))
+    /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
+
+    public FolderInfo(IIOServices ioServices
+            , string path)
+            : this(ioServices, new SIO.DirectoryInfo(path))
     {
     }
 
-    /// <param name="actual">The actual file system wrapper for the folder</param>
-    internal FolderInfo(SIO.DirectoryInfo actual)
+    internal FolderInfo(IIOServices ioServices
+        , SIO.DirectoryInfo actual)
     {
+        this.IOServices = ioServices;
+
         _actual = actual ?? throw new ArgumentNullException(nameof(actual));
     }
 

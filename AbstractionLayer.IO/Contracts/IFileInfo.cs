@@ -8,6 +8,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 public interface IFileInfo : IEquatable<IFileInfo>
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Returns the file name including the extension but without the path.
     /// </summary>
     string Name { get; }

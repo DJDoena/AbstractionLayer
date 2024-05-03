@@ -8,6 +8,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 public interface IFileSystemWatcher
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Starts/Ends the observation of the file system.
     /// </summary>
     bool EnableRaisingEvents { get; set; }

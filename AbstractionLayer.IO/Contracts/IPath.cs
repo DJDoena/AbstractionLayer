@@ -8,6 +8,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 public interface IPath
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Combines multiple path segments to each other, ensuring that they are properly concatenated.
     /// </summary>
     /// <param name="parts">the path parts</param>

@@ -6,6 +6,11 @@
 public interface IRenameQueue
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Initializes the renaming queue.
     /// </summary>
     void StartRename();

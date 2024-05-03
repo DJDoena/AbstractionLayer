@@ -12,15 +12,22 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
 {
     private readonly SIO.FileInfo _actual;
 
-    /// <param name="fileName">The fully qualified name of the file, or the relative file name. Do not end the path with the directory separator character.</param>
-    public FileInfo(string fileName)
-        : this(new SIO.FileInfo(fileName))
+    /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
+
+    public FileInfo(IIOServices ioServices
+        , string fileName)
+        : this(ioServices, new SIO.FileInfo(fileName))
     {
     }
 
-    /// <param name="actual">The actual file system wrapper for the file</param>
-    internal FileInfo(SIO.FileInfo actual)
+    internal FileInfo(IIOServices ioServices
+        , SIO.FileInfo actual)
     {
+        this.IOServices = ioServices;
+
         _actual = actual ?? throw new ArgumentNullException(nameof(actual));
     }
 

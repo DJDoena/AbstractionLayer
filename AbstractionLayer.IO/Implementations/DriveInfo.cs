@@ -11,8 +11,16 @@ internal sealed class DriveInfo : IDriveInfo
 {
     private readonly SIO.DriveInfo _actual;
 
-    public DriveInfo(SIO.DriveInfo driveInfo)
+    /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
+
+    public DriveInfo(IIOServices ioServices
+        , SIO.DriveInfo driveInfo)
     {
+        this.IOServices = ioServices;
+
         _actual = driveInfo;
     }
 

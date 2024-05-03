@@ -9,13 +9,21 @@ internal sealed class Folder : IFolder
 {
     private readonly ILogger _logger;
 
-    public Folder(ILogger logger)
+    /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
+
+    public Folder(IIOServices ioServices
+        , ILogger logger)
     {
+        this.IOServices = ioServices;
+
         _logger = logger;
     }
 
-    public Folder()
-        : this(null)
+    public Folder(IIOServices ioServices)
+        : this(ioServices, null)
     {
     }
 

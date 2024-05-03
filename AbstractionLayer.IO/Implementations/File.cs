@@ -9,12 +9,21 @@ internal sealed class File : IFile
 {
     private readonly ILogger _logger;
 
-    public File(ILogger logger)
+    /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
+
+    public File(IIOServices ioServices
+        , ILogger logger)
     {
+        this.IOServices = ioServices;
+
         _logger = logger;
     }
 
-    public File() : this(null)
+    public File(IIOServices ioServices)
+        : this(ioServices, null)
     {
     }
 

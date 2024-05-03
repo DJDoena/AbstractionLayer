@@ -9,6 +9,16 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 internal sealed class Path : IPath
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    public IIOServices IOServices { get; }
+
+    public Path(IIOServices ioServices)
+    {
+        this.IOServices = ioServices;
+    }
+
+    /// <summary>
     /// Combines multiple path segments to each other, ensuring that they are properly concatenated.
     /// </summary>
     /// <param name="parts">the path parts</param>

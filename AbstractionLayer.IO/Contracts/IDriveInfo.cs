@@ -6,6 +6,11 @@
 public interface IDriveInfo
 {
     /// <summary>
+    /// The master interface.
+    /// </summary>
+    IIOServices IOServices { get; }
+
+    /// <summary>
     /// Returns whether tghe drive is ready for read/write operations.
     /// </summary>
     bool IsReady { get; }
