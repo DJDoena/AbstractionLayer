@@ -44,4 +44,11 @@ public interface IPath
     /// </summary>
     /// <returns>the full path of the temporary file</returns>
     string GetTempFileName();
+
+    /// <summary>
+    /// Returns the file name of the specified path string without the extension.
+    /// </summary>
+    /// <param name="path">the path of the file</param>
+    /// <returns>the string returned by System.IO.Path.GetFileName(System.String), minus the last period (.) and all characters following it</returns>
+    string GetFileNameWithoutExtension(string path);
 }
