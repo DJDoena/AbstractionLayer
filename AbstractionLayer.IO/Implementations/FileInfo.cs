@@ -59,7 +59,7 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
     /// <summary>
     /// Returns the path without the file name.
     /// </summary>
-    public string GetDirectoryName
+    public string DirectoryName
         => this.FolderName;
 
 

@@ -36,7 +36,7 @@ public interface IFileInfo : IEquatable<IFileInfo>
     /// Returns the path without the file name.
     /// </summary>
     [Obsolete($"use {nameof(FolderName)} instead")]
-    public string GetDirectoryName { get; }
+    string DirectoryName { get; }
 
     /// <summary>
     /// Returns the file name without path and extension.
