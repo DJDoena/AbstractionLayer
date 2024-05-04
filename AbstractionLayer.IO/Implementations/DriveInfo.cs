@@ -63,7 +63,7 @@ internal sealed class DriveInfo : IDriveInfo
         => _actual.RootDirectory.FullName;
 
     public IFolderInfo RootFolder
-        => new FolderInfo(_actual.RootDirectory);
+        => new FolderInfo(this.IOServices, _actual.RootDirectory);
 
     public ulong AvailableFreeSpace
         => (ulong)_actual.AvailableFreeSpace;

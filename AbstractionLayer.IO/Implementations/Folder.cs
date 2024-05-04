@@ -51,7 +51,7 @@ internal sealed class Folder : IFolder
 
         var actual = SIO.Directory.CreateDirectory(folder);
 
-        return new FolderInfo(actual);
+        return new FolderInfo(this.IOServices, actual);
     }
 
     public IEnumerable<string> GetFolderNames(string folder
@@ -64,7 +64,7 @@ internal sealed class Folder : IFolder
         , string searchPattern
         , SIO.SearchOption searchOption)
         => this.GetFolderNames(folder, searchPattern, searchOption)
-            .Select(f => new FolderInfo(f));
+            .Select(f => new FolderInfo(this.IOServices, f));
 
     public IEnumerable<IFolderInfo> GetFolderInfos(string folder
         , string searchPattern
@@ -91,7 +91,7 @@ internal sealed class Folder : IFolder
         , string searchPattern
         , SIO.SearchOption searchOption)
         => this.GetFileNames(folder, searchPattern, searchOption)
-            .Select(f => new FileInfo(f));
+            .Select(f => new FileInfo(this.IOServices, f));
 
     #endregion
 }

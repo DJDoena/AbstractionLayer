@@ -55,7 +55,7 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
     /// Returns the folder that contains the file.
     /// </summary>
     public IFolderInfo Folder
-        => new FolderInfo(_actual.DirectoryName);
+        => new FolderInfo(this.IOServices, _actual.DirectoryName);
 
     /// <summary>
     /// Returns the path without the file name.

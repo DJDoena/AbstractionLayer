@@ -45,7 +45,7 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// Returns the root folder.
     /// </summary>
     public IFolderInfo Root
-        => new FolderInfo(_actual.Root.FullName);
+        => new FolderInfo(this.IOServices, _actual.Root.FullName);
 
     /// <summary>
     /// Returns whether the folder exists.
@@ -127,9 +127,10 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFileInfo> GetFileInfos(string searchPattern, SIO.SearchOption searchOption)
+    public IEnumerable<IFileInfo> GetFileInfos(string searchPattern
+        , SIO.SearchOption searchOption)
         => _actual.GetFiles(searchPattern, searchOption)
-            .Select(f => new FileInfo(f));
+            .Select(f => new FileInfo(this.IOServices, f));
 
     /// <summary>
     /// Returns all files in the folder according to the search pattern and option.
@@ -137,7 +138,8 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFileInfo> GetFiles(string searchPattern, SIO.SearchOption searchOption)
+    public IEnumerable<IFileInfo> GetFiles(string searchPattern
+        , SIO.SearchOption searchOption)
         => this.GetFileInfos(searchPattern, searchOption);
 
     /// <summary>
@@ -149,7 +151,7 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     public IEnumerable<IFolderInfo> GetFolderInfos(string searchPattern
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
         => _actual.GetDirectories(searchPattern, searchOption)
-            .Select(f => new FolderInfo(f));
+            .Select(f => new FolderInfo(this.IOServices, f));
 
     /// <summary>
     /// Returns all folders in the folder according to the search pattern and option.
