@@ -68,6 +68,9 @@ internal sealed class DriveInfo : IDriveInfo
     public ulong AvailableFreeSpace
         => (ulong)_actual.AvailableFreeSpace;
 
+    public ulong TotalSpace
+        => (ulong)_actual.TotalSize;
+
     #endregion
 
     private bool CanReadLabel()

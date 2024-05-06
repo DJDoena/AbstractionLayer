@@ -47,6 +47,9 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     public IFolderInfo Root
         => new FolderInfo(this.IOServices, _actual.Root.FullName);
 
+    public IDriveInfo Drive
+        => this.IOServices.GetDriveInfo(this.Root.Name);
+
     /// <summary>
     /// Returns whether the folder exists.
     /// </summary>

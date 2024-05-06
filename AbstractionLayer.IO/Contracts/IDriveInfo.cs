@@ -44,4 +44,9 @@ public interface IDriveInfo
     /// Returns the free space in bytes.
     /// </summary>
     ulong AvailableFreeSpace { get; }
+
+    /// <summary>
+    /// Returns the total space in bytes.
+    /// </summary>
+    ulong TotalSpace { get; }
 }

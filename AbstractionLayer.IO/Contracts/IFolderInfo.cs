@@ -25,6 +25,11 @@ public interface IFolderInfo : IEquatable<IFolderInfo>
     IFolderInfo Root { get; }
 
     /// <summary>
+    /// Returns the drive.
+    /// </summary>
+    IDriveInfo Drive { get; }
+
+    /// <summary>
     /// Returns whether the folder exists.
     /// </summary>
     bool Exists { get; }
