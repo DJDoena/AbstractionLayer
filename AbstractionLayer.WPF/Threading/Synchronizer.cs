@@ -1,4 +1,5 @@
 ﻿using System;
+using DoenaSoft.AbstractionLayer.UI.Contracts;
 
 namespace DoenaSoft.AbstractionLayer.Threading
 {
@@ -24,14 +25,16 @@ namespace DoenaSoft.AbstractionLayer.Threading
         /// Invokes a function on the UI thread.
         /// </summary>
         /// <param name="func">The function</param>
-        public T InvokeOnUIThread<T>(Func<T> func)
-            => this.Dispatcher.CheckAccess() ? func() : this.Dispatcher.Invoke(func);
+        public T Invoke<T>(Func<T> func)
+            => this.Dispatcher.CheckAccess()
+                ? func()
+                : this.Dispatcher.Invoke(func);
 
         /// <summary>
         /// Invokes an action on the UI thread.
         /// </summary>
         /// <param name="action">The action</param>
-        public void InvokeOnUIThread(Action action)
+        public void Invoke(Action action)
         {
             if (this.Dispatcher.CheckAccess())
             {
@@ -41,6 +44,20 @@ namespace DoenaSoft.AbstractionLayer.Threading
             {
                 this.Dispatcher.Invoke(action);
             }
+        }
+
+        /// <summary>
+        /// Executes the specified delegate asynchronously with the specified arguments on the thread that the Dispatcher was created on.
+        /// </summary>
+        /// <param name="action">The action</param>
+        /// <returns>
+        /// An object, which is returned immediately after <see cref="BeginInvoke(Action)"/> is called, that can be used to interact with the delegate as it is pending execution in the event queue.
+        /// </returns>
+        public IDispatcherOperation BeginInvoke(Action action)
+        {
+            var actual = this.Dispatcher.BeginInvoke(action);
+
+            return new DispatcherOperation(actual);
         }
 
         #endregion
