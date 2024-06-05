@@ -98,7 +98,7 @@ public sealed class RenameQueue : IRenameQueue
     /// <summary>
     /// Executes the actual renaming.
     /// </summary>
-    public void FinishRename()
+    public ulong FinishRename()
     {
         lock (_lock)
         {
@@ -118,6 +118,8 @@ public sealed class RenameQueue : IRenameQueue
 
                     this.IOServices.File.SetAttributes(targetFile.FullName, SIO.FileAttributes.Archive);
                 }
+
+                return (ulong)_renames.Count;
             }
             finally
             {

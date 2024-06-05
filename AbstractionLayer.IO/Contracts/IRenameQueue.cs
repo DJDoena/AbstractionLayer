@@ -25,5 +25,5 @@ public interface IRenameQueue
     /// <summary>
     /// Executes the actual renaming.
     /// </summary>
-    void FinishRename();
+    ulong FinishRename();
 }
