@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;net6.0-windows</TargetFrameworks>
+		<TargetFrameworks>net472;net6.0-windows;net8.0-windows</TargetFrameworks>
 		<UseWindowsForms>true</UseWindowsForms>
 		<Platforms>AnyCPU</Platforms>
 		<OutputType>Library</OutputType>
@@ -21,8 +21,8 @@
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<Version>1.1.8</Version>
-		<FileVersion>1.1.8</FileVersion>
+		<Version>1.1.9</Version>
+		<FileVersion>1.1.9</FileVersion>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<DebugType>portable</DebugType>
 		<IncludeSymbols>true</IncludeSymbols>
