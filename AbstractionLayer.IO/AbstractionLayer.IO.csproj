@@ -1,32 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<AssemblyName>DoenaSoft.AbstractionLayer.IO</AssemblyName>
+		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
+		<OutputType>Library</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Platforms>AnyCPU</Platforms>
-		<OutputType>Library</OutputType>
-		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
-		<AssemblyName>DoenaSoft.AbstractionLayer.IO</AssemblyName>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DebugType>portable</DebugType>
+		<IncludeSymbols>true</IncludeSymbols>
 		<LangVersion>10.0</LangVersion>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>AbstractionLayer.IO.snk</AssemblyOriginatorKeyFile>
 		<Title>DoenaSoft.AbstractionLayer.IO</Title>
-		<Company>Doena Soft.</Company>
-		<Authors>DJ Doena</Authors>
-		<Description>Gives an interface layer for file I/O for mocking and unit-testing</Description>
-		<Copyright>2016 - 2024</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/DJDoena/AbstractionLayer</PackageProjectUrl>
-		<PackageIcon>djdsoft.png</PackageIcon>
 		<RepositoryUrl>https://github.com/DJDoena/AbstractionLayer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; I/O</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>djdsoft.png</PackageIcon>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Description>Gives an interface layer for file I/O for mocking and unit-testing</Description>
+		<Company>Doena Soft.</Company>
+		<Authors>DJ Doena</Authors>
+		<Copyright>2016 - 2024</Copyright>
 		<Version>2.0.9</Version>
 		<FileVersion>2.0.9</FileVersion>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<DebugType>portable</DebugType>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>

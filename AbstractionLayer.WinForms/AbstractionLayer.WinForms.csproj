@@ -1,32 +1,32 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net472;net6.0-windows;net8.0-windows</TargetFrameworks>
-		<UseWindowsForms>true</UseWindowsForms>
-		<Platforms>AnyCPU</Platforms>
-		<OutputType>Library</OutputType>
-		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
 		<AssemblyName>DoenaSoft.AbstractionLayer.WinForms</AssemblyName>
+		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
+		<OutputType>Library</OutputType>
+		<TargetFrameworks>net472;net6.0-windows;net8.0-windows</TargetFrameworks>
+		<Platforms>AnyCPU</Platforms>
+		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DebugType>portable</DebugType>
+		<IncludeSymbols>true</IncludeSymbols>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>AbstractionLayer.WinForms.snk</AssemblyOriginatorKeyFile>
 		<Title>DoenaSoft.AbstractionLayer.WinForms</Title>
-		<Company>Doena Soft.</Company>
-		<Authors>DJ Doena</Authors>
-		<Description>Gives an interface layer for Windows Forms UI components for mocking and unit-testing</Description>
-		<Copyright>2016 - 2024</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/DJDoena/AbstractionLayer</PackageProjectUrl>
-		<PackageIcon>djdsoft.png</PackageIcon>
 		<RepositoryUrl>https://github.com/DJDoena/AbstractionLayer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>djdsoft.png</PackageIcon>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Description>Gives an interface layer for Windows Forms UI components for mocking and unit-testing</Description>
+		<Company>Doena Soft.</Company>
+		<Authors>DJ Doena</Authors>
+		<Copyright>2016 - 2024</Copyright>
 		<Version>1.1.9</Version>
 		<FileVersion>1.1.9</FileVersion>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<DebugType>portable</DebugType>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>

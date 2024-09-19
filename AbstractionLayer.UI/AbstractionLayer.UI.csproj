@@ -1,31 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<AssemblyName>DoenaSoft.AbstractionLayer.UI</AssemblyName>
+		<RootNamespace>DoenaSoft.AbstractionLayer.UI</RootNamespace>
+		<OutputType>Library</OutputType>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<Platforms>AnyCPU</Platforms>
-		<OutputType>Library</OutputType>
-		<RootNamespace>DoenaSoft.AbstractionLayer.UI</RootNamespace>
-		<AssemblyName>DoenaSoft.AbstractionLayer.UI</AssemblyName>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DebugType>portable</DebugType>
+		<IncludeSymbols>true</IncludeSymbols>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>AbstractionLayer.UI.snk</AssemblyOriginatorKeyFile>
 		<Title>DoenaSoft.AbstractionLayer.UI</Title>
-		<Company>Doena Soft.</Company>
-		<Authors>DJ Doena</Authors>
-		<Description>Gives an interface layer for Windows Forms / WPF UI components for mocking and unit-testing</Description>
-		<Copyright>2016 - 2024</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageProjectUrl>https://github.com/DJDoena/AbstractionLayer</PackageProjectUrl>
-		<PackageIcon>djdsoft.png</PackageIcon>
 		<RepositoryUrl>https://github.com/DJDoena/AbstractionLayer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageIcon>djdsoft.png</PackageIcon>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<Description>Gives an interface layer for Windows Forms / WPF UI components for mocking and unit-testing</Description>
+		<Company>Doena Soft.</Company>
+		<Authors>DJ Doena</Authors>
+		<Copyright>2016 - 2024</Copyright>
 		<Version>1.0.6</Version>
 		<FileVersion>1.0.6</FileVersion>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<DebugType>portable</DebugType>
-		<IncludeSymbols>true</IncludeSymbols>
-		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	</PropertyGroup>
 
 	<ItemGroup>
