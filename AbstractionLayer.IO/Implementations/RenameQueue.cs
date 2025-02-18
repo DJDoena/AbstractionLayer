@@ -49,7 +49,7 @@ public sealed class RenameQueue : IRenameQueue
     /// <param name="sourceFileName">the source file name</param>
     /// <param name="targetFileName">the target file name</param>
     public void Add(string sourceFileName, string targetFileName)
-        => this.Add(this.IOServices.GetFileInfo(sourceFileName), targetFileName);
+        => this.Add(this.IOServices.GetFile(sourceFileName), targetFileName);
 
     /// <summary>
     /// Adds a file to the queue and ensures that the target file does not exist on disc nor is the target file name of a previous rename.
@@ -57,7 +57,7 @@ public sealed class RenameQueue : IRenameQueue
     /// <param name="sourceFile">the source file</param>
     /// <param name="targetFileName">the target file name</param>
     public void Add(SIO.FileInfo sourceFile, string targetFileName)
-        => this.Add(this.IOServices.GetFileInfo(sourceFile.FullName), targetFileName);
+        => this.Add(this.IOServices.GetFile(sourceFile.FullName), targetFileName);
 
     /// <summary>
     /// Adds a file to the queue and ensures that the target file does not exist on disc nor is the target file name of a previous rename.
@@ -108,9 +108,9 @@ public sealed class RenameQueue : IRenameQueue
             {
                 foreach (var kvp in _renames)
                 {
-                    var sourceFile = this.IOServices.GetFileInfo(kvp.Value);
+                    var sourceFile = this.IOServices.GetFile(kvp.Value);
 
-                    var targetFile = this.IOServices.GetFileInfo(kvp.Key);
+                    var targetFile = this.IOServices.GetFile(kvp.Key);
 
                     Console.WriteLine($@"{sourceFile.FolderName}\{sourceFile.Name} -> {targetFile.Name}");
 

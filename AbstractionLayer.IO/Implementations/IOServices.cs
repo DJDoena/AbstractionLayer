@@ -53,7 +53,7 @@ public sealed class IOServices : IIOServices
     /// </summary>
     /// <param name="folder">The folder</param>
     /// <returns>A <see cref="IFolderInfo"/> for a given folder</returns>
-    public IFolderInfo GetFolderInfo(string folder)
+    public IFolderInfo GetFolder(string folder)
         => new FolderInfo(this, folder);
 
     /// <summary>
@@ -61,7 +61,7 @@ public sealed class IOServices : IIOServices
     /// </summary>
     /// <param name="fileName">The file name </param>
     /// <returns>A <see cref="IFileInfo"/> for a given file name</returns>
-    public IFileInfo GetFileInfo(string fileName)
+    public IFileInfo GetFile(string fileName)
         => new FileInfo(this, fileName);
 
     /// <summary>
@@ -80,7 +80,7 @@ public sealed class IOServices : IIOServices
     /// </summary>
     /// <param name="driveType">Filter on the <see cref="SIO.DriveType"/></param>
     /// <returns>All the <see cref="IDriveInfo"/> currently available</returns>
-    public IEnumerable<IDriveInfo> GetDriveInfos(SIO.DriveType? driveType)
+    public IEnumerable<IDriveInfo> GetDrives(SIO.DriveType? driveType)
     {
         var drives = SIO.DriveInfo.GetDrives();
 
@@ -102,7 +102,7 @@ public sealed class IOServices : IIOServices
     /// </summary>
     /// <param name="driveLetter">the drive letter</param>
     /// <returns>The <see cref="IDriveInfo"/> for the given drive letter</returns>
-    public IDriveInfo GetDriveInfo(string driveLetter)
+    public IDriveInfo GetDrive(string driveLetter)
         => new DriveInfo(this, new SIO.DriveInfo(driveLetter));
 
     /// <summary>

@@ -28,14 +28,14 @@ public interface IIOServices
     /// </summary>
     /// <param name="folder">The folder</param>
     /// <returns>A <see cref="IFolderInfo"/> for a given folder</returns>
-    IFolderInfo GetFolderInfo(string folder);
+    IFolderInfo GetFolder(string folder);
 
     /// <summary>
     /// Returns a <see cref="IFileInfo"/> for a given file name.
     /// </summary>
     /// <param name="fileName">The file name </param>
     /// <returns>A <see cref="IFileInfo"/> for a given file name</returns>
-    IFileInfo GetFileInfo(string fileName);
+    IFileInfo GetFile(string fileName);
 
     /// <summary>
     /// Opens a file.
@@ -52,14 +52,14 @@ public interface IIOServices
     /// </summary>
     /// <param name="driveType">Filter on the <see cref="SIO.DriveType"/></param>
     /// <returns>All the <see cref="IDriveInfo"/> currently available</returns>
-    IEnumerable<IDriveInfo> GetDriveInfos(SIO.DriveType? driveType = null);
+    IEnumerable<IDriveInfo> GetDrives(SIO.DriveType? driveType = null);
 
     /// <summary>
     /// Returns the <see cref="IDriveInfo"/> for the given drive letter.
     /// </summary>
     /// <param name="driveLetter">the drive letter</param>
     /// <returns>The <see cref="IDriveInfo"/> for the given drive letter</returns>
-    IDriveInfo GetDriveInfo(string driveLetter);
+    IDriveInfo GetDrive(string driveLetter);
 
     /// <summary>
     /// Returns a <see cref="IFileSystemWatcher"/> based on the folder and the search pattern.
