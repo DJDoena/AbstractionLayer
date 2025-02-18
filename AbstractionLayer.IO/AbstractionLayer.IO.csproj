@@ -24,9 +24,9 @@
 		<Description>Gives an interface layer for file I/O for mocking and unit-testing</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
-		<Copyright>2016 - 2024</Copyright>
-		<Version>2.0.9</Version>
-		<FileVersion>2.0.9</FileVersion>
+		<Copyright>2016 - 2025</Copyright>
+		<Version>2.0.10</Version>
+		<FileVersion>2.0.10</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

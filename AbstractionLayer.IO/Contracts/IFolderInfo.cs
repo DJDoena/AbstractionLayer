@@ -20,6 +20,11 @@ public interface IFolderInfo : IEquatable<IFolderInfo>
     string Name { get; }
 
     /// <summary>
+    /// Returns the parent folder.
+    /// </summary>
+    IFolderInfo Parent { get; }
+
+    /// <summary>
     /// Returns the root folder.
     /// </summary>
     IFolderInfo Root { get; }

@@ -20,8 +20,8 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     public IIOServices IOServices { get; }
 
     public FolderInfo(IIOServices ioServices
-            , string path)
-            : this(ioServices, new SIO.DirectoryInfo(path))
+        , string path)
+        : this(ioServices, new SIO.DirectoryInfo(path))
     {
     }
 
@@ -42,10 +42,20 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
         => _actual.Name;
 
     /// <summary>
+    /// Returns the parent folder.
+    /// </summary>
+    public IFolderInfo Parent
+        => _actual.Parent != null
+            ? new FolderInfo(this.IOServices, _actual.Parent)
+            : null;
+
+    /// <summary>
     /// Returns the root folder.
     /// </summary>
     public IFolderInfo Root
-        => new FolderInfo(this.IOServices, _actual.Root.FullName);
+        => _actual.Root != null
+            ? new FolderInfo(this.IOServices, _actual.Root.FullName)
+            : null;
 
     public IDriveInfo Drive
         => this.IOServices.GetDriveInfo(this.Root.Name);
