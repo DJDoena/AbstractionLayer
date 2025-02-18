@@ -30,7 +30,7 @@ public sealed class RenameQueue : IRenameQueue
     /// <summary>
     /// Initializes the renaming queue.
     /// </summary>
-    public void StartRename()
+    public void Initialize()
     {
         lock (_lock)
         {
@@ -98,7 +98,7 @@ public sealed class RenameQueue : IRenameQueue
     /// <summary>
     /// Executes the actual renaming.
     /// </summary>
-    public ulong FinishRename()
+    public ulong Commit()
     {
         lock (_lock)
         {

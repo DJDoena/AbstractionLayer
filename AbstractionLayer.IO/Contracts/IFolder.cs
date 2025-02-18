@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using SIO = System.IO;
 
 namespace DoenaSoft.AbstractionLayer.IOServices;
@@ -66,30 +65,6 @@ public interface IFolder
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 
     /// <summary>
-    /// Returns all folders in a folder according to the search pattern and option.
-    /// </summary>
-    /// <param name="folder">The folder name</param>
-    /// <param name="searchPattern">The search pattern</param>
-    /// <param name="searchOption">The search option</param>
-    /// <returns>All folders in the folder according to the search pattern and option</returns>
-    [Obsolete($"use {nameof(GetFolders)} instead")]
-    IEnumerable<IFolderInfo> GetFolderInfos(string folder
-        , string searchPattern = "*.*"
-        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
-
-    /// <summary>
-    /// Returns all folders in a folder according to the search pattern and option.
-    /// </summary>
-    /// <param name="folder">The folder name</param>
-    /// <param name="searchPattern">The search pattern</param>
-    /// <param name="searchOption">The search option</param>
-    /// <returns>All folders in the folder according to the search pattern and option</returns>
-    [Obsolete($"use {nameof(GetFolders)} instead")]
-    IEnumerable<IFolderInfo> GetDirectories(string folder
-        , string searchPattern = "*.*"
-        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
-
-    /// <summary>
     /// Returns all files in a folder according to the search pattern and option.
     /// </summary>
     /// <param name="folder">The folder name</param>
@@ -97,19 +72,6 @@ public interface IFolder
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
     IEnumerable<string> GetFileNames(string folder
-        , string searchPattern = "*.*"
-        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
-
-    /// <summary>
-    /// Returns all files in a folder according to the search pattern and option.
-    /// </summary>
-    /// <param name="folder">The folder name</param>
-    /// <param name="searchPattern">The search pattern</param>
-    /// <param name="searchOption">The search option</param>
-    /// <returns>All files in the folder according to the search pattern and option</returns>
-
-    [Obsolete($"use {nameof(GetFiles)} instead")]
-    IEnumerable<IFileInfo> GetFileInfos(string folder
         , string searchPattern = "*.*"
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
 

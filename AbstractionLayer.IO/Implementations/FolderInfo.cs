@@ -140,41 +140,21 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All files in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFileInfo> GetFileInfos(string searchPattern
+    public IEnumerable<IFileInfo> GetFiles(string searchPattern
         , SIO.SearchOption searchOption)
         => _actual.GetFiles(searchPattern, searchOption)
             .Select(f => new FileInfo(this.IOServices, f));
 
     /// <summary>
-    /// Returns all files in the folder according to the search pattern and option.
-    /// </summary>
-    /// <param name="searchPattern">The search pattern</param>
-    /// <param name="searchOption">The search option</param>
-    /// <returns>All files in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFileInfo> GetFiles(string searchPattern
-        , SIO.SearchOption searchOption)
-        => this.GetFileInfos(searchPattern, searchOption);
-
-    /// <summary>
     /// Returns all folders in the folder according to the search pattern and option.
     /// </summary>
     /// <param name="searchPattern">The search pattern</param>
     /// <param name="searchOption">The search option</param>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFolderInfo> GetFolderInfos(string searchPattern
+    public IEnumerable<IFolderInfo> GetFolders(string searchPattern
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
         => _actual.GetDirectories(searchPattern, searchOption)
             .Select(f => new FolderInfo(this.IOServices, f));
-
-    /// <summary>
-    /// Returns all folders in the folder according to the search pattern and option.
-    /// </summary>
-    /// <param name="searchPattern">The search pattern</param>
-    /// <param name="searchOption">The search option</param>
-    /// <returns>All folders in the folder according to the search pattern and option</returns>
-    public IEnumerable<IFolderInfo> GetDirectories(string searchPattern
-        , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly)
-        => this.GetFolderInfos(searchPattern, searchOption);
 
     #region IEquatable<IFolderInfo>
 
@@ -239,8 +219,11 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
         => _actual.ToString();
 
     private bool GetEquality(IFolderInfo other)
-        => other != null
-        && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+        => ReferenceEquals(this, other)
+            || (other is FolderInfo otherFI
+                && ReferenceEquals(_actual, otherFI._actual))
+            || (other != null
+                && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase));
 
     private int GetComparison(IFolderInfo other)
     {

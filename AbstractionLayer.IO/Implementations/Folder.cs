@@ -66,21 +66,6 @@ internal sealed class Folder : IFolder
         => this.GetFolderNames(folder, searchPattern, searchOption)
             .Select(f => new FolderInfo(this.IOServices, f));
 
-    public IEnumerable<IFolderInfo> GetFolderInfos(string folder
-        , string searchPattern
-        , SIO.SearchOption searchOption)
-        => this.GetFolders(folder, searchPattern, searchOption);
-
-    public IEnumerable<IFolderInfo> GetDirectories(string folder
-        , string searchPattern
-        , SIO.SearchOption searchOption)
-        => this.GetFolders(folder, searchPattern, searchOption);
-
-    public IEnumerable<IFileInfo> GetFileInfos(string folder
-        , string searchPattern
-        , SIO.SearchOption searchOption)
-        => this.GetFiles(folder, searchPattern, searchOption);
-
     public IEnumerable<string> GetFileNames(string folder
         , string searchPattern
         , SIO.SearchOption searchOption)

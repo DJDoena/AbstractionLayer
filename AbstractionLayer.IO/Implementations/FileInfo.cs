@@ -212,7 +212,11 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
         => _actual.ToString();
 
     private bool GetEquality(IFileInfo other)
-        => other != null && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase);
+        => ReferenceEquals(this, other)
+            || (other is FileInfo otherFI
+                && ReferenceEquals(_actual, otherFI._actual))
+            || (other != null
+                && string.Equals(this.FullName ?? string.Empty, other.FullName ?? string.Empty, StringComparison.OrdinalIgnoreCase));
 
     private int GetComparison(IFileInfo other)
     {

@@ -13,7 +13,7 @@ public interface IRenameQueue
     /// <summary>
     /// Initializes the renaming queue.
     /// </summary>
-    void StartRename();
+    void Initialize();
 
     /// <summary>
     /// Adds a file to the queue and ensures that the target file does not exist on disc nor is the target file name of a previous rename.
@@ -25,5 +25,5 @@ public interface IRenameQueue
     /// <summary>
     /// Executes the actual renaming.
     /// </summary>
-    ulong FinishRename();
+    ulong Commit();
 }
