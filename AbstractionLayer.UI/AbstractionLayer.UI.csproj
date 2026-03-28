@@ -4,7 +4,7 @@
 		<AssemblyName>DoenaSoft.AbstractionLayer.UI</AssemblyName>
 		<RootNamespace>DoenaSoft.AbstractionLayer.UI</RootNamespace>
 		<OutputType>Library</OutputType>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;net10.0;net472</TargetFrameworks>
 		<Platforms>AnyCPU</Platforms>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DebugType>portable</DebugType>
@@ -23,9 +23,9 @@
 		<Description>Gives an interface layer for Windows Forms / WPF UI components for mocking and unit-testing</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
-		<Copyright>2016 - 2024</Copyright>
-		<Version>1.0.6</Version>
-		<FileVersion>1.0.6</FileVersion>
+		<Copyright>2016 - 2026</Copyright>
+		<Version>2.0.0</Version>
+		<FileVersion>2.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
