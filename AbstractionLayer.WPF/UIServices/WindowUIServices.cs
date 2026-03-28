@@ -17,7 +17,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         /// <param name="buttons">The buttons to be shown</param>
         /// <param name="icon">The MessageBox icon</param>
         /// <returns>Which button was pressed</returns>
-        public Result ShowMessageBox(string text, string caption, MessageButton buttons, MessageIcon icon)
+        public Result ShowMessageBox(string text, string caption, MessageButtons buttons, MessageIcon icon)
         {
             var windowsButtons = this.GetButtons(buttons);
 
@@ -230,19 +230,19 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
         #region MessageBox
 
-        private System.Windows.MessageBoxButton GetButtons(MessageButton buttons)
+        private System.Windows.MessageBoxButton GetButtons(MessageButtons buttons)
         {
             switch (buttons)
             {
-                case MessageButton.YesNo:
+                case MessageButtons.YesNo:
                     {
                         return System.Windows.MessageBoxButton.YesNo;
                     }
-                case MessageButton.YesNoCancel:
+                case MessageButtons.YesNoCancel:
                     {
                         return System.Windows.MessageBoxButton.YesNoCancel;
                     }
-                case MessageButton.OK:
+                case MessageButtons.OK:
                     {
                         return System.Windows.MessageBoxButton.OK;
                     }
