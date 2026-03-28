@@ -21,12 +21,12 @@
 		<PackageTags>unit-testing; mocking; web; I/O</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Web and HTTP abstractions for mocking and unit-testing. Includes HttpGetQueryBuilder for building URL-encoded query strings with proper handling of special characters (umlauts, ampersands, etc.).</Description>
+		<Description>Web and HTTP interface contracts for abstraction layer. Contains only interface definitions (IWebServices, IWebClient, IWebRequest, IWebResponse) for mocking and unit-testing web operations. Use DoenaSoft.AbstractionLayer.Web.Default for production implementations.</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>2.0.1</Version>
-		<FileVersion>2.0.1</FileVersion>
+		<Version>3.0.0</Version>
+		<FileVersion>3.0.0</FileVersion>
 	</PropertyGroup>
 	
 	
