@@ -3,7 +3,7 @@
     /// <summary>
     /// The MessageBox buttons.
     /// </summary>
-    public enum Buttons
+    public enum MessageButton
     {
         /// <summary>
         /// Yes / No.

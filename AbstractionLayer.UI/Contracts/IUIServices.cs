@@ -13,7 +13,7 @@
         /// <param name="buttons">The buttons to be shown</param>
         /// <param name="icon">The MessageBox icon</param>
         /// <returns>Which button was pressed</returns>
-        Result ShowMessageBox(string text, string caption, Buttons buttons, Icon icon);
+        Result ShowMessageBox(string text, string caption, MessageButton buttons, MessageIcon icon);
 
         /// <summary>
         /// Opens a "open file" dialog.

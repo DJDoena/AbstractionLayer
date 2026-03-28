@@ -3,7 +3,7 @@
     /// <summary>
     /// The MessageBox icon.
     /// </summary>
-    public enum Icon
+    public enum MessageIcon
     {
         /// <summary>
         /// Error.

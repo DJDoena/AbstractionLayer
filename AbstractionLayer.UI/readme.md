@@ -49,8 +49,8 @@ The `AbstractionLayer.UI` project exposes the following interfaces in the `Contr
 
 ### Enumerations
 
-- **`Buttons`** — Message box button configuration (OK, OKCancel, YesNo, YesNoCancel, etc.)
-- **`Icon`** — Message box icon types (None, Information, Warning, Error, Question)
+- **`MessageButton`** — Message box button configuration (OK, YesNo, YesNoCancel)
+- **`MessageIcon`** — Message box icon types (None, Information, Warning, Error, Question)
 - **`Result`** — Dialog result values (OK, Cancel, Yes, No, etc.)
 - **`DispatcherStatus`** — Dispatcher operation status (Pending, Aborted, Completed, Executing)
 
