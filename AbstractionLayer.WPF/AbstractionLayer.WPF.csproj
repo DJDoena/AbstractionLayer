@@ -22,12 +22,12 @@
 		<PackageTags>unit-testing; mocking; WPF</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Gives an interface layer for WPF UI components for mocking and unit-testing</Description>
+		<Description>WPF implementations of UI abstraction interfaces from DoenaSoft.AbstractionLayer.UI. Provides WindowUIServices (message boxes, dialogs), WindowClipboardServices (comprehensive clipboard operations including text, audio, images, file drop lists), and WindowSynchronizer for dispatcher invocation.</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>3.0.2</Version>
-		<FileVersion>3.0.2</FileVersion>
+		<Version>3.0.3</Version>
+		<FileVersion>3.0.3</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -42,7 +42,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="2.0.4" />
+		<PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="2.0.5" />
 	</ItemGroup>
 
 </Project>
