@@ -21,12 +21,12 @@
 		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Gives an interface layer for Windows Forms UI components for mocking and unit-testing</Description>
+		<Description>Windows Forms implementations of UI abstraction interfaces from DoenaSoft.AbstractionLayer.UI. Provides FormUIServices (message boxes, dialogs), FormClipboardServices (comprehensive clipboard operations including text, audio, images, file drop lists), and FormSynchronizer for thread marshaling.</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>2.0.2</Version>
-		<FileVersion>2.0.2</FileVersion>
+		<Version>2.0.3</Version>
+		<FileVersion>2.0.3</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -41,7 +41,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="2.0.4" />
+	  <PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="2.0.5" />
 	</ItemGroup>
 
 </Project>
