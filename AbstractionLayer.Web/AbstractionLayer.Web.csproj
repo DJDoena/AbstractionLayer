@@ -21,7 +21,7 @@
 		<PackageTags>unit-testing; mocking; web; I/O</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Gives an interface layer for web I/O for mocking and unit-testing</Description>
+		<Description>Web and HTTP abstractions for mocking and unit-testing. Includes HttpGetQueryBuilder for building URL-encoded query strings with proper handling of special characters (umlauts, ampersands, etc.).</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>

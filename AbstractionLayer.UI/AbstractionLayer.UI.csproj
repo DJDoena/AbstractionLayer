@@ -20,12 +20,12 @@
 		<PackageTags>unit-testing; mocking; Forms; WinForms</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Gives an interface layer for Windows Forms / WPF UI components for mocking and unit-testing</Description>
+		<Description>UI abstraction interface contracts for Windows Forms and WPF applications. Contains interface definitions (IUIServices, IClipboardServices, ISynchronizer, IDispatcherOperation) and supporting types (MessageButton, MessageIcon, dialog options) for mocking and unit-testing UI interactions.</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>2.0.4</Version>
-		<FileVersion>2.0.4</FileVersion>
+		<Version>2.0.5</Version>
+		<FileVersion>2.0.5</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
