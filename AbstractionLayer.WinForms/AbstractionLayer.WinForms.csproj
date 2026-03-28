@@ -4,7 +4,7 @@
 		<AssemblyName>DoenaSoft.AbstractionLayer.WinForms</AssemblyName>
 		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net472;net6.0-windows;net8.0-windows</TargetFrameworks>
+		<TargetFrameworks>net472;net8.0-windows;net10.0-windows</TargetFrameworks>
 		<Platforms>AnyCPU</Platforms>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
@@ -24,9 +24,9 @@
 		<Description>Gives an interface layer for Windows Forms UI components for mocking and unit-testing</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
-		<Copyright>2016 - 2024</Copyright>
-		<Version>1.1.9</Version>
-		<FileVersion>1.1.9</FileVersion>
+		<Copyright>2016 - 2026</Copyright>
+		<Version>2.0.0</Version>
+		<FileVersion>2.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -41,7 +41,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="1.0.6" />
+		<PackageReference Include="DoenaSoft.AbstractionLayer.UI" Version="2.0.2" />
 	</ItemGroup>
 
 </Project>

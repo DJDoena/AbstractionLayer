@@ -17,7 +17,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         /// <param name="buttons">The buttons to be shown</param>
         /// <param name="icon">The MessageBox icon</param>
         /// <returns>Which button was pressed</returns>
-        public Result ShowMessageBox(string text, string caption, Buttons buttons, Icon icon)
+        public Result ShowMessageBox(string text, string caption, MessageButton buttons, MessageIcon icon)
         {
             var formsButtons = this.GetButtons(buttons);
 
@@ -227,19 +227,19 @@ namespace DoenaSoft.AbstractionLayer.UIServices
 
         #region MessageBox
 
-        private System.Windows.Forms.MessageBoxButtons GetButtons(Buttons buttons)
+        private System.Windows.Forms.MessageBoxButtons GetButtons(MessageButton buttons)
         {
             switch (buttons)
             {
-                case Buttons.YesNo:
+                case MessageButton.YesNo:
                     {
                         return System.Windows.Forms.MessageBoxButtons.YesNo;
                     }
-                case Buttons.YesNoCancel:
+                case MessageButton.YesNoCancel:
                     {
                         return System.Windows.Forms.MessageBoxButtons.YesNoCancel;
                     }
-                case Buttons.OK:
+                case MessageButton.OK:
                     {
                         return System.Windows.Forms.MessageBoxButtons.OK;
                     }
@@ -250,23 +250,23 @@ namespace DoenaSoft.AbstractionLayer.UIServices
             }
         }
 
-        private System.Windows.Forms.MessageBoxIcon GetIcon(Icon icon)
+        private System.Windows.Forms.MessageBoxIcon GetIcon(MessageIcon icon)
         {
             switch (icon)
             {
-                case Icon.Error:
+                case MessageIcon.Error:
                     {
                         return System.Windows.Forms.MessageBoxIcon.Error;
                     }
-                case Icon.Warning:
+                case MessageIcon.Warning:
                     {
                         return System.Windows.Forms.MessageBoxIcon.Warning;
                     }
-                case Icon.Information:
+                case MessageIcon.Information:
                     {
                         return System.Windows.Forms.MessageBoxIcon.Information;
                     }
-                case Icon.Question:
+                case MessageIcon.Question:
                     {
                         return System.Windows.Forms.MessageBoxIcon.Question;
                     }
