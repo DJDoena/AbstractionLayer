@@ -71,6 +71,13 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         object GetData(string format);
 
         /// <summary>
+        /// Retrieves data from the Clipboard in the specified format.
+        /// </summary>
+        /// <param name="format">The format of the data to retrieve.</param>
+        /// <returns>An object representing the clipboard data, or null if the Clipboard does not contain data in the specified format.</returns>
+        T GetData<T>(string format);
+
+        /// <summary>
         /// Retrieves the data object that is currently on the Clipboard.
         /// </summary>
         /// <returns>An object that represents the data currently on the Clipboard, or null if there is no data on the Clipboard.</returns>
