@@ -21,12 +21,12 @@
 		<PackageTags>unit-testing; mocking; I/O</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Gives an interface layer for file I/O for mocking and unit-testing</Description>
+		<Description>Interface contracts for file I/O abstraction layer. Contains only interface definitions (IFile, IFolder, IPath, IFileInfo, IFolderInfo, IDriveInfo, etc.) for mocking and unit-testing. Use DoenaSoft.AbstractionLayer.IO.Default for production implementations.</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>5.0.0</Version>
-		<FileVersion>5.0.0</FileVersion>
+		<Version>5.0.1</Version>
+		<FileVersion>5.0.1</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
