@@ -5,13 +5,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// <summary>
 /// Interface to seperate FileSystemWatcher concerns from an concrete implementation.
 /// </summary>
-public interface IFileSystemWatcher
+public interface IFileSystemWatcher : IIOServiceItem
 {
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    IIOServices IOServices { get; }
-
     /// <summary>
     /// Starts/Ends the observation of the file system.
     /// </summary>

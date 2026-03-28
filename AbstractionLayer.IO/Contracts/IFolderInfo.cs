@@ -7,13 +7,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// <summary>
 /// Interface to seperate FolderInfo concerns from an concrete implementation.
 /// </summary>
-public interface IFolderInfo : IEquatable<IFolderInfo>
+public interface IFolderInfo : IIOServiceItem, IEquatable<IFolderInfo>
 {
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    IIOServices IOServices { get; }
-
     /// <summary>
     /// Returns the folder name without the path.
     /// </summary>
@@ -96,4 +91,46 @@ public interface IFolderInfo : IEquatable<IFolderInfo>
     /// <returns>All folders in the folder according to the search pattern and option</returns>
     IEnumerable<IFolderInfo> GetFolders(string searchPattern
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+
+    /// <summary>
+    /// Gets or sets the attributes for the current folder.
+    /// </summary>
+    SIO.FileAttributes Attributes { get; set; }
+
+    /// <summary>
+    /// Deletes the folder if it is empty.
+    /// </summary>
+    void Delete();
+
+    /// <summary>
+    /// Deletes the folder, and, if specified, any subdirectories and files in the folder.
+    /// </summary>
+    /// <param name="recursive">true to delete this folder, its subfolders, and all files; otherwise, false.</param>
+    void Delete(bool recursive);
+
+    /// <summary>
+    /// Moves the folder and its contents to a new path.
+    /// </summary>
+    /// <param name="destFolderName">The path to the new location.</param>
+    void MoveTo(string destFolderName);
+
+    /// <summary>
+    /// Returns the subfolders of the current folder.
+    /// </summary>
+    IEnumerable<IFolderInfo> GetFolders();
+
+    /// <summary>
+    /// Returns the subfolders of the current folder matching the given search pattern.
+    /// </summary>
+    IEnumerable<IFolderInfo> GetFolders(string searchPattern);
+
+    /// <summary>
+    /// Returns an enumerable collection of file information in the current directory.
+    /// </summary>
+    IEnumerable<IFileInfo> GetFiles();
+
+    /// <summary>
+    /// Returns an enumerable collection of file information that matches a search pattern.
+    /// </summary>
+    IEnumerable<IFileInfo> GetFiles(string searchPattern);
 }

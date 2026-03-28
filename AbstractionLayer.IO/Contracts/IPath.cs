@@ -5,13 +5,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// <summary>
 /// Interface to seperate path concerns from an concrete implementation.
 /// </summary>
-public interface IPath
+public interface IPath : IIOServiceItem
 {
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    IIOServices IOServices { get; }
-
     /// <summary>
     /// Combines multiple path segments to each other, ensuring that they are properly concatenated.
     /// </summary>
@@ -67,4 +62,53 @@ public interface IPath
     /// If path does not have extension information, it returns <see cref="string.Empty"/>.
     /// </returns>
     string GetExtension(string path);
+
+    /// <summary>
+    /// Returns the folder information for the specified path string.
+    /// </summary>
+    /// <param name="path">the path of a file or folder</param>
+    /// <returns>folder information for path, or null if path denotes a root folder or is null</returns>
+    string GetFolderName(string path);
+
+    /// <summary>
+    /// Returns the file name and extension of the specified path string.
+    /// </summary>
+    /// <param name="path">the path string from which to obtain the file name and extension</param>
+    /// <returns>the characters after the last folder separator character in path</returns>
+    string GetFileName(string path);
+
+    /// <summary>
+    /// Returns the root folder information of the specified path.
+    /// </summary>
+    /// <param name="path">the path from which to obtain root folder information</param>
+    /// <returns>the root folder of path, such as "C:\", or null if path is null, or an empty string if path does not contain root folder information</returns>
+    string GetPathRoot(string path);
+
+    /// <summary>
+    /// Determines whether a path includes a file name extension.
+    /// </summary>
+    /// <param name="path">the path to search for an extension</param>
+    /// <returns>true if the characters that follow the last folder separator or volume separator in the path include a period (.) followed by one or more characters; otherwise, false</returns>
+    bool HasExtension(string path);
+
+    /// <summary>
+    /// Gets whether the specified path string contains absolute or relative path information.
+    /// </summary>
+    /// <param name="path">the path to test</param>
+    /// <returns>true if path contains an absolute path; otherwise, false</returns>
+    bool IsPathRooted(string path);
+
+    /// <summary>
+    /// Changes the extension of a path string.
+    /// </summary>
+    /// <param name="path">the path information to modify. The path cannot contain any of the characters defined in GetInvalidPathChars()</param>
+    /// <param name="extension">the new extension (with or without a leading period). Specify null to remove an existing extension from path</param>
+    /// <returns>the modified path information</returns>
+    string ChangeExtension(string path, string extension);
+
+    /// <summary>
+    /// Returns a random folder name or file name.
+    /// </summary>
+    /// <returns>a random folder name or file name</returns>
+    string GetRandomFileName();
 }

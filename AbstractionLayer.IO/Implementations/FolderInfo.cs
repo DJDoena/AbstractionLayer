@@ -156,6 +156,63 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
         => _actual.GetDirectories(searchPattern, searchOption)
             .Select(f => new FolderInfo(this.IOServices, f));
 
+    /// <summary>
+    /// Gets or sets the attributes for the current folder.
+    /// </summary>
+    public SIO.FileAttributes Attributes
+    {
+        get => _actual.Attributes;
+        set => _actual.Attributes = value;
+    }
+
+    /// <summary>
+    /// Deletes the folder if it is empty.
+    /// </summary>
+    public void Delete()
+        => _actual.Delete();
+
+    /// <summary>
+    /// Deletes the folder, and, if specified, any subdirectories and files in the folder.
+    /// </summary>
+    /// <param name="recursive">true to delete this folder, its subfolders, and all files; otherwise, false.</param>
+    public void Delete(bool recursive)
+        => _actual.Delete(recursive);
+
+    /// <summary>
+    /// Moves the folder and its contents to a new path.
+    /// </summary>
+    /// <param name="destFolderName">The path to the new location.</param>
+    public void MoveTo(string destFolderName)
+        => _actual.MoveTo(destFolderName);
+
+    /// <summary>
+    /// Returns the subfolders of the current folder.
+    /// </summary>
+    public IEnumerable<IFolderInfo> GetFolders()
+        => _actual.GetDirectories()
+            .Select(d => new FolderInfo(this.IOServices, d));
+
+    /// <summary>
+    /// Returns the subfolders of the current folder matching the given search pattern.
+    /// </summary>
+    public IEnumerable<IFolderInfo> GetFolders(string searchPattern)
+        => _actual.GetDirectories(searchPattern)
+            .Select(d => new FolderInfo(this.IOServices, d));
+
+    /// <summary>
+    /// Returns an enumerable collection of file information in the current directory.
+    /// </summary>
+    public IEnumerable<IFileInfo> GetFiles()
+        => _actual.GetFiles()
+            .Select(f => new FileInfo(this.IOServices, f));
+
+    /// <summary>
+    /// Returns an enumerable collection of file information that matches a search pattern.
+    /// </summary>
+    public IEnumerable<IFileInfo> GetFiles(string searchPattern)
+        => _actual.GetFiles(searchPattern)
+            .Select(f => new FileInfo(this.IOServices, f));
+
     #region IEquatable<IFolderInfo>
 
     /// <summary>

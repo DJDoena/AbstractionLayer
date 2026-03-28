@@ -81,4 +81,60 @@ internal sealed class Path : IPath
     /// </returns>
     public string GetExtension(string path)
         => SIO.Path.GetExtension(path);
+
+    /// <summary>
+    /// Returns the folder information for the specified path string.
+    /// </summary>
+    /// <param name="path">the path of a file or folder</param>
+    /// <returns>folder information for path, or null if path denotes a root folder or is null</returns>
+    public string GetFolderName(string path)
+        => SIO.Path.GetDirectoryName(path);
+
+    /// <summary>
+    /// Returns the file name and extension of the specified path string.
+    /// </summary>
+    /// <param name="path">the path string from which to obtain the file name and extension</param>
+    /// <returns>the characters after the last directory separator character in path</returns>
+    public string GetFileName(string path)
+        => SIO.Path.GetFileName(path);
+
+    /// <summary>
+    /// Returns the root directory information of the specified path.
+    /// </summary>
+    /// <param name="path">the path from which to obtain root directory information</param>
+    /// <returns>the root directory of path, such as "C:\", or null if path is null, or an empty string if path does not contain root directory information</returns>
+    public string GetPathRoot(string path)
+        => SIO.Path.GetPathRoot(path);
+
+    /// <summary>
+    /// Determines whether a path includes a file name extension.
+    /// </summary>
+    /// <param name="path">the path to search for an extension</param>
+    /// <returns>true if the characters that follow the last directory separator or volume separator in the path include a period (.) followed by one or more characters; otherwise, false</returns>
+    public bool HasExtension(string path)
+        => SIO.Path.HasExtension(path);
+
+    /// <summary>
+    /// Gets whether the specified path string contains absolute or relative path information.
+    /// </summary>
+    /// <param name="path">the path to test</param>
+    /// <returns>true if path contains an absolute path; otherwise, false</returns>
+    public bool IsPathRooted(string path)
+        => SIO.Path.IsPathRooted(path);
+
+    /// <summary>
+    /// Changes the extension of a path string.
+    /// </summary>
+    /// <param name="path">the path information to modify. The path cannot contain any of the characters defined in GetInvalidPathChars()</param>
+    /// <param name="extension">the new extension (with or without a leading period). Specify null to remove an existing extension from path</param>
+    /// <returns>the modified path information</returns>
+    public string ChangeExtension(string path, string extension)
+        => SIO.Path.ChangeExtension(path, extension);
+
+    /// <summary>
+    /// Returns a random folder name or file name.
+    /// </summary>
+    /// <returns>a random folder name or file name</returns>
+    public string GetRandomFileName()
+        => SIO.Path.GetRandomFileName();
 }

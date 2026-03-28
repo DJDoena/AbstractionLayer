@@ -1,15 +1,12 @@
-﻿namespace DoenaSoft.AbstractionLayer.IOServices;
+﻿using SIO = System.IO;
+
+namespace DoenaSoft.AbstractionLayer.IOServices;
 
 /// <summary>
 /// Interface to seperate DriveInfo concerns from an concrete implementation.
 /// </summary>
-public interface IDriveInfo
+public interface IDriveInfo : IIOServiceItem
 {
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    IIOServices IOServices { get; }
-
     /// <summary>
     /// Returns whether tghe drive is ready for read/write operations.
     /// </summary>
@@ -43,10 +40,30 @@ public interface IDriveInfo
     /// <summary>
     /// Returns the free space in bytes.
     /// </summary>
-    ulong AvailableFreeSpace { get; }
+    long AvailableFreeSpace { get; }
 
     /// <summary>
     /// Returns the total space in bytes.
     /// </summary>
-    ulong TotalSpace { get; }
+    long TotalSpace { get; }
+
+    /// <summary>
+    /// Gets the name of the drive, such as C:\.
+    /// </summary>
+    string Name { get; }
+
+    /// <summary>
+    /// Gets the drive type, such as CD-ROM, removable, network, or fixed.
+    /// </summary>
+    SIO.DriveType DriveType { get; }
+
+    /// <summary>
+    /// Gets the name of the file system, such as NTFS or FAT32.
+    /// </summary>
+    string DriveFormat { get; }
+
+    /// <summary>
+    /// Gets the total amount of free space available on the drive, in bytes.
+    /// </summary>
+    long TotalFreeSpace { get; }
 }

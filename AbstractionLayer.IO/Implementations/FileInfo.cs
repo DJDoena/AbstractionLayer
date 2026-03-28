@@ -64,13 +64,6 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
         => _actual.DirectoryName;
 
     /// <summary>
-    /// Returns the path without the file name.
-    /// </summary>
-    public string DirectoryName
-        => this.FolderName;
-
-
-    /// <summary>
     /// Returns the file name without path and extension.
     /// </summary>
     public string NameWithoutExtension
@@ -85,8 +78,26 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
     /// <summary>
     /// Returns the size in bytes.
     /// </summary>
-    public ulong Length
-        => (ulong)_actual.Length;
+    public long Length
+        => _actual.Length;
+
+    /// <summary>
+    /// Gets or sets the attributes for the current file.
+    /// </summary>
+    public SIO.FileAttributes Attributes
+    {
+        get => _actual.Attributes;
+        set => _actual.Attributes = value;
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether the file is read-only.
+    /// </summary>
+    public bool IsReadOnly
+    {
+        get => _actual.IsReadOnly;
+        set => _actual.IsReadOnly = value;
+    }
 
     /// <summary>
     /// Gets or sets the time when the current file was last written to.
@@ -148,6 +159,75 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
     /// <param name="targetFileName">the path to move the file to, which can specify a different file name</param>
     public void MoveTo(string targetFileName)
         => _actual.MoveTo(targetFileName);
+
+    /// <summary>
+    /// Copies an existing file to a new file, disallowing the overwriting of an existing file.
+    /// </summary>
+    /// <param name="destFileName">The name of the new file to copy to.</param>
+    public IFileInfo CopyTo(string destFileName)
+        => new FileInfo(this.IOServices, _actual.CopyTo(destFileName));
+
+    /// <summary>
+    /// Copies an existing file to a new file, allowing the overwriting of an existing file.
+    /// </summary>
+    /// <param name="destFileName">The name of the new file to copy to.</param>
+    /// <param name="overwrite">true to allow an existing file to be overwritten; otherwise, false.</param>
+    public IFileInfo CopyTo(string destFileName, bool overwrite)
+        => new FileInfo(this.IOServices, _actual.CopyTo(destFileName, overwrite));
+
+    /// <summary>
+    /// Deletes the file.
+    /// </summary>
+    public void Delete()
+        => _actual.Delete();
+
+    /// <summary>
+    /// Creates a StreamWriter that writes a new text file.
+    /// </summary>
+    public SIO.StreamWriter CreateText()
+        => _actual.CreateText();
+
+    /// <summary>
+    /// Creates a write-only FileStream.
+    /// </summary>
+    public SIO.Stream Create()
+        => _actual.Create();
+
+    /// <summary>
+    /// Opens a file in the specified mode.
+    /// </summary>
+    public SIO.Stream Open(SIO.FileMode mode)
+        => _actual.Open(mode);
+
+    /// <summary>
+    /// Opens a file in the specified mode with read, write, or read/write access.
+    /// </summary>
+    public SIO.Stream Open(SIO.FileMode mode, SIO.FileAccess access)
+        => _actual.Open(mode, access);
+
+    /// <summary>
+    /// Opens a file in the specified mode with read, write, or read/write access and the specified sharing option.
+    /// </summary>
+    public SIO.Stream Open(SIO.FileMode mode, SIO.FileAccess access, SIO.FileShare share)
+        => _actual.Open(mode, access, share);
+
+    /// <summary>
+    /// Creates a read-only FileStream.
+    /// </summary>
+    public SIO.Stream OpenRead()
+        => _actual.OpenRead();
+
+    /// <summary>
+    /// Creates a StreamReader with UTF8 encoding that reads from an existing text file.
+    /// </summary>
+    public SIO.StreamReader OpenText()
+        => _actual.OpenText();
+
+    /// <summary>
+    /// Creates a write-only FileStream.
+    /// </summary>
+    public SIO.Stream OpenWrite()
+        => _actual.OpenWrite();
 
     #region IEquatable<IFileInfo>
 

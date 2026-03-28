@@ -78,5 +78,38 @@ internal sealed class Folder : IFolder
         => this.GetFileNames(folder, searchPattern, searchOption)
             .Select(f => new FileInfo(this.IOServices, f));
 
+    public void Move(string sourceFolderName, string destFolderName)
+    {
+        _logger?.WriteLine($"Move folder \"{sourceFolderName}\"", true);
+        _logger?.WriteLine($"to          \"{destFolderName}\"");
+
+        SIO.Directory.Move(sourceFolderName, destFolderName);
+    }
+
+    public string GetCurrentFolder()
+        => SIO.Directory.GetCurrentDirectory();
+
+    public void SetCurrentFolder(string path)
+    {
+        _logger?.WriteLine($"Set current folder to \"{path}\"");
+
+        SIO.Directory.SetCurrentDirectory(path);
+    }
+
+    public IEnumerable<string> GetFolders(string path)
+        => SIO.Directory.GetDirectories(path);
+
+    public IEnumerable<string> GetFiles(string path)
+        => SIO.Directory.GetFiles(path);
+
+    public IFolderInfo GetParent(string path)
+    {
+        var parent = SIO.Directory.GetParent(path);
+
+        return parent != null
+            ? new FolderInfo(this.IOServices, parent)
+            : null;
+    }
+
     #endregion
 }

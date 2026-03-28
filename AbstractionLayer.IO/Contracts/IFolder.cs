@@ -6,13 +6,8 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// <summary>
 /// Interface to seperate folder concerns from an concrete implementation.
 /// </summary>
-public interface IFolder
+public interface IFolder : IIOServiceItem
 {
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    IIOServices IOServices { get; }
-
     /// <summary>
     /// Returns the WorkingFolder.
     /// </summary>
@@ -85,4 +80,37 @@ public interface IFolder
     IEnumerable<IFileInfo> GetFiles(string folder
         , string searchPattern = "*.*"
         , SIO.SearchOption searchOption = SIO.SearchOption.TopDirectoryOnly);
+
+    /// <summary>
+    /// Moves a folder and its contents to a new location.
+    /// </summary>
+    /// <param name="sourceFolderName">The path of the folder to move.</param>
+    /// <param name="destFolderName">The path to the new location for sourceFolderName.</param>
+    void Move(string sourceFolderName, string destFolderName);
+
+    /// <summary>
+    /// Returns the current folder of the application.
+    /// </summary>
+    string GetCurrentFolder();
+
+    /// <summary>
+    /// Sets the application's current working folder to the specified folder.
+    /// </summary>
+    /// <param name="path">The path to which the current working folder is set.</param>
+    void SetCurrentFolder(string path);
+
+    /// <summary>
+    /// Returns the names of subfolders (including their paths) in the specified folder.
+    /// </summary>
+    IEnumerable<string> GetFolders(string path);
+
+    /// <summary>
+    /// Returns the names of files (including their paths) in the specified folder.
+    /// </summary>
+    IEnumerable<string> GetFiles(string path);
+
+    /// <summary>
+    /// Retrieves the parent folder of the specified path.
+    /// </summary>
+    IFolderInfo GetParent(string path);
 }

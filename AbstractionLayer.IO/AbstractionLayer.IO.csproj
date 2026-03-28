@@ -4,7 +4,7 @@
 		<AssemblyName>DoenaSoft.AbstractionLayer.IO</AssemblyName>
 		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
 		<OutputType>Library</OutputType>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>netstandard2.0;net10.0;net472</TargetFrameworks>
 		<Platforms>AnyCPU</Platforms>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 		<DebugType>portable</DebugType>
@@ -24,9 +24,9 @@
 		<Description>Gives an interface layer for file I/O for mocking and unit-testing</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
-		<Copyright>2016 - 2025</Copyright>
-		<Version>3.0.1</Version>
-		<FileVersion>3.0.1</FileVersion>
+		<Copyright>2016 - 2026</Copyright>
+		<Version>4.0.0</Version>
+		<FileVersion>4.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

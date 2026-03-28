@@ -65,11 +65,35 @@ internal sealed class DriveInfo : IDriveInfo
     public IFolderInfo RootFolder
         => new FolderInfo(this.IOServices, _actual.RootDirectory);
 
-    public ulong AvailableFreeSpace
-        => (ulong)_actual.AvailableFreeSpace;
+    public long AvailableFreeSpace
+        => _actual.AvailableFreeSpace;
 
-    public ulong TotalSpace
-        => (ulong)_actual.TotalSize;
+    public long TotalSpace
+        => _actual.TotalSize;
+
+    public string Name
+        => _actual.Name;
+
+    public SIO.DriveType DriveType
+        => _actual.DriveType;
+
+    public string DriveFormat
+    {
+        get
+        {
+            try
+            {
+                return _actual.DriveFormat;
+            }
+            catch (SIO.IOException)
+            {
+                return string.Empty;
+            }
+        }
+    }
+
+    public long TotalFreeSpace
+        => _actual.TotalFreeSpace;
 
     #endregion
 
