@@ -1,4 +1,4 @@
-# DoenaSoft.AbstractionLayer.WPF
+﻿# DoenaSoft.AbstractionLayer.WPF
 
 WPF abstractions that make WPF components easier to mock and unit-test. This project targets multiple frameworks to support legacy .NET Framework and modern .NET desktop applications.
 
@@ -18,55 +18,55 @@ This package provides WPF-specific implementations of the interfaces defined in 
 
 ### UI Services
 
-- **`IUIServices`** — The primary entry point for UI operations. Provides methods to show message boxes and common file/folder dialogs:
-  - `ShowMessageBox` — Display message boxes with configurable text, caption, buttons, and icon
-  - `ShowOpenFileDialog` — Show open file dialogs for single or multiple file selection
-  - `ShowSaveFileDialog` — Show save file dialogs
-  - `ShowFolderBrowserDialog` — Show folder browser dialogs
+- **`IUIServices`** - The primary entry point for UI operations. Provides methods to show message boxes and common file/folder dialogs:
+  - `ShowMessageBox` - Display message boxes with configurable text, caption, buttons, and icon
+  - `ShowOpenFileDialog` - Show open file dialogs for single or multiple file selection
+  - `ShowSaveFileDialog` - Show save file dialogs
+  - `ShowFolderBrowserDialog` - Show folder browser dialogs
 
 ### Clipboard Services
 
-- **`IClipboardServices`** — Comprehensive clipboard operations:
+- **`IClipboardServices`** - Comprehensive clipboard operations:
   - **Contains methods:** `ContainsText`, `ContainsAudio`, `ContainsFileDropList`, `ContainsImage`, `ContainsData`
   - **Get methods:** `GetText`, `GetAudioStream`, `GetFileDropList`, `GetImage`, `GetData`, `GetDataObject`
   - **Set methods:** `SetText`, `SetAudio` (byte array or stream), `SetFileDropList`, `SetImage`, `SetData`, `SetDataObject`
-  - **Clear method:** `Clear` — Remove all data from clipboard
+  - **Clear method:** `Clear` - Remove all data from clipboard
 
 ### Thread Synchronization
 
-- **`ISynchronizer`** — Invoke work on the UI thread:
-  - `Invoke(Action)` — Synchronously invoke an action on the UI thread
-  - `Invoke<T>(Func<T>)` — Synchronously invoke a function and return its result
-  - `BeginInvoke(Action)` — Asynchronously invoke an action on the UI thread
+- **`ISynchronizer`** - Invoke work on the UI thread:
+  - `Invoke(Action)` - Synchronously invoke an action on the UI thread
+  - `Invoke<T>(Func<T>)` - Synchronously invoke a function and return its result
+  - `BeginInvoke(Action)` - Asynchronously invoke an action on the UI thread
 
-- **`IDispatcherOperation`** — Represents a posted dispatcher operation:
-  - `Result` — Gets the result after completion
-  - `Status` — Gets the current status (Pending, Aborted, Completed, Executing)
-  - `Task` — Gets a Task that represents the operation
+- **`IDispatcherOperation`** - Represents a posted dispatcher operation:
+  - `Result` - Gets the result after completion
+  - `Status` - Gets the current status (Pending, Aborted, Completed, Executing)
+  - `Task` - Gets a Task that represents the operation
 
 ## Supporting Data Types
 
 ### Dialog Configuration
 
-- **`FileDialogOptions`** — Base configuration for file dialogs
-- **`OpenFileDialogOptions`** — Configuration for open file dialogs (includes multi-select)
-- **`SaveFileDialogOptions`** — Configuration for save file dialogs
-- **`FolderBrowserDialogOptions`** — Configuration for folder browser dialogs
+- **`FileDialogOptions`** - Base configuration for file dialogs
+- **`OpenFileDialogOptions`** - Configuration for open file dialogs (includes multi-select)
+- **`SaveFileDialogOptions`** - Configuration for save file dialogs
+- **`FolderBrowserDialogOptions`** - Configuration for folder browser dialogs
 
 ### Enumerations
 
-- **`MessageButton`** — Message box button configuration (OK, YesNo, YesNoCancel)
-- **`MessageIcon`** — Message box icon types (None, Information, Warning, Error, Question)
-- **`Result`** — Dialog result values (OK, Cancel, Yes, No, etc.)
-- **`DispatcherStatus`** — Dispatcher operation status (Pending, Aborted, Completed, Executing)
+- **`MessageButton`** - Message box button configuration (OK, YesNo, YesNoCancel)
+- **`MessageIcon`** - Message box icon types (None, Information, Warning, Error, Question)
+- **`Result`** - Dialog result values (OK, Cancel, Yes, No, etc.)
+- **`DispatcherStatus`** - Dispatcher operation status (Pending, Aborted, Completed, Executing)
 
 ## Adapters
 
 This package provides concrete WPF adapter implementations:
 
-- **`WindowUIServices`** — Wraps WPF `MessageBox` and Microsoft.Win32 dialog types and implements `IUIServices`
-- **`WindowClipboardServices`** — Wraps `System.Windows.Clipboard` and implements `IClipboardServices`
-- **`WindowSynchronizer`** — Wraps WPF `Dispatcher.Invoke`/`BeginInvoke` and implements `ISynchronizer`
+- **`WindowUIServices`** - Wraps WPF `MessageBox` and Microsoft.Win32 dialog types and implements `IUIServices`
+- **`WindowClipboardServices`** - Wraps `System.Windows.Clipboard` and implements `IClipboardServices`
+- **`WindowSynchronizer`** - Wraps WPF `Dispatcher.Invoke`/`BeginInvoke` and implements `ISynchronizer`
 
 ## Examples
 

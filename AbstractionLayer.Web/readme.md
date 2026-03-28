@@ -1,4 +1,4 @@
-# DoenaSoft.AbstractionLayer.Web
+﻿# DoenaSoft.AbstractionLayer.Web
 
 Web and HTTP abstractions for easier unit testing of code that performs network operations.
 

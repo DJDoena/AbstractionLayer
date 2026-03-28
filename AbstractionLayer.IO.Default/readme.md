@@ -1,4 +1,4 @@
-# DoenaSoft.AbstractionLayer.IO.Default
+ï»¿# DoenaSoft.AbstractionLayer.IO.Default
 
 Default `System.IO`-based implementations of the file I/O abstraction interfaces defined in `DoenaSoft.AbstractionLayer.IO`. This package provides production-ready file system operations for .NET Standard 2.0, .NET Framework 4.7.2, and .NET 10.
 
@@ -11,7 +11,7 @@ Targets: netstandard2.0, net472, net10.0
 This package contains the **default implementations** that wrap `System.IO` classes to implement the interfaces from `DoenaSoft.AbstractionLayer.IO`. Use this package in production code to perform actual file system operations.
 
 **Dependencies:**
-- `DoenaSoft.AbstractionLayer.IO` — Contains the interface contracts
+- `DoenaSoft.AbstractionLayer.IO` - Contains the interface contracts
 
 License: MIT
 
@@ -21,30 +21,30 @@ This package provides concrete `System.IO`-based implementations:
 
 ### Core Implementation
 
-- **`IOServices`** — Default implementation of `IIOServices`. Aggregates all I/O services and provides factory methods.
+- **`IOServices`** - Default implementation of `IIOServices`. Aggregates all I/O services and provides factory methods.
 
 ### File and Path Implementations
 
-- **`File`** — Wraps `System.IO.File` static methods
-- **`FileInfo`** — Wraps `System.IO.FileInfo` instance methods
-- **`Path`** — Wraps `System.IO.Path` static methods
+- **`File`** - Wraps `System.IO.File` static methods
+- **`FileInfo`** - Wraps `System.IO.FileInfo` instance methods
+- **`Path`** - Wraps `System.IO.Path` static methods
 
 ### Folder Implementations
 
-- **`Folder`** — Wraps `System.IO.Directory` static methods
-- **`FolderInfo`** — Wraps `System.IO.DirectoryInfo` instance methods
+- **`Folder`** - Wraps `System.IO.Directory` static methods
+- **`FolderInfo`** - Wraps `System.IO.DirectoryInfo` instance methods
 
 ### Drive and Monitoring Implementations
 
-- **`DriveInfo`** — Wraps `System.IO.DriveInfo`
-- **`FileSystemWatcher`** — Wraps `System.IO.FileSystemWatcher`
+- **`DriveInfo`** - Wraps `System.IO.DriveInfo`
+- **`FileSystemWatcher`** - Wraps `System.IO.FileSystemWatcher`
 
 ### Supporting Implementations
 
-- **`ConsoleLogger`** — Writes I/O operations to console
-- **`FileLogger`** — Writes I/O operations to a file
-- **`DualLogger`** — Combines two loggers (e.g., console + file)
-- **`RenameQueue`** — Manages file rename operations
+- **`ConsoleLogger`** - Writes I/O operations to console
+- **`FileLogger`** - Writes I/O operations to a file
+- **`DualLogger`** - Combines two loggers (e.g., console + file)
+- **`RenameQueue`** - Manages file rename operations
 
 ## Usage
 
@@ -148,8 +148,8 @@ var processor = new DataProcessor(fakeIO);
 
 ## Package Architecture
 
-- **`DoenaSoft.AbstractionLayer.IO`** — Interface contracts (required)
-- **`DoenaSoft.AbstractionLayer.IO.Default`** (this package) — `System.IO`-based implementations
+- **`DoenaSoft.AbstractionLayer.IO`** - Interface contracts (required)
+- **`DoenaSoft.AbstractionLayer.IO.Default`** (this package) - `System.IO`-based implementations
 
 ## Notes
 
@@ -174,33 +174,33 @@ The project provides several interfaces that represent parts of the file system.
 
 ### Core Interfaces
 
-- **`IIOServices`** — The main entry point that aggregates access to all I/O services. Provides factory methods for files, folders, drives, and file system watchers.
+- **`IIOServices`** - The main entry point that aggregates access to all I/O services. Provides factory methods for files, folders, drives, and file system watchers.
 
 ### Base Interface
 
-- **`IIOServiceItem`** — Base interface for all types that provide access to the master `IIOServices` interface. All file system-related interfaces inherit from this.
+- **`IIOServiceItem`** - Base interface for all types that provide access to the master `IIOServices` interface. All file system-related interfaces inherit from this.
 
 ### Path and File Operations
 
-- **`IPath`** — Provides path manipulation helpers (combine, get extension, get folder name, change extension, etc.)
-- **`IFile`** — Static file operations (exists, copy, move, delete, read all bytes/lines/text, write all bytes/lines/text, append, open streams, get/set attributes and timestamps, replace, etc.)
-- **`IFileInfo`** — Instance-based file operations and metadata (name, extension, full name, folder, size, attributes, timestamps, exists, copy, move, delete, open streams, create text, etc.)
+- **`IPath`** - Provides path manipulation helpers (combine, get extension, get folder name, change extension, etc.)
+- **`IFile`** - Static file operations (exists, copy, move, delete, read all bytes/lines/text, write all bytes/lines/text, append, open streams, get/set attributes and timestamps, replace, etc.)
+- **`IFileInfo`** - Instance-based file operations and metadata (name, extension, full name, folder, size, attributes, timestamps, exists, copy, move, delete, open streams, create text, etc.)
 
 ### Folder Operations
 
-- **`IFolder`** — Static folder operations (exists, create, delete, get files/folders, move, get/set current folder, get parent, etc.)
-- **`IFolderInfo`** — Instance-based folder operations and metadata (name, full name, parent, root, drive, attributes, timestamps, exists, create, delete, move, get files/folders, etc.)
+- **`IFolder`** - Static folder operations (exists, create, delete, get files/folders, move, get/set current folder, get parent, etc.)
+- **`IFolderInfo`** - Instance-based folder operations and metadata (name, full name, parent, root, drive, attributes, timestamps, exists, create, delete, move, get files/folders, etc.)
 
 ### Drive and File System Watching
 
-- **`IDriveInfo`** — Drive-specific information (name, drive type, drive format, drive letter, volume label, ready state, available free space, total free space, total size, root folder, etc.)
-- **`IFileSystemWatcher`** — File system change notification abstraction with events for file creation, deletion, and renaming.
+- **`IDriveInfo`** - Drive-specific information (name, drive type, drive format, drive letter, volume label, ready state, available free space, total free space, total size, root folder, etc.)
+- **`IFileSystemWatcher`** - File system change notification abstraction with events for file creation, deletion, and renaming.
 
 ### Supporting Interfaces
 
-- **`ILogger`** — Logging abstraction used by implementations to record I/O operations.
-- **`IRenameQueue`** — Queue abstraction for managing file rename operations.
-- **`IShortcut`** — Abstraction for creating and managing file shortcuts with description, target path, and working folder.
+- **`ILogger`** - Logging abstraction used by implementations to record I/O operations.
+- **`IRenameQueue`** - Queue abstraction for managing file rename operations.
+- **`IShortcut`** - Abstraction for creating and managing file shortcuts with description, target path, and working folder.
 
 `IIOServices` is intended as the primary entry point in application code; it is typically implemented with a thin wrapper around `System.IO` in production and with an in-memory fake in tests.
 

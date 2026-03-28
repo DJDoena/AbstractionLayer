@@ -1,4 +1,4 @@
-# DoenaSoft.AbstractionLayer.UI
+﻿# DoenaSoft.AbstractionLayer.UI
 
 Common UI abstractions used by the WinForms and WPF projects. This library provides small interface definitions that mirror important surface area of framework UI types so that application code can depend on interfaces instead of concrete types.
 
@@ -12,47 +12,47 @@ The `AbstractionLayer.UI` project exposes the following interfaces in the `Contr
 
 ### Main UI Services
 
-- **`IUIServices`** (namespace `DoenaSoft.AbstractionLayer.UIServices`) — The primary UI service interface. Provides methods to show message boxes and common file/folder dialogs:
-  - `ShowMessageBox` — Display a message box with configurable text, caption, buttons, and icon
-  - `ShowOpenFileDialog` — Show an open file dialog for single or multiple file selection
-  - `ShowSaveFileDialog` — Show a save file dialog
-  - `ShowFolderBrowserDialog` — Show a folder browser dialog
+- **`IUIServices`** (namespace `DoenaSoft.AbstractionLayer.UIServices`) - The primary UI service interface. Provides methods to show message boxes and common file/folder dialogs:
+  - `ShowMessageBox` - Display a message box with configurable text, caption, buttons, and icon
+  - `ShowOpenFileDialog` - Show an open file dialog for single or multiple file selection
+  - `ShowSaveFileDialog` - Show a save file dialog
+  - `ShowFolderBrowserDialog` - Show a folder browser dialog
 
 ### Clipboard Operations
 
-- **`IClipboardServices`** (namespace `DoenaSoft.AbstractionLayer.UIServices`) — Clipboard operations:
-  - `ContainsText` — Check if clipboard contains text
-  - `GetText` — Retrieve text from clipboard
-  - `SetText` — Set text to clipboard
-  - `SetDataObject` — Set data object to clipboard with retry logic and persistence options
+- **`IClipboardServices`** (namespace `DoenaSoft.AbstractionLayer.UIServices`) - Clipboard operations:
+  - `ContainsText` - Check if clipboard contains text
+  - `GetText` - Retrieve text from clipboard
+  - `SetText` - Set text to clipboard
+  - `SetDataObject` - Set data object to clipboard with retry logic and persistence options
 
 ### Thread Synchronization
 
-- **`ISynchronizer`** (namespace `DoenaSoft.AbstractionLayer.UI.Contracts`) — Invoke work on the UI thread:
-  - `Invoke(Action)` — Synchronously invoke an action on the UI thread
-  - `Invoke<T>(Func<T>)` — Synchronously invoke a function on the UI thread and return its result
-  - `BeginInvoke(Action)` — Asynchronously invoke an action on the UI thread
+- **`ISynchronizer`** (namespace `DoenaSoft.AbstractionLayer.UI.Contracts`) - Invoke work on the UI thread:
+  - `Invoke(Action)` - Synchronously invoke an action on the UI thread
+  - `Invoke<T>(Func<T>)` - Synchronously invoke a function on the UI thread and return its result
+  - `BeginInvoke(Action)` - Asynchronously invoke an action on the UI thread
 
-- **`IDispatcherOperation`** (namespace `DoenaSoft.AbstractionLayer.UI.Contracts`) — Represents a posted dispatcher operation and exposes:
-  - `Result` — Gets the result after completion
-  - `Status` — Gets the current status (Pending, Aborted, Completed, Executing)
-  - `Task` — Gets a Task that represents the operation
+- **`IDispatcherOperation`** (namespace `DoenaSoft.AbstractionLayer.UI.Contracts`) - Represents a posted dispatcher operation and exposes:
+  - `Result` - Gets the result after completion
+  - `Status` - Gets the current status (Pending, Aborted, Completed, Executing)
+  - `Task` - Gets a Task that represents the operation
 
 ## Supporting Data Types
 
 ### Dialog Configuration
 
-- **`FileDialogOptions`** — Base configuration for file dialogs (filter, initial folder, title)
-- **`OpenFileDialogOptions`** — Configuration for open file dialogs (extends FileDialogOptions, adds multi-select support)
-- **`SaveFileDialogOptions`** — Configuration for save file dialogs (extends FileDialogOptions, adds overwrite prompt)
-- **`FolderBrowserDialogOptions`** — Configuration for folder browser dialogs (description, selected path)
+- **`FileDialogOptions`** - Base configuration for file dialogs (filter, initial folder, title)
+- **`OpenFileDialogOptions`** - Configuration for open file dialogs (extends FileDialogOptions, adds multi-select support)
+- **`SaveFileDialogOptions`** - Configuration for save file dialogs (extends FileDialogOptions, adds overwrite prompt)
+- **`FolderBrowserDialogOptions`** - Configuration for folder browser dialogs (description, selected path)
 
 ### Enumerations
 
-- **`MessageButton`** — Message box button configuration (OK, YesNo, YesNoCancel)
-- **`MessageIcon`** — Message box icon types (None, Information, Warning, Error, Question)
-- **`Result`** — Dialog result values (OK, Cancel, Yes, No, etc.)
-- **`DispatcherStatus`** — Dispatcher operation status (Pending, Aborted, Completed, Executing)
+- **`MessageButton`** - Message box button configuration (OK, YesNo, YesNoCancel)
+- **`MessageIcon`** - Message box icon types (None, Information, Warning, Error, Question)
+- **`Result`** - Dialog result values (OK, Cancel, Yes, No, etc.)
+- **`DispatcherStatus`** - Dispatcher operation status (Pending, Aborted, Completed, Executing)
 
 ## Usage
 
