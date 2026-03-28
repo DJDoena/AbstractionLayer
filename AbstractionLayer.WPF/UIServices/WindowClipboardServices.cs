@@ -68,6 +68,13 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         /// </summary>
         /// <param name="format">The format of the data to retrieve.</param>
         /// <returns>An object representing the clipboard data, or null if the Clipboard does not contain data in the specified format.</returns>
+        public T GetData<T>(string format) => (T)System.Windows.Clipboard.GetData(format);
+
+        /// <summary>
+        /// Retrieves data from the Clipboard in the specified format.
+        /// </summary>
+        /// <param name="format">The format of the data to retrieve.</param>
+        /// <returns>An object representing the clipboard data, or null if the Clipboard does not contain data in the specified format.</returns>
         public object GetData(string format) => System.Windows.Clipboard.GetData(format);
 
         /// <summary>
