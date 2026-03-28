@@ -63,12 +63,21 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         /// <returns>An object representing the image, or null if the Clipboard does not contain any data in the image format.</returns>
         public object GetImage() => System.Windows.Forms.Clipboard.GetImage();
 
+#pragma warning disable WFDEV005
+        /// <summary>
+        /// Retrieves data from the Clipboard in the specified format.
+        /// </summary>
+        /// <param name="format">The format of the data to retrieve.</param>
+        /// <returns>An object representing the clipboard data, or null if the Clipboard does not contain data in the specified format.</returns>
+        public T GetData<T>(string format) => (T)System.Windows.Forms.Clipboard.GetData(format);
+
         /// <summary>
         /// Retrieves data from the Clipboard in the specified format.
         /// </summary>
         /// <param name="format">The format of the data to retrieve.</param>
         /// <returns>An object representing the clipboard data, or null if the Clipboard does not contain data in the specified format.</returns>
         public object GetData(string format) => System.Windows.Forms.Clipboard.GetData(format);
+#pragma warning restore WFDEV005
 
         /// <summary>
         /// Retrieves the data object that is currently on the Clipboard.
