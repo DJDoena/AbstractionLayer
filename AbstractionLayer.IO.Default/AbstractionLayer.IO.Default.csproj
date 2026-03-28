@@ -21,7 +21,7 @@
 		<PackageTags>unit-testing; mocking; I/O</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Gives an interface layer for file I/O for mocking and unit-testing</Description>
+		<Description>Default System.IO-based implementations of the file I/O abstraction interfaces from DoenaSoft.AbstractionLayer.IO. Provides production-ready wrappers for File, Directory, Path, FileInfo, DirectoryInfo, DriveInfo, and FileSystemWatcher with optional logging support.</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>

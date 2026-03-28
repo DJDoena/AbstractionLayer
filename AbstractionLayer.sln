@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLayer.IO", "Abst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLayer.IO.Default", "AbstractionLayer.IO.Default\AbstractionLayer.IO.Default.csproj", "{19822C41-3BA5-E4B6-A0D6-F74DF9349DDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLayer.Web.Default", "AbstractionLayer.Web.Default\AbstractionLayer.Web.Default.csproj", "{496276ED-0144-37F5-7D98-93D520BA8F6A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,18 @@ Global
 		{19822C41-3BA5-E4B6-A0D6-F74DF9349DDF}.Release|x64.Build.0 = Release|Any CPU
 		{19822C41-3BA5-E4B6-A0D6-F74DF9349DDF}.Release|x86.ActiveCfg = Release|Any CPU
 		{19822C41-3BA5-E4B6-A0D6-F74DF9349DDF}.Release|x86.Build.0 = Release|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Debug|x64.Build.0 = Debug|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Debug|x86.Build.0 = Debug|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|x64.ActiveCfg = Release|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|x64.Build.0 = Release|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|x86.ActiveCfg = Release|Any CPU
+		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

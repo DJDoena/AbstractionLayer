@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<AssemblyName>DoenaSoft.AbstractionLayer.Web</AssemblyName>
+		<AssemblyName>DoenaSoft.AbstractionLayer.Web.Default</AssemblyName>
 		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>netstandard2.0;net10.0;net472</TargetFrameworks>
@@ -11,7 +11,7 @@
 		<DebugType>portable</DebugType>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SignAssembly>True</SignAssembly>
-		<AssemblyOriginatorKeyFile>AbstractionLayer.Web.snk</AssemblyOriginatorKeyFile>
+		<AssemblyOriginatorKeyFile>AbstractionLayer.Web.Default.snk</AssemblyOriginatorKeyFile>
 		<Title>DoenaSoft.AbstractionLayer.Web</Title>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
@@ -21,12 +21,12 @@
 		<PackageTags>unit-testing; mocking; web; I/O</PackageTags>
 		<PackageIcon>djdsoft.png</PackageIcon>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Description>Web and HTTP interface contracts for abstraction layer. Contains only interface definitions (IWebServices, IWebClient, IWebRequest, IWebResponse) for mocking and unit-testing web operations. Use DoenaSoft.AbstractionLayer.Web.Default for production implementations.</Description>
+		<Description>Default System.Net-based implementations of web abstraction interfaces from DoenaSoft.AbstractionLayer.Web. Provides WebServices, WebClient, WebRequest, and WebResponse wrappers, plus HttpGetQueryBuilder for building URL-encoded query strings with proper handling of special characters (umlauts, ampersands, etc.).</Description>
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>3.0.0</Version>
-		<FileVersion>3.0.0</FileVersion>
+		<Version>1.0.0</Version>
+		<FileVersion>1.0.0</FileVersion>
 	</PropertyGroup>
 	
 	
@@ -42,6 +42,10 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="DoenaSoft.AbstractionLayer.Web" Version="3.0.0" />
 	</ItemGroup>
 
 </Project>
