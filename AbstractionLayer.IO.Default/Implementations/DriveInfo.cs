@@ -7,20 +7,14 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// Standard implementation of <see cref="IDriveInfo"/> for <see cref="SIO.DriveInfo"/>.
 /// </summary>
 [DebuggerDisplay("DriveLetter={DriveLetter}, Label={VolumeLabel}")]
-internal sealed class DriveInfo : IDriveInfo
+internal sealed class DriveInfo : IOServiceItem, IDriveInfo
 {
     private readonly SIO.DriveInfo _actual;
 
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
-
     public DriveInfo(IIOServices ioServices
         , SIO.DriveInfo driveInfo)
+        : base(ioServices)
     {
-        this.IOServices = ioServices;
-
         _actual = driveInfo;
     }
 

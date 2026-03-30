@@ -8,14 +8,9 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// Standard implementation of <see cref="IFileInfo"/> for <see cref="SIO.FileInfo"/>.
 /// </summary>
 [DebuggerDisplay("Name={Name}, FullName={FullName}")]
-internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IFileInfo>, IComparable<FileInfo>
+internal sealed class FileInfo : IOServiceItem, IFileInfo, IEquatable<FileInfo>, IComparable<IFileInfo>, IComparable<FileInfo>
 {
     private readonly SIO.FileInfo _actual;
-
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
 
     public FileInfo(IIOServices ioServices
         , string fileName)
@@ -25,9 +20,8 @@ internal sealed class FileInfo : IFileInfo, IEquatable<FileInfo>, IComparable<IF
 
     internal FileInfo(IIOServices ioServices
         , SIO.FileInfo actual)
+        : base(ioServices)
     {
-        this.IOServices = ioServices;
-
         _actual = actual ?? throw new ArgumentNullException(nameof(actual));
     }
 

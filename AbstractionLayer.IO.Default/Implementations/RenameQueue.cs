@@ -7,23 +7,17 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// <summary>
 /// A mass renamer for files that ensures that no target file name conflicts occur.
 /// </summary>
-public sealed class RenameQueue : IRenameQueue
+public sealed class RenameQueue : IOServiceItem, IRenameQueue
 {
     private readonly object _lock;
 
     private Dictionary<string, string> _renames;
 
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
-
     /// <summary />
     /// <param name="ioServices">the IO services; will use <see cref="IOServices"/> when not set</param>
     public RenameQueue(IIOServices ioServices = null)
+        : base(ioServices ?? new IOServices())
     {
-        this.IOServices = ioServices ?? new IOServices();
-
         _lock = new object();
     }
 

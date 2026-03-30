@@ -7,21 +7,15 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// Standard implementation of <see cref="IFileSystemWatcher"/> for <see cref="SIO.FileSystemWatcher"/>.
 /// </summary>
 [DebuggerDisplay("Path={Actual.Path}, Filter={Actual.Filter}")]
-internal sealed class FileSystemWatcher : IFileSystemWatcher
+internal sealed class FileSystemWatcher : IOServiceItem, IFileSystemWatcher
 {
     private readonly SIO.FileSystemWatcher _actual;
-
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
 
     public FileSystemWatcher(IIOServices ioServices
         , string path
         , string filter)
+        : base(ioServices)
     {
-        this.IOServices = ioServices;
-
         _actual = new SIO.FileSystemWatcher(path, filter);
     }
 

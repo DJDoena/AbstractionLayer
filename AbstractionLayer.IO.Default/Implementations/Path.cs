@@ -6,16 +6,11 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// <summary>
 /// Standard implementation of <see cref="IPath"/> for <see cref="SIO.Path"/>.
 /// </summary>
-internal sealed class Path : IPath
+internal sealed class Path : IOServiceItem, IPath
 {
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
-
     public Path(IIOServices ioServices)
+        : base(ioServices)
     {
-        this.IOServices = ioServices;
     }
 
     /// <summary>

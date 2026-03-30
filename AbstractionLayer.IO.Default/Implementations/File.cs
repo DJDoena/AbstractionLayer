@@ -8,20 +8,14 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// <summary>
 /// Standard implementation of <see cref="IFile"/> for <see cref="SIO.File"/>.
 /// </summary>
-internal sealed class File : IFile
+internal sealed class File : IOServiceItem, IFile
 {
     private readonly ILogger _logger;
 
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
-
     public File(IIOServices ioServices
         , ILogger logger)
+        : base(ioServices)
     {
-        this.IOServices = ioServices;
-
         _logger = logger;
     }
 
