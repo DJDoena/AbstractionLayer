@@ -20,10 +20,12 @@ public interface IRenameQueue
     /// </summary>
     /// <param name="sourceFile">the source file</param>
     /// <param name="targetFileName">the target file name</param>
-    void Add(IFileInfo sourceFile, string targetFileName);
+    void Add(IFileInfo sourceFile
+        , string targetFileName);
 
     /// <summary>
     /// Executes the actual renaming.
     /// </summary>
+    /// <returns>The number of files renamed.</returns>
     ulong Commit();
 }
