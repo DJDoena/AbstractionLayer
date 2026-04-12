@@ -8,6 +8,7 @@
 		<Platforms>AnyCPU</Platforms>
 		<LangVersion>latest</LangVersion>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<WarningsAsErrors>CS1591</WarningsAsErrors>
 		<DebugType>portable</DebugType>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SignAssembly>True</SignAssembly>
