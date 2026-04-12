@@ -30,7 +30,7 @@ public class RenameQueueTests
     public void Initialize_ShouldAllowMultipleCalls_WhenQueueIsEmpty()
     {
         var queue = new RenameQueue(_ioServices);
-        
+
         queue.Initialize();
         queue.Initialize();
 
@@ -41,8 +41,8 @@ public class RenameQueueTests
     public void Initialize_ShouldThrowException_WhenQueueHasPendingRenames()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
 
@@ -53,8 +53,8 @@ public class RenameQueueTests
     public void Clear_ShouldResetQueue()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
         queue.Clear();
@@ -71,7 +71,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentException_WhenSourceFileNameIsNull()
     {
         var queue = new RenameQueue(_ioServices);
-        var targetFile = "C:\\target.txt";
+        var targetFile = @"C:\target.txt";
 
         Assert.ThrowsExactly<ArgumentException>(() => queue.Add((string)null, targetFile));
     }
@@ -80,7 +80,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentException_WhenSourceFileNameIsEmpty()
     {
         var queue = new RenameQueue(_ioServices);
-        var targetFile = "C:\\target.txt";
+        var targetFile = @"C:\target.txt";
 
         Assert.ThrowsExactly<ArgumentException>(() => queue.Add(string.Empty, targetFile));
     }
@@ -89,7 +89,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentException_WhenSourceFileNameIsWhitespace()
     {
         var queue = new RenameQueue(_ioServices);
-        var targetFile = "C:\\target.txt";
+        var targetFile = @"C:\target.txt";
 
         Assert.ThrowsExactly<ArgumentException>(() => queue.Add("   ", targetFile));
     }
@@ -98,7 +98,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentException_WhenTargetFileNameIsNull()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
+        var sourceFile = this.CreateTestFile("source.txt");
 
         Assert.ThrowsExactly<ArgumentException>(() => queue.Add(sourceFile, null));
     }
@@ -107,7 +107,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentException_WhenTargetFileNameIsEmpty()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
+        var sourceFile = this.CreateTestFile("source.txt");
 
         Assert.ThrowsExactly<ArgumentException>(() => queue.Add(sourceFile, string.Empty));
     }
@@ -116,7 +116,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentException_WhenTargetFileNameIsWhitespace()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
+        var sourceFile = this.CreateTestFile("source.txt");
 
         Assert.ThrowsExactly<ArgumentException>(() => queue.Add(sourceFile, "   "));
     }
@@ -125,7 +125,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentNullException_WhenSourceFileInfoIsNull()
     {
         var queue = new RenameQueue(_ioServices);
-        var targetFile = "C:\\target.txt";
+        var targetFile = @"C:\target.txt";
 
         Assert.ThrowsExactly<ArgumentNullException>(() => queue.Add((IFileInfo)null, targetFile));
     }
@@ -134,7 +134,7 @@ public class RenameQueueTests
     public void Add_ShouldThrowArgumentNullException_WhenSystemFileInfoIsNull()
     {
         var queue = new RenameQueue(_ioServices);
-        var targetFile = "C:\\target.txt";
+        var targetFile = @"C:\target.txt";
 
         Assert.ThrowsExactly<ArgumentNullException>(() => queue.Add((System.IO.FileInfo)null, targetFile));
     }
@@ -143,15 +143,15 @@ public class RenameQueueTests
     public void Add_ShouldThrowInvalidOperationException_WhenNotInitialized()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Initialize();
         queue.Add(sourceFile, targetFile);
         queue.Commit();
 
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile2 = "C:\\target2.txt";
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile2 = @"C:\target2.txt";
 
         Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(sourceFile2, targetFile2));
     }
@@ -160,8 +160,8 @@ public class RenameQueueTests
     public void Add_ShouldThrowInvalidOperationException_WhenTargetFileExistsOnDisk()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = CreateTestFile("target.txt"); // Create target file
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = this.CreateTestFile("target.txt"); // Create target file
 
         Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(sourceFile, targetFile));
     }
@@ -170,9 +170,9 @@ public class RenameQueueTests
     public void Add_ShouldThrowInvalidOperationException_WhenTargetFileIsDuplicateInQueue()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile1, targetFile);
 
@@ -184,7 +184,7 @@ public class RenameQueueTests
     public void Add_ShouldNotAddToQueue_WhenSourceAndTargetAreSame()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
+        var sourceFile = this.CreateTestFile("source.txt");
 
         queue.Add(sourceFile, sourceFile);
 
@@ -204,10 +204,10 @@ public class RenameQueueTests
         // RenameQueue uses platform-specific case sensitivity
         // On Windows, "target.txt" and "TARGET.TXT" are the same file
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetLower = "C:\\target.txt";
-        var targetUpper = "C:\\TARGET.TXT";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetLower = @"C:\target.txt";
+        var targetUpper = @"C:\TARGET.TXT";
 
         queue.Add(sourceFile1, targetLower);
 
@@ -230,8 +230,8 @@ public class RenameQueueTests
     public void Add_ShouldDetectExistingFile_WithDifferentCase_OnCaseInsensitiveFileSystem()
     {
         // This test verifies that File.Exists check respects case sensitivity
-        var sourceFile = CreateTestFile("source.txt");
-        var existingUpper = CreateTestFile("EXISTING.TXT");
+        var sourceFile = this.CreateTestFile("source.txt");
+        var existingUpper = this.CreateTestFile("EXISTING.TXT");
 
         var queue = new RenameQueue(_ioServices);
 
@@ -239,13 +239,13 @@ public class RenameQueueTests
         {
             // On Windows, should detect "existing.txt" exists even though we created "EXISTING.TXT"
             var exception = Assert.ThrowsExactly<InvalidOperationException>(
-                () => queue.Add(sourceFile, "C:\\existing.txt"));
+                () => queue.Add(sourceFile, @"C:\existing.txt"));
             Assert.Contains("already exists", exception.Message, "Should detect existing file regardless of case on Windows");
         }
         else
         {
             // On Linux, "existing.txt" and "EXISTING.TXT" are different
-            queue.Add(sourceFile, "C:\\existing.txt");
+            queue.Add(sourceFile, @"C:\existing.txt");
             var result = queue.Commit();
             Assert.IsTrue(result.Success, "Should allow renaming to different case filename on Linux");
         }
@@ -255,12 +255,12 @@ public class RenameQueueTests
     public void Add_ShouldTreatSamePathAsNoOp_RegardlessOfCase_OnWindows()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("C:\\MyFile.txt");
+        var sourceFile = this.CreateTestFile(@"C:\MyFile.txt");
 
         if (System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(System.Runtime.InteropServices.OSPlatform.Windows))
         {
             // On Windows, renaming "C:\MyFile.txt" to "C:\myfile.txt" should be a no-op
-            queue.Add(sourceFile, "C:\\myfile.txt");
+            queue.Add(sourceFile, @"C:\myfile.txt");
 
             var result = queue.Commit();
 
@@ -284,8 +284,8 @@ public class RenameQueueTests
     public void Add_ShouldAcceptValidFile_WithStringPath()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
 
@@ -296,9 +296,9 @@ public class RenameQueueTests
     public void Add_ShouldAcceptValidFile_WithIFileInfo()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
+        var sourceFile = this.CreateTestFile("source.txt");
         var sourceFileInfo = _ioServices.GetFile(sourceFile);
-        var targetFile = "C:\\target.txt";
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFileInfo, targetFile);
 
@@ -309,9 +309,9 @@ public class RenameQueueTests
     public void Add_ShouldAcceptValidFile_WithSystemFileInfo()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
+        var sourceFile = this.CreateTestFile("source.txt");
         var sourceFileInfo = new System.IO.FileInfo(sourceFile);
-        var targetFile = "C:\\target.txt";
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFileInfo, targetFile);
 
@@ -322,12 +322,12 @@ public class RenameQueueTests
     public void Add_ShouldAcceptMultipleFiles()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var sourceFile3 = CreateTestFile("source3.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
-        var targetFile3 = "C:\\target3.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var sourceFile3 = this.CreateTestFile("source3.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
+        var targetFile3 = @"C:\target3.txt";
 
         queue.Add(sourceFile1, targetFile1);
         queue.Add(sourceFile2, targetFile2);
@@ -344,8 +344,8 @@ public class RenameQueueTests
     public void Commit_ShouldSuccessfullyRenameSingleFile()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt", "test content");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt", "test content");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
         var result = queue.Commit();
@@ -367,12 +367,12 @@ public class RenameQueueTests
     public void Commit_ShouldSuccessfullyRenameMultipleFiles()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt", "content1");
-        var sourceFile2 = CreateTestFile("source2.txt", "content2");
-        var sourceFile3 = CreateTestFile("source3.txt", "content3");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
-        var targetFile3 = "C:\\target3.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt", "content1");
+        var sourceFile2 = this.CreateTestFile("source2.txt", "content2");
+        var sourceFile3 = this.CreateTestFile("source3.txt", "content3");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
+        var targetFile3 = @"C:\target3.txt";
 
         queue.Add(sourceFile1, targetFile1);
         queue.Add(sourceFile2, targetFile2);
@@ -395,8 +395,8 @@ public class RenameQueueTests
     public void Commit_ShouldReturnCorrectRenameDetails()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
         var result = queue.Commit();
@@ -411,15 +411,15 @@ public class RenameQueueTests
     public void Commit_ShouldClearQueue_AfterSuccessfulCommit()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
         queue.Commit();
 
         // Queue should be uninitialized after commit
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile2 = "C:\\target2.txt";
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile2 = @"C:\target2.txt";
 
         Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(sourceFile2, targetFile2));
     }
@@ -428,8 +428,8 @@ public class RenameQueueTests
     public void Commit_ShouldSetArchiveAttribute_OnRenamedFiles()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
         queue.Commit();
@@ -449,8 +449,8 @@ public class RenameQueueTests
         // Progress<T> callbacks may not fire synchronously in test environments
         // This test just verifies the parameter is accepted without errors
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
         var progressReports = new List<IRenameProgress>();
         var progress = new Progress<IRenameProgress>(p => progressReports.Add(p));
 
@@ -469,10 +469,10 @@ public class RenameQueueTests
     public void Commit_ShouldAutomaticallyRollback_WhenErrorOccurs()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
 
         // Mark source2 to fail when trying to move
         _ioServices.FailOnMove.Add(sourceFile2);
@@ -509,10 +509,10 @@ public class RenameQueueTests
     public void Commit_AutomaticRollback_ShouldIncludeAllRenamesInFailedList()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
 
         // Mark source2 to fail when trying to move
         _ioServices.FailOnMove.Add(sourceFile2);
@@ -537,10 +537,10 @@ public class RenameQueueTests
     public void Commit_ManualRollback_ShouldNotRollback_WhenErrorOccurs()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
 
         // Mark source2 to fail when trying to move
         _ioServices.FailOnMove.Add(sourceFile2);
@@ -573,10 +573,10 @@ public class RenameQueueTests
     public void Commit_NoneRollback_ShouldThrowException_WhenErrorOccurs()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
 
         // Mark source2 to fail when trying to move
         _ioServices.FailOnMove.Add(sourceFile2);
@@ -599,12 +599,12 @@ public class RenameQueueTests
     public void Commit_ShouldReportRollbackErrors_WhenRollbackFails()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var sourceFile3 = CreateTestFile("source3.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
-        var targetFile3 = "C:\\target3.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var sourceFile3 = this.CreateTestFile("source3.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
+        var targetFile3 = @"C:\target3.txt";
 
         queue.Add(sourceFile1, targetFile1);
         queue.Add(sourceFile2, targetFile2);
@@ -632,12 +632,12 @@ public class RenameQueueTests
     public void Commit_ShouldReportAllRollbackErrors_WhenMultipleRollbacksFail()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var sourceFile3 = CreateTestFile("source3.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
-        var targetFile3 = "C:\\target3.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var sourceFile3 = this.CreateTestFile("source3.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
+        var targetFile3 = @"C:\target3.txt";
 
         queue.Add(sourceFile1, targetFile1);
         queue.Add(sourceFile2, targetFile2);
@@ -672,9 +672,9 @@ public class RenameQueueTests
         // This tests whether the same source file can be added multiple times with different targets
         // The behavior depends on whether this is intended to be supported
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
 
         queue.Add(sourceFile, targetFile1);
 
@@ -701,10 +701,10 @@ public class RenameQueueTests
     public void Add_ShouldFailOnCommit_WhenSameSourceUsedMultipleTimes_WithAutomaticRollback()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile1 = "C:\\target1.txt";
-        var targetFile2 = "C:\\target2.txt";
-        var targetFile3 = "C:\\target3.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile1 = @"C:\target1.txt";
+        var targetFile2 = @"C:\target2.txt";
+        var targetFile3 = @"C:\target3.txt";
 
         queue.Add(sourceFile, targetFile1);
         queue.Add(sourceFile, targetFile2);
@@ -740,8 +740,8 @@ public class RenameQueueTests
         // A -> B, B -> A (simple circular dependency)
         // This should fail at Add() because fileB already exists when trying to use it as target
         var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("fileA.txt", "content A");
-        var fileB = CreateTestFile("fileB.txt", "content B");
+        var fileA = this.CreateTestFile("fileA.txt", "content A");
+        var fileB = this.CreateTestFile("fileB.txt", "content B");
 
         // First add: fileA -> fileB will fail because fileB exists as a source file
         var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileA, fileB));
@@ -753,12 +753,12 @@ public class RenameQueueTests
     {
         // Chain: A -> B, B -> C, C -> D (not circular, but order-dependent)
         var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("fileA.txt", "content A");
-        var fileB = CreateTestFile("fileB.txt", "content B");
-        var fileC = CreateTestFile("fileC.txt", "content C");
-        var targetB = "C:\\targetB.txt";
-        var targetC = "C:\\targetC.txt";
-        var targetD = "C:\\targetD.txt";
+        var fileA = this.CreateTestFile("fileA.txt", "content A");
+        var fileB = this.CreateTestFile("fileB.txt", "content B");
+        var fileC = this.CreateTestFile("fileC.txt", "content C");
+        var targetB = @"C:\targetB.txt";
+        var targetC = @"C:\targetC.txt";
+        var targetD = @"C:\targetD.txt";
 
         // These won't work because B, C already exist as source files
         // We need to rename to non-existing targets
@@ -781,9 +781,9 @@ public class RenameQueueTests
         // Attempting A -> B, B -> C, C -> A (circular dependency)
         // This is IMPOSSIBLE because Add() validates that targets don't exist
         var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("fileA.txt", "content A");
-        var fileB = CreateTestFile("fileB.txt", "content B");
-        var fileC = CreateTestFile("fileC.txt", "content C");
+        var fileA = this.CreateTestFile("fileA.txt", "content A");
+        var fileB = this.CreateTestFile("fileB.txt", "content B");
+        var fileC = this.CreateTestFile("fileC.txt", "content C");
 
         // Try to create circular dependency
         // Step 1: A -> B will fail because B already exists
@@ -800,9 +800,9 @@ public class RenameQueueTests
     public void Add_ShouldFail_AtEveryStepOfCircularDependency()
     {
         // This test demonstrates that circular dependencies fail at EVERY possible starting point
-        var fileA = CreateTestFile("fileA.txt", "content A");
-        var fileB = CreateTestFile("fileB.txt", "content B");
-        var fileC = CreateTestFile("fileC.txt", "content C");
+        var fileA = this.CreateTestFile("fileA.txt", "content A");
+        var fileB = this.CreateTestFile("fileB.txt", "content B");
+        var fileC = this.CreateTestFile("fileC.txt", "content C");
 
         // Try starting with A -> B
         var queue1 = new RenameQueue(_ioServices);
@@ -831,9 +831,9 @@ public class RenameQueueTests
         // Scenario: A -> C, then B -> A
         // At Commit time, A would be available (moved to C), but Add() checks NOW
         var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("fileA.txt", "content A");
-        var fileB = CreateTestFile("fileB.txt", "content B");
-        var fileC = "C:\\fileC.txt"; // Doesn't exist
+        var fileA = this.CreateTestFile("fileA.txt", "content A");
+        var fileB = this.CreateTestFile("fileB.txt", "content B");
+        var fileC = @"C:\fileC.txt"; // Doesn't exist
 
         // Step 1: A -> C (succeeds because C doesn't exist)
         queue.Add(fileA, fileC);
@@ -855,16 +855,16 @@ public class RenameQueueTests
         // This test verifies that you CANNOT swap files even with a temp file
         // because Add() validates file existence immediately, not at Commit() time
         var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("C:\\fileA.txt", "content A");
-        var fileB = CreateTestFile("C:\\fileB.txt", "content B");
-        var tempFile = "C:\\temp_unique_12345.txt"; // Must not exist
+        var fileA = this.CreateTestFile(@"C:\fileA.txt", "content A");
+        var fileB = this.CreateTestFile(@"C:\fileB.txt", "content B");
+        var tempFile = @"C:\temp_unique_12345.txt"; // Must not exist
 
         // Step 1: A -> temp (this works, temp doesn't exist)
         queue.Add(fileA, tempFile);
 
         // Step 2: B -> A (this FAILS because A still exists at Add() time)
         var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileB, fileA));
-        Assert.Contains("already exists", exception.Message, 
+        Assert.Contains("already exists", exception.Message,
             "Cannot add B -> A because A still exists on disk at Add() time, even though it will be renamed during Commit()");
     }
 
@@ -874,10 +874,10 @@ public class RenameQueueTests
         // The ONLY way to swap is to use completely different target names
         // Then manually swap back if needed, or accept the new names
         var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("C:\\fileA.txt", "content A");
-        var fileB = CreateTestFile("C:\\fileB.txt", "content B");
-        var newNameForA = "C:\\newA.txt";
-        var newNameForB = "C:\\newB.txt";
+        var fileA = this.CreateTestFile(@"C:\fileA.txt", "content A");
+        var fileB = this.CreateTestFile(@"C:\fileB.txt", "content B");
+        var newNameForA = @"C:\newA.txt";
+        var newNameForB = @"C:\newB.txt";
 
         // Rename to completely different names (not swapping locations)
         queue.Add(fileA, newNameForA);
@@ -899,12 +899,12 @@ public class RenameQueueTests
     {
         // This demonstrates why you CAN'T do A -> B, B -> A directly
         var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("C:\\fileA.txt", "content A");
-        var fileB = CreateTestFile("C:\\fileB.txt", "content B");
+        var fileA = this.CreateTestFile(@"C:\fileA.txt", "content A");
+        var fileB = this.CreateTestFile(@"C:\fileB.txt", "content B");
 
         // Try to add A -> B (this should fail because B exists)
         var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileA, fileB));
-        Assert.Contains("already exists", exception.Message, 
+        Assert.Contains("already exists", exception.Message,
             "Cannot add A -> B when B exists - direct circular swap is not possible");
     }
 
@@ -916,8 +916,8 @@ public class RenameQueueTests
     public void Commit_ShouldThrow_WhenCalledTwiceWithoutReinitialize()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
         queue.Commit();
@@ -930,22 +930,22 @@ public class RenameQueueTests
     public void Clear_ShouldAllowReuse_AfterFailedCommit()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var sourceFile2 = CreateTestFile("source2.txt");
-        var targetFile1 = "C:\\target1.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        var targetFile1 = @"C:\target1.txt";
 
         _ioServices.FailOnMove.Add(sourceFile2);
 
         queue.Add(sourceFile1, targetFile1);
-        queue.Add(sourceFile2, "C:\\target2.txt");
+        queue.Add(sourceFile2, @"C:\target2.txt");
 
         var result = queue.Commit(RenameRollbackBehaviour.Manual);
         Assert.IsFalse(result.Success, "First commit should fail");
 
         // Clear should allow reuse
         queue.Clear();
-        var newSource = CreateTestFile("newsource.txt");
-        queue.Add(newSource, "C:\\newtarget.txt");
+        var newSource = this.CreateTestFile("newsource.txt");
+        queue.Add(newSource, @"C:\newtarget.txt");
 
         var result2 = queue.Commit();
         Assert.IsTrue(result2.Success, "Should succeed after Clear()");
@@ -955,16 +955,16 @@ public class RenameQueueTests
     public void Initialize_ShouldAllowReuse_AfterSuccessfulCommit()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
-        var targetFile1 = "C:\\target1.txt";
+        var sourceFile1 = this.CreateTestFile("source1.txt");
+        var targetFile1 = @"C:\target1.txt";
 
         queue.Add(sourceFile1, targetFile1);
         queue.Commit();
 
         // Reinitialize and use again
         queue.Initialize();
-        var sourceFile2 = CreateTestFile("source2.txt");
-        queue.Add(sourceFile2, "C:\\target2.txt");
+        var sourceFile2 = this.CreateTestFile("source2.txt");
+        queue.Add(sourceFile2, @"C:\target2.txt");
 
         var result = queue.Commit();
         Assert.IsTrue(result.Success, "Should succeed after reinitialization");
@@ -974,9 +974,9 @@ public class RenameQueueTests
     public void Commit_ShouldSucceed_AfterClearingPopulatedQueue()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile1 = CreateTestFile("source1.txt");
+        var sourceFile1 = this.CreateTestFile("source1.txt");
 
-        queue.Add(sourceFile1, "C:\\target1.txt");
+        queue.Add(sourceFile1, @"C:\target1.txt");
         queue.Clear();
 
         var result = queue.Commit();
@@ -992,8 +992,8 @@ public class RenameQueueTests
     public void Add_ShouldHandleFilesWithSpaces()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("file with spaces.txt");
-        var targetFile = "C:\\target with spaces.txt";
+        var sourceFile = this.CreateTestFile("file with spaces.txt");
+        var targetFile = @"C:\target with spaces.txt";
 
         queue.Add(sourceFile, targetFile);
         var result = queue.Commit();
@@ -1006,8 +1006,8 @@ public class RenameQueueTests
     public void Add_ShouldHandleFilesWithMultipleDots()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("file.multiple.dots.txt");
-        var targetFile = "C:\\another.file.with.dots.txt";
+        var sourceFile = this.CreateTestFile("file.multiple.dots.txt");
+        var targetFile = @"C:\another.file.with.dots.txt";
 
         queue.Add(sourceFile, targetFile);
         var result = queue.Commit();
@@ -1020,8 +1020,8 @@ public class RenameQueueTests
     public void Add_ShouldHandleFilesWithDashesAndUnderscores()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("file_with-special_chars.txt");
-        var targetFile = "C:\\target-file_name.txt";
+        var sourceFile = this.CreateTestFile("file_with-special_chars.txt");
+        var targetFile = @"C:\target-file_name.txt";
 
         queue.Add(sourceFile, targetFile);
         var result = queue.Commit();
@@ -1033,8 +1033,8 @@ public class RenameQueueTests
     public void Commit_ShouldRenameEmptyFile()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("empty.txt", "");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("empty.txt", "");
+        var targetFile = @"C:\target.txt";
 
         queue.Add(sourceFile, targetFile);
         var result = queue.Commit();
@@ -1051,8 +1051,8 @@ public class RenameQueueTests
     public void Commit_ShouldSetArchiveAttribute_ReplacingOtherAttributes()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         // Set some attributes on source file
         var sourceData = _ioServices.Files[sourceFile];
@@ -1062,7 +1062,7 @@ public class RenameQueueTests
         var result = queue.Commit();
 
         var targetData = _ioServices.Files[_ioServices.Path.GetFullPath(targetFile)];
-        Assert.AreEqual(System.IO.FileAttributes.Archive, targetData.Attributes, 
+        Assert.AreEqual(System.IO.FileAttributes.Archive, targetData.Attributes,
             "Only Archive attribute should be set (SetAttributes replaces all attributes)");
     }
 
@@ -1070,8 +1070,8 @@ public class RenameQueueTests
     public void Commit_ShouldPreserveTimestamps()
     {
         var queue = new RenameQueue(_ioServices);
-        var sourceFile = CreateTestFile("source.txt");
-        var targetFile = "C:\\target.txt";
+        var sourceFile = this.CreateTestFile("source.txt");
+        var targetFile = @"C:\target.txt";
 
         var sourceData = _ioServices.Files[sourceFile];
         var expectedCreationTime = new DateTime(2020, 1, 1, 12, 0, 0);
@@ -1095,7 +1095,7 @@ public class RenameQueueTests
     public void Commit_ShouldSucceed_WhenQueueIsEmpty()
     {
         var queue = new RenameQueue(_ioServices);
-        
+
         var result = queue.Commit();
 
         Assert.IsTrue(result.Success, "Commit should succeed when queue is empty");
@@ -1109,7 +1109,7 @@ public class RenameQueueTests
 
     private string CreateTestFile(string fileName, string content = "test content")
     {
-        return CreateTestFile(fileName, _ioServices, content);
+        return this.CreateTestFile(fileName, _ioServices, content);
     }
 
     private string CreateTestFile(string fileName, MockIOServices ioServices, string content = "test content")
