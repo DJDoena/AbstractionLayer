@@ -72,7 +72,10 @@ public sealed class IOServices : IIOServices
     /// <param name="access">The <see cref="SIO.FileAccess"/></param>
     /// <param name="share">The <see cref="SIO.FileShare"/></param>
     /// <returns>The opened file</returns>
-    public SIO.Stream GetFileStream(string fileName, SIO.FileMode mode, SIO.FileAccess access, SIO.FileShare share)
+    public SIO.Stream GetFileStream(string fileName
+        , SIO.FileMode mode
+        , SIO.FileAccess access
+        , SIO.FileShare share)
         => new SIO.FileStream(fileName, mode, access, share);
 
     /// <summary>
@@ -111,8 +114,17 @@ public sealed class IOServices : IIOServices
     /// <param name="folder">The folder</param>
     /// <param name="searchPattern">The search pattern</param>
     /// <returns>A <see cref="IFileSystemWatcher"/> based on the folder and the search pattern</returns>
-    public IFileSystemWatcher GetFileSystemWatcher(string folder, string searchPattern)
+    public IFileSystemWatcher GetFileSystemWatcher(string folder
+        , string searchPattern)
         => new FileSystemWatcher(this, folder, searchPattern);
+
+    /// <summary>
+    /// Creates a new <see cref="IRenameQueue"/> to perform mass renames of files.
+    /// </summary>
+    /// <param name="logger">An optional logger to use for rename output</param>
+    /// <returns>A new <see cref="IRenameQueue"/> instance</returns>
+    public IRenameQueue CreateRenameQueue(ILogger logger = null)
+        => new RenameQueue(this, logger);
 
     #endregion
 }
