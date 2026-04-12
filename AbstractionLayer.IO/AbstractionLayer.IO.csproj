@@ -25,8 +25,8 @@
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>5.0.2</Version>
-		<FileVersion>5.0.2</FileVersion>
+		<Version>6.0.0</Version>
+		<FileVersion>6.0.0</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
