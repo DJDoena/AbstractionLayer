@@ -1,23 +1,22 @@
-﻿namespace DoenaSoft.AbstractionLayer.UIServices
+﻿namespace DoenaSoft.AbstractionLayer.UIServices;
+
+/// <summary>
+/// The MessageBox buttons.
+/// </summary>
+public enum MessageButtons
 {
     /// <summary>
-    /// The MessageBox buttons.
+    /// Yes / No.
     /// </summary>
-    public enum MessageButtons
-    {
-        /// <summary>
-        /// Yes / No.
-        /// </summary>
-        YesNo,
+    YesNo,
 
-        /// <summary>
-        /// Yes / No / Cancel.
-        /// </summary>
-        YesNoCancel,
+    /// <summary>
+    /// Yes / No / Cancel.
+    /// </summary>
+    YesNoCancel,
 
-        /// <summary>
-        /// OK.
-        /// </summary>
-        OK,
-    }
+    /// <summary>
+    /// OK.
+    /// </summary>
+    OK,
 }

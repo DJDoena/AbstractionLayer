@@ -1,28 +1,27 @@
-﻿namespace DoenaSoft.AbstractionLayer.UIServices
+﻿namespace DoenaSoft.AbstractionLayer.UIServices;
+
+/// <summary>
+/// The MessageBox result.
+/// </summary>
+public enum MessageResult
 {
     /// <summary>
-    /// The MessageBox result.
+    /// Yes.
     /// </summary>
-    public enum MessageResult
-    {
-        /// <summary>
-        /// Yes.
-        /// </summary>
-        Yes,
+    Yes,
 
-        /// <summary>
-        /// No.
-        /// </summary>
-        No,
+    /// <summary>
+    /// No.
+    /// </summary>
+    No,
 
-        /// <summary>
-        /// OK.
-        /// </summary>
-        OK,
+    /// <summary>
+    /// OK.
+    /// </summary>
+    OK,
 
-        /// <summary>
-        /// Cancel.
-        /// </summary>
-        Cancel,
-    }
+    /// <summary>
+    /// Cancel.
+    /// </summary>
+    Cancel,
 }

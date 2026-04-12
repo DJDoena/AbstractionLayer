@@ -1,28 +1,27 @@
-﻿namespace DoenaSoft.AbstractionLayer.UIServices
+﻿namespace DoenaSoft.AbstractionLayer.UIServices;
+
+/// <summary>
+/// The MessageBox icon.
+/// </summary>
+public enum MessageIcon
 {
     /// <summary>
-    /// The MessageBox icon.
+    /// Error.
     /// </summary>
-    public enum MessageIcon
-    {
-        /// <summary>
-        /// Error.
-        /// </summary>
-        Error,
+    Error,
 
-        /// <summary>
-        /// Warning.
-        /// </summary>
-        Warning,
+    /// <summary>
+    /// Warning.
+    /// </summary>
+    Warning,
 
-        /// <summary>
-        /// Information.
-        /// </summary>
-        Information,
+    /// <summary>
+    /// Information.
+    /// </summary>
+    Information,
 
-        /// <summary>
-        /// Question.
-        /// </summary>
-        Question,
-    }
+    /// <summary>
+    /// Question.
+    /// </summary>
+    Question,
 }
