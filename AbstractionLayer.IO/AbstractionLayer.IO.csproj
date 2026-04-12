@@ -10,7 +10,7 @@
 		<WarningsAsErrors>CS1591</WarningsAsErrors>
 		<DebugType>portable</DebugType>
 		<IncludeSymbols>true</IncludeSymbols>
-		<LangVersion>10.0</LangVersion>
+		<LangVersion>latest</LangVersion>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>AbstractionLayer.IO.snk</AssemblyOriginatorKeyFile>
 		<Title>DoenaSoft.AbstractionLayer.IO</Title>
