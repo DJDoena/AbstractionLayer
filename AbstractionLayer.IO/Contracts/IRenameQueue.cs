@@ -13,22 +13,24 @@ public interface IRenameQueue : IIOServiceItem
     void Initialize();
 
     /// <summary>
-    /// Resets the renaming queue.
+    /// Resets the renaming queue, clearing all pending rename operations.
     /// </summary>
     void Clear();
 
     /// <summary>
     /// Adds a file to the queue and ensures that the target file does not exist on disc nor is the target file name of a previous rename.
     /// </summary>
-    /// <param name="sourceFile">the source file</param>
-    /// <param name="targetFileName">the target file name</param>
+    /// <param name="sourceFile">The source file to be renamed.</param>
+    /// <param name="targetFileName">The target file name.</param>
     void Add(IFileInfo sourceFile
         , string targetFileName);
 
     /// <summary>
     /// Executes the actual renaming.
     /// </summary>
+    /// <param name="rollbackBehaviour">Specifies what to do when a rename operation fails.</param>
     /// <param name="progress">Optional progress reporter to track the rename operation.</param>
     /// <returns>The result of the rename operation.</returns>
-    IRenameResult Commit(IProgress<IRenameProgress> progress = null);
+    IRenameResult Commit(RenameRollbackBehaviour rollbackBehaviour = RenameRollbackBehaviour.Automatic
+        , IProgress<IRenameProgress> progress = null);
 }

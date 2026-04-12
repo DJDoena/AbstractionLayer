@@ -43,8 +43,15 @@ The project provides several interfaces that represent parts of the file system.
 ### Supporting Interfaces
 
 - **`ILogger`** - Logging abstraction used by implementations to record I/O operations.
-- **`IRenameQueue`** - Queue abstraction for managing file rename operations.
+- **`IRenameQueue`** - Queue abstraction for managing mass file rename operations with automatic rollback support. Supports progress reporting and configurable rollback behavior.
+- **`IRenameProgress`** - Progress information for rename queue operations (total, completed, current files, percent complete).
+- **`IRenameResult`** - Result information for rename operations including successful/failed files and rollback details.
+- **`IRenameResultDetail`** - Details of a single rename operation (source, target, error message).
 - **`IShortcut`** - Abstraction for creating and managing file shortcuts with description, target path, and working folder.
+
+### Enumerations
+
+- **`RenameRollbackBehaviour`** - Specifies rollback behavior when rename operations fail (Automatic, Manual, None).
 
 ## Usage
 

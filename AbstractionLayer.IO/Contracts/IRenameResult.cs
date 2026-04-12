@@ -36,4 +36,16 @@ public interface IRenameResult
     /// Gets a read-only list of any errors that occurred during rollback.
     /// </summary>
     IReadOnlyList<string> RollbackErrors { get; }
+
+    /// <summary>
+    /// Gets a read-only list of successfully renamed files (source -> target).
+    /// When RolledBack is true with Automatic behavior, this will be empty.
+    /// </summary>
+    IReadOnlyList<IRenameResultDetail> SuccessfulRenames { get; }
+
+    /// <summary>
+    /// Gets a read-only list of files that failed to rename (source -> target -> error).
+    /// When RolledBack is true with Automatic behavior, includes all attempted renames.
+    /// </summary>
+    IReadOnlyList<IRenameResultDetail> FailedRenames { get; }
 }
