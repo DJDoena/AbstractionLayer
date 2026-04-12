@@ -139,6 +139,105 @@ var fakeIO = new FakeIOServices();
 var processor = new DataProcessor(fakeIO);
 ```
 
+### Using RenameQueue with Progress Reporting and Rollback
+
+The `RenameQueue` class provides advanced mass rename operations with automatic rollback and progress reporting:
+
+```csharp
+using DoenaSoft.AbstractionLayer.IOServices;
+
+var io = new IOServices();
+
+// Create rename queue with optional logger
+var renameQueue = new RenameQueue(io, new ConsoleLogger());
+
+// Initialize and add files
+renameQueue.Initialize();
+renameQueue.Add("old1.txt", "new1.txt");
+renameQueue.Add("old2.txt", "new2.txt");
+renameQueue.Add("old3.txt", "new3.txt");
+
+// Create progress reporter
+var progress = new Progress<IRenameProgress>(p =>
+{
+    Console.WriteLine($"Renaming: {p.Completed}/{p.Total} ({p.PercentComplete:F1}%)");
+    if (p.CurrentSourceFile != null)
+    {
+        Console.WriteLine($"  {p.CurrentSourceFile} -> {p.CurrentTargetFile}");
+    }
+});
+
+// Commit with automatic rollback (default)
+var result = renameQueue.Commit(RenameRollbackBehaviour.Automatic, progress);
+
+if (result.Success)
+{
+    Console.WriteLine($"Successfully renamed {result.SuccessCount} files:");
+    foreach (var (source, target) in result.SuccessfulRenames)
+    {
+        Console.WriteLine($"  {source} -> {target}");
+    }
+}
+else
+{
+    Console.WriteLine($"Rename failed: {result.ErrorMessage}");
+
+    if (result.RolledBack)
+    {
+        Console.WriteLine($"All {result.RolledBackCount} completed renames were rolled back.");
+        Console.WriteLine("All files are in their original state.");
+    }
+
+    Console.WriteLine($"Failed files ({result.FailedRenames.Count}):");
+    foreach (var (source, target, error) in result.FailedRenames)
+    {
+        Console.WriteLine($"  {source} -> {target}: {error}");
+    }
+
+    if (result.RollbackErrors.Count > 0)
+    {
+        Console.WriteLine($"Rollback errors ({result.RollbackErrors.Count}):");
+        foreach (var error in result.RollbackErrors)
+        {
+            Console.WriteLine($"  {error}");
+        }
+    }
+}
+```
+
+#### Rollback Behaviors
+
+**Automatic (default):**
+- Automatically rolls back all completed renames if any operation fails
+- Returns a result with all attempted files in the `FailedRenames` list
+- `SuccessfulRenames` will be empty
+- Files return to their original state
+
+**Manual:**
+- Does NOT automatically rollback on failure
+- Returns partial results showing which files succeeded and which failed
+- Caller is responsible for handling the partial state
+- Useful when you want to keep successful renames even if some fail
+
+**None:**
+- Does NOT rollback on failure
+- Throws an exception instead of returning a result
+- Leaves files in whatever state they're in
+- Use for fail-fast scenarios
+
+```csharp
+// Example with Manual rollback
+var result = renameQueue.Commit(RenameRollbackBehaviour.Manual, progress);
+
+if (!result.Success)
+{
+    Console.WriteLine($"{result.SuccessCount} files renamed successfully before error");
+    Console.WriteLine($"{result.FailedRenames.Count} files failed");
+
+    // Optionally retry failed files or manually rollback successful ones
+}
+```
+
 ## Testing Benefits
 
 - **Production:** Use this package for real file system operations
