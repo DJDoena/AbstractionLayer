@@ -68,4 +68,10 @@ public interface IIOServices
     /// <param name="searchPattern">The search pattern</param>
     /// <returns>A <see cref="IFileSystemWatcher"/> based on the folder and the search pattern</returns>
     IFileSystemWatcher GetFileSystemWatcher(string folder, string searchPattern = "*.*");
+
+    /// <summary>
+    /// Creates a new <see cref="IRenameQueue"/> to perform mass renames of files.
+    /// </summary>
+    /// <returns>A new <see cref="IRenameQueue"/> instance</returns>
+    IRenameQueue CreateRenameQueue();
 }
