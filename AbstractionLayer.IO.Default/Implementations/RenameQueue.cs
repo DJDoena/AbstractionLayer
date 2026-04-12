@@ -1,6 +1,7 @@
 ﻿using DoenaSoft.AbstractionLayer.Implementations;
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using SIO = System.IO;
 
 namespace DoenaSoft.AbstractionLayer.IOServices;
@@ -10,11 +11,22 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// </summary>
 public sealed class RenameQueue : IOServiceItem, IRenameQueue
 {
+    private static readonly StringComparer _comparer;
+
     private readonly object _lock;
 
     private readonly ILogger _logger;
 
     private Dictionary<string, string> _renames;
+
+    static RenameQueue()
+    {
+        // Windows file systems are case-insensitive
+        // Linux/Unix file systems are case-sensitive
+        _comparer = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            ? StringComparer.OrdinalIgnoreCase
+            : StringComparer.Ordinal;
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="RenameQueue"/> class.
@@ -48,7 +60,7 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
             }
             else
             {
-                _renames = [];
+                _renames = new Dictionary<string, string>(_comparer);
             }
         }
     }
@@ -60,7 +72,7 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
     {
         lock (_lock)
         {
-            _renames = [];
+            _renames = new Dictionary<string, string>(_comparer);
         }
     }
 
@@ -125,7 +137,7 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
 
         targetFileName = this.IOServices.Path.GetFullPath(targetFileName);
 
-        if (sourceFileName == targetFileName)
+        if (_comparer.Equals(sourceFileName, targetFileName))
         {
             return;
         }
@@ -185,7 +197,7 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
                     {
                         sourceFile.MoveTo(targetFileName);
 
-                        var detail = new RenameResultDetail(targetFileName, sourceFileName);
+                        var detail = new RenameResultDetail(sourceFileName, targetFileName);
 
                         completedRenames.Push(detail);
 

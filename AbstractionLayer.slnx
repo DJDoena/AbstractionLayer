@@ -1,0 +1,26 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Tests/">
+    <Project Path="AbstractionLayer.IO.Default.Tests/AbstractionLayer.IO.Default.Tests.csproj" />
+  </Folder>
+  <Project Path="AbstractionLayer.IO.Default/AbstractionLayer.IO.Default.csproj" />
+  <Project Path="AbstractionLayer.IO/AbstractionLayer.IO.csproj" />
+  <Project Path="AbstractionLayer.UI/AbstractionLayer.UI.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+  <Project Path="AbstractionLayer.Web.Default/AbstractionLayer.Web.Default.csproj" />
+  <Project Path="AbstractionLayer.Web/AbstractionLayer.Web.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+  <Project Path="AbstractionLayer.WinForms/AbstractionLayer.WinForms.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="*|x86" Project="x86" />
+  </Project>
+  <Project Path="AbstractionLayer.WPF/AbstractionLayer.WPF.csproj" />
+</Solution>
