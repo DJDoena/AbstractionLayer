@@ -29,6 +29,6 @@ public interface IRenameQueue : IIOServiceItem
     /// Executes the actual renaming.
     /// </summary>
     /// <param name="progress">Optional progress reporter to track the rename operation.</param>
-    /// <returns>The number of files renamed.</returns>
-    int Commit(IProgress<IRenameProgress> progress = null);
+    /// <returns>The result of the rename operation.</returns>
+    IRenameResult Commit(IProgress<IRenameProgress> progress = null);
 }
