@@ -72,6 +72,7 @@ public interface IIOServices
     /// <summary>
     /// Creates a new <see cref="IRenameQueue"/> to perform mass renames of files.
     /// </summary>
+    /// <param name="logger">An optional logger to use for rename output</param>
     /// <returns>A new <see cref="IRenameQueue"/> instance</returns>
-    IRenameQueue CreateRenameQueue();
+    IRenameQueue CreateRenameQueue(ILogger logger = null);
 }
