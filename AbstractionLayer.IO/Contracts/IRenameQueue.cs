@@ -27,5 +27,5 @@ public interface IRenameQueue
     /// Executes the actual renaming.
     /// </summary>
     /// <returns>The number of files renamed.</returns>
-    ulong Commit();
+    int Commit();
 }
