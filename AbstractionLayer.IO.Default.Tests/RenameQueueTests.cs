@@ -436,7 +436,7 @@ public class RenameQueueTests
 
         var fullPath = _ioServices.Path.GetFullPath(targetFile);
         var attributes = _ioServices.Files[fullPath].Attributes;
-        Assert.IsTrue((attributes & System.IO.FileAttributes.Archive) == System.IO.FileAttributes.Archive, "Archive attribute should be set on renamed files");
+        Assert.AreEqual(System.IO.FileAttributes.Archive, attributes & System.IO.FileAttributes.Archive, "Archive attribute should be set on renamed files");
     }
 
     #endregion
@@ -444,21 +444,109 @@ public class RenameQueueTests
     #region Commit Tests - Progress Reporting
 
     [TestMethod]
-    public void Commit_ShouldAcceptProgressParameter()
+    public void Commit_ShouldReportProgress_ForSingleFile()
     {
-        // Progress<T> callbacks may not fire synchronously in test environments
-        // This test just verifies the parameter is accepted without errors
+        const string sourceFileName = @"C:\source.txt";
+        const string targetFileName = @"C:\target.txt";
+
+        var queue = new RenameQueue(_ioServices);
+        var sourceFile = this.CreateTestFile(sourceFileName);
+        var progressReports = new List<IRenameProgress>();
+        var progress = new SynchronousProgress<IRenameProgress>(progressReports.Add);
+
+        queue.Add(sourceFile, targetFileName);
+        var result = queue.Commit(RenameRollbackBehaviour.Automatic, progress);
+
+        Assert.IsTrue(result.Success, "Commit should succeed");
+        Assert.HasCount(2, progressReports, "Should report progress twice: before and after rename");
+
+        // Verify first progress report (before rename)
+        var beforeReport = progressReports[0];
+        Assert.AreEqual(1, beforeReport.Total, "Total count should be 1");
+        Assert.AreEqual(0, beforeReport.Completed, "Completed count should be 0 before rename");
+        Assert.AreEqual(sourceFileName, beforeReport.CurrentSourceFile, "Source file should match");
+        Assert.AreEqual(targetFileName, beforeReport.CurrentTargetFile, "Target file should match");
+
+        // Verify second progress report (after rename)
+        var afterReport = progressReports[1];
+        Assert.AreEqual(1, afterReport.Total, "Total count should be 1");
+        Assert.AreEqual(1, afterReport.Completed, "Completed count should be 1 after rename");
+        Assert.IsNull(afterReport.CurrentSourceFile, "Source file should be null after rename");
+        Assert.IsNull(afterReport.CurrentTargetFile, "Target file should be null after rename");
+    }
+
+    [TestMethod]
+    public void Commit_ShouldReportProgress_ForMultipleFiles_InInsertionOrder()
+    {
+        const string sourceFile1Name = @"C:\source1.txt";
+        const string sourceFile2Name = @"C:\source2.txt";
+        const string sourceFile3Name = @"C:\source3.txt";
+        const string targetFile1Name = @"C:\target1.txt";
+        const string targetFile2Name = @"C:\target2.txt";
+        const string targetFile3Name = @"C:\target3.txt";
+
+        var queue = new RenameQueue(_ioServices);
+        var sourceFile1 = this.CreateTestFile(sourceFile1Name);
+        var sourceFile2 = this.CreateTestFile(sourceFile2Name);
+        var sourceFile3 = this.CreateTestFile(sourceFile3Name);
+        var progressReports = new List<IRenameProgress>();
+        var progress = new SynchronousProgress<IRenameProgress>(progressReports.Add);
+
+        queue.Add(sourceFile1, targetFile1Name);
+        queue.Add(sourceFile2, targetFile2Name);
+        queue.Add(sourceFile3, targetFile3Name);
+        var result = queue.Commit(RenameRollbackBehaviour.Automatic, progress);
+
+        Assert.IsTrue(result.Success, "Commit should succeed");
+        Assert.HasCount(6, progressReports, "Should report progress 6 times: 2 per file (before and after)");
+
+        // Verify all reports have correct total count
+        foreach (var report in progressReports)
+        {
+            Assert.AreEqual(3, report.Total, "Total count should be 3 for all reports");
+        }
+
+        // Verify progress completion increments correctly
+        Assert.AreEqual(0, progressReports[0].Completed, "1st report: 0 completed (before file 1)");
+        Assert.AreEqual(1, progressReports[1].Completed, "2nd report: 1 completed (after file 1)");
+        Assert.AreEqual(1, progressReports[2].Completed, "3rd report: 1 completed (before file 2)");
+        Assert.AreEqual(2, progressReports[3].Completed, "4th report: 2 completed (after file 2)");
+        Assert.AreEqual(2, progressReports[4].Completed, "5th report: 2 completed (before file 3)");
+        Assert.AreEqual(3, progressReports[5].Completed, "6th report: 3 completed (after file 3)");
+
+        // Verify "before" reports have correct file names in insertion order
+        Assert.AreEqual(sourceFile1Name, progressReports[0].CurrentSourceFile, "1st before: source1");
+        Assert.AreEqual(targetFile1Name, progressReports[0].CurrentTargetFile, "1st before: target1");
+
+        Assert.AreEqual(sourceFile2Name, progressReports[2].CurrentSourceFile, "2nd before: source2");
+        Assert.AreEqual(targetFile2Name, progressReports[2].CurrentTargetFile, "2nd before: target2");
+
+        Assert.AreEqual(sourceFile3Name, progressReports[4].CurrentSourceFile, "3rd before: source3");
+        Assert.AreEqual(targetFile3Name, progressReports[4].CurrentTargetFile, "3rd before: target3");
+
+        // Verify "after" reports have null file names
+        Assert.IsNull(progressReports[1].CurrentSourceFile, "1st after: null source");
+        Assert.IsNull(progressReports[1].CurrentTargetFile, "1st after: null target");
+
+        Assert.IsNull(progressReports[3].CurrentSourceFile, "2nd after: null source");
+        Assert.IsNull(progressReports[3].CurrentTargetFile, "2nd after: null target");
+
+        Assert.IsNull(progressReports[5].CurrentSourceFile, "3rd after: null source");
+        Assert.IsNull(progressReports[5].CurrentTargetFile, "3rd after: null target");
+    }
+
+    [TestMethod]
+    public void Commit_ShouldNotReportProgress_WhenProgressIsNull()
+    {
         var queue = new RenameQueue(_ioServices);
         var sourceFile = this.CreateTestFile("source.txt");
         var targetFile = @"C:\target.txt";
-        var progressReports = new List<IRenameProgress>();
-        var progress = new Progress<IRenameProgress>(p => progressReports.Add(p));
 
         queue.Add(sourceFile, targetFile);
-        var result = queue.Commit(RenameRollbackBehaviour.Automatic, progress);
+        var result = queue.Commit(RenameRollbackBehaviour.Automatic, null);
 
-        Assert.IsTrue(result.Success, "Commit should succeed when progress parameter is provided");
-        Assert.AreEqual(1, result.SuccessCount, "Exactly 1 file should be successfully renamed");
+        Assert.IsTrue(result.Success, "Commit should succeed even when progress is null");
+        Assert.AreEqual(1, result.SuccessCount, "File should be renamed successfully");
     }
 
     #endregion
