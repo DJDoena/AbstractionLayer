@@ -17,7 +17,7 @@ namespace DoenaSoft.AbstractionLayer.UIServices
         /// <param name="buttons">The buttons to be shown</param>
         /// <param name="icon">The MessageBox icon</param>
         /// <returns>Which button was pressed</returns>
-        public Result ShowMessageBox(string text, string caption, MessageButtons buttons, MessageIcon icon)
+        public MessageResult ShowMessageBox(string text, string caption, MessageButtons buttons, MessageIcon icon)
         {
             var formsButtons = this.GetButtons(buttons);
 
@@ -277,25 +277,25 @@ namespace DoenaSoft.AbstractionLayer.UIServices
             }
         }
 
-        private Result GetResult(System.Windows.Forms.DialogResult result)
+        private MessageResult GetResult(System.Windows.Forms.DialogResult result)
         {
             switch (result)
             {
                 case System.Windows.Forms.DialogResult.Yes:
                     {
-                        return Result.Yes;
+                        return MessageResult.Yes;
                     }
                 case System.Windows.Forms.DialogResult.No:
                     {
-                        return Result.No;
+                        return MessageResult.No;
                     }
                 case System.Windows.Forms.DialogResult.OK:
                     {
-                        return Result.OK;
+                        return MessageResult.OK;
                     }
                 case System.Windows.Forms.DialogResult.Cancel:
                     {
-                        return Result.Cancel;
+                        return MessageResult.Cancel;
                     }
                 default:
                     {

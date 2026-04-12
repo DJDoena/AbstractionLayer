@@ -3,7 +3,7 @@
     /// <summary>
     /// The MessageBox result.
     /// </summary>
-    public enum Result
+    public enum MessageResult
     {
         /// <summary>
         /// Yes.

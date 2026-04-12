@@ -10,14 +10,9 @@ namespace DoenaSoft.AbstractionLayer.IOServices;
 /// Standard implementation of <see cref="IFolderInfo"/> for <see cref="SIO.DirectoryInfo"/>.
 /// </summary>
 [DebuggerDisplay("Name={Name}, FullName={FullName}")]
-internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, IComparable<IFolderInfo>, IComparable<FolderInfo>
+internal sealed class FolderInfo : IOServiceItem, IFolderInfo, IEquatable<FolderInfo>, IComparable<IFolderInfo>, IComparable<FolderInfo>
 {
     private readonly SIO.DirectoryInfo _actual;
-
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
 
     public FolderInfo(IIOServices ioServices
         , string path)
@@ -27,9 +22,8 @@ internal sealed class FolderInfo : IFolderInfo, IEquatable<FolderInfo>, ICompara
 
     internal FolderInfo(IIOServices ioServices
         , SIO.DirectoryInfo actual)
+        : base(ioServices)
     {
-        this.IOServices = ioServices;
-
         _actual = actual ?? throw new ArgumentNullException(nameof(actual));
     }
 

@@ -5,20 +5,14 @@ using SIO = System.IO;
 
 namespace DoenaSoft.AbstractionLayer.IOServices;
 
-internal sealed class Folder : IFolder
+internal sealed class Folder : IOServiceItem, IFolder
 {
     private readonly ILogger _logger;
 
-    /// <summary>
-    /// The master interface.
-    /// </summary>
-    public IIOServices IOServices { get; }
-
     public Folder(IIOServices ioServices
         , ILogger logger)
+        : base(ioServices)
     {
-        this.IOServices = ioServices;
-
         _logger = logger;
     }
 
