@@ -200,9 +200,9 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
                     }
                     catch (Exception ex)
                     {
-                        var errorMessage = $"Rename operation failed for '{sourceFileName}' to '{targetFileName}': {ex.Message}";
+                        var errorMessage = $"Error renaming '{sourceFileName}' to '{targetFileName}': {ex.Message}";
 
-                        _logger?.WriteLine($"Error renaming '{sourceFileName}' to '{targetFileName}': {ex.Message}");
+                        _logger?.WriteLine(errorMessage);
 
                         failedRenames.Add(new RenameResultDetail(sourceFileName, targetFileName, ex.Message));
 

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
-VisualStudioVersion = 18.4.11612.150 stable
+VisualStudioVersion = 18.4.11612.150
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AbstractionLayer.UI", "AbstractionLayer.UI\AbstractionLayer.UI.csproj", "{DB80B0A8-CCB6-4FA1-BFAA-B96F41F7B125}"
 EndProject
@@ -16,6 +16,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLayer.IO.Default", "AbstractionLayer.IO.Default\AbstractionLayer.IO.Default.csproj", "{19822C41-3BA5-E4B6-A0D6-F74DF9349DDF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLayer.Web.Default", "AbstractionLayer.Web.Default\AbstractionLayer.Web.Default.csproj", "{496276ED-0144-37F5-7D98-93D520BA8F6A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{275050D3-5DB5-4575-AEA0-82CC6D4A0E73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractionLayer.IO.Default.Tests", "AbstractionLayer.IO.Default.Tests\AbstractionLayer.IO.Default.Tests.csproj", "{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,9 +115,24 @@ Global
 		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|x64.Build.0 = Release|Any CPU
 		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|x86.ActiveCfg = Release|Any CPU
 		{496276ED-0144-37F5-7D98-93D520BA8F6A}.Release|x86.Build.0 = Release|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Debug|x64.Build.0 = Debug|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Debug|x86.Build.0 = Debug|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Release|x64.ActiveCfg = Release|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Release|x64.Build.0 = Release|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Release|x86.ActiveCfg = Release|Any CPU
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{811DEE6C-AAC1-DF9C-B8E5-CA6C0C65F4EA} = {275050D3-5DB5-4575-AEA0-82CC6D4A0E73}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E9B4FFA1-6951-432F-83FB-C6210C33F2C8}

@@ -5,7 +5,6 @@
 		<RootNamespace>DoenaSoft.AbstractionLayer</RootNamespace>
 		<OutputType>Library</OutputType>
 		<TargetFrameworks>net472;net8.0-windows;net10.0-windows</TargetFrameworks>
-		<Platforms>AnyCPU</Platforms>
 		<LangVersion>latest</LangVersion>
 		<UseWindowsForms>true</UseWindowsForms>
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
