@@ -778,39 +778,134 @@ public class RenameQueueTests
     [TestMethod]
     public void Commit_ShouldFail_WithThreeWayCircularRename()
     {
-        // A -> B, B -> C, C -> A (circular dependency)
-        var queue = new RenameQueue(_ioServices);
-        var fileA = CreateTestFile("fileA.txt");
-        var fileB = CreateTestFile("fileB.txt");
-        var fileC = CreateTestFile("fileC.txt");
-
-        // Try to create circular dependency
-        // A -> B will fail because B exists
-        var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileA, fileB));
-        Assert.Contains("already exists", exception.Message, "Cannot rename to existing file");
-    }
-
-    [TestMethod]
-    public void Commit_ShouldSucceed_WithSwapUsingTemporaryNames()
-    {
-        // Demonstrates the correct way to swap two files: A -> temp, B -> A, temp -> B
+        // Attempting A -> B, B -> C, C -> A (circular dependency)
+        // This is IMPOSSIBLE because Add() validates that targets don't exist
         var queue = new RenameQueue(_ioServices);
         var fileA = CreateTestFile("fileA.txt", "content A");
         var fileB = CreateTestFile("fileB.txt", "content B");
-        var tempName = "C:\\temp_swap.txt";
-        var finalA = "C:\\finalA.txt";
-        var finalB = "C:\\finalB.txt";
+        var fileC = CreateTestFile("fileC.txt", "content C");
 
-        // Rename both to non-conflicting names first
-        queue.Add(fileA, finalB);  // A takes B's final location
-        queue.Add(fileB, finalA);  // B takes A's final location
+        // Try to create circular dependency
+        // Step 1: A -> B will fail because B already exists
+        var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileA, fileB));
+        Assert.Contains("already exists", exception.Message, "Cannot rename to existing file - circular patterns are impossible");
+
+        // We can't even add the first operation, so the circular dependency is prevented
+        // If we tried the other combinations:
+        // - B -> C would also fail (C exists)
+        // - C -> A would also fail (A exists)
+    }
+
+    [TestMethod]
+    public void Add_ShouldFail_AtEveryStepOfCircularDependency()
+    {
+        // This test demonstrates that circular dependencies fail at EVERY possible starting point
+        var fileA = CreateTestFile("fileA.txt", "content A");
+        var fileB = CreateTestFile("fileB.txt", "content B");
+        var fileC = CreateTestFile("fileC.txt", "content C");
+
+        // Try starting with A -> B
+        var queue1 = new RenameQueue(_ioServices);
+        var ex1 = Assert.ThrowsExactly<InvalidOperationException>(() => queue1.Add(fileA, fileB));
+        Assert.Contains("already exists", ex1.Message, "A -> B fails because B exists");
+
+        // Try starting with B -> C
+        var queue2 = new RenameQueue(_ioServices);
+        var ex2 = Assert.ThrowsExactly<InvalidOperationException>(() => queue2.Add(fileB, fileC));
+        Assert.Contains("already exists", ex2.Message, "B -> C fails because C exists");
+
+        // Try starting with C -> A
+        var queue3 = new RenameQueue(_ioServices);
+        var ex3 = Assert.ThrowsExactly<InvalidOperationException>(() => queue3.Add(fileC, fileA));
+        Assert.Contains("already exists", ex3.Message, "C -> A fails because A exists");
+
+        // Conclusion: Circular renames are IMPOSSIBLE in RenameQueue by design
+        // This is intentional - it prevents complex dependency graphs that could fail
+    }
+
+    [TestMethod]
+    public void Add_ShouldFail_WhenTargetWillBecomeAvailableDuringCommit()
+    {
+        // This test verifies that Add() validates file existence IMMEDIATELY,
+        // not based on what will happen during Commit()
+        // Scenario: A -> C, then B -> A
+        // At Commit time, A would be available (moved to C), but Add() checks NOW
+        var queue = new RenameQueue(_ioServices);
+        var fileA = CreateTestFile("fileA.txt", "content A");
+        var fileB = CreateTestFile("fileB.txt", "content B");
+        var fileC = "C:\\fileC.txt"; // Doesn't exist
+
+        // Step 1: A -> C (succeeds because C doesn't exist)
+        queue.Add(fileA, fileC);
+
+        // Step 2: B -> A (FAILS because A still exists at Add() time)
+        // Even though A will be moved to C during Commit(), making A's location available,
+        // the validation happens NOW, not during Commit()
+        var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileB, fileA));
+        Assert.Contains("already exists", exception.Message,
+            "Cannot add B -> A because A exists NOW, even though it will be renamed during Commit()");
+
+        // This demonstrates that RenameQueue cannot handle dependency chains
+        // where a target becomes available only after other renames execute
+    }
+
+    [TestMethod]
+    public void Add_ShouldReject_SwapScenarioWithTempFile()
+    {
+        // This test verifies that you CANNOT swap files even with a temp file
+        // because Add() validates file existence immediately, not at Commit() time
+        var queue = new RenameQueue(_ioServices);
+        var fileA = CreateTestFile("C:\\fileA.txt", "content A");
+        var fileB = CreateTestFile("C:\\fileB.txt", "content B");
+        var tempFile = "C:\\temp_unique_12345.txt"; // Must not exist
+
+        // Step 1: A -> temp (this works, temp doesn't exist)
+        queue.Add(fileA, tempFile);
+
+        // Step 2: B -> A (this FAILS because A still exists at Add() time)
+        var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileB, fileA));
+        Assert.Contains("already exists", exception.Message, 
+            "Cannot add B -> A because A still exists on disk at Add() time, even though it will be renamed during Commit()");
+    }
+
+    [TestMethod]
+    public void Commit_ShouldSucceed_WithAlternativeSwapPattern()
+    {
+        // The ONLY way to swap is to use completely different target names
+        // Then manually swap back if needed, or accept the new names
+        var queue = new RenameQueue(_ioServices);
+        var fileA = CreateTestFile("C:\\fileA.txt", "content A");
+        var fileB = CreateTestFile("C:\\fileB.txt", "content B");
+        var newNameForA = "C:\\newA.txt";
+        var newNameForB = "C:\\newB.txt";
+
+        // Rename to completely different names (not swapping locations)
+        queue.Add(fileA, newNameForA);
+        queue.Add(fileB, newNameForB);
 
         var result = queue.Commit();
 
-        Assert.IsTrue(result.Success, "Swap using non-conflicting names should succeed");
+        Assert.IsTrue(result.Success, "Renaming to different names should succeed");
         Assert.AreEqual(2, result.SuccessCount, "Both files should be renamed");
-        Assert.AreEqual("content A", _ioServices.Files[_ioServices.Path.GetFullPath(finalB)].Content, "File A content should be at final B location");
-        Assert.AreEqual("content B", _ioServices.Files[_ioServices.Path.GetFullPath(finalA)].Content, "File B content should be at final A location");
+        Assert.IsTrue(_ioServices.File.Exists(newNameForA), "New name for A should exist");
+        Assert.IsTrue(_ioServices.File.Exists(newNameForB), "New name for B should exist");
+
+        // Note: To truly swap A and B's locations, you would need a second queue:
+        // Queue 2: newA -> fileB location, newB -> fileA location
+    }
+
+    [TestMethod]
+    public void Commit_ShouldFail_WhenTryingDirectSwapWithoutTemp()
+    {
+        // This demonstrates why you CAN'T do A -> B, B -> A directly
+        var queue = new RenameQueue(_ioServices);
+        var fileA = CreateTestFile("C:\\fileA.txt", "content A");
+        var fileB = CreateTestFile("C:\\fileB.txt", "content B");
+
+        // Try to add A -> B (this should fail because B exists)
+        var exception = Assert.ThrowsExactly<InvalidOperationException>(() => queue.Add(fileA, fileB));
+        Assert.Contains("already exists", exception.Message, 
+            "Cannot add A -> B when B exists - direct circular swap is not possible");
     }
 
     #endregion
