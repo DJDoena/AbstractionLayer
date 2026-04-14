@@ -53,5 +53,5 @@ public interface IShortcut
     /// <summary>
     /// Loads the Shortcut.
     /// </summary>
-    void Load();
+    void Load(string pathLink);
 }
