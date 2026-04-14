@@ -12,8 +12,8 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="6.0.4" />
-		<PackageReference Include="Microsoft.NET.Test.SDK" Version="17.11.1" />
+		<PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="6.0.5" />
+		<PackageReference Include="Microsoft.NET.Test.SDK" Version="18.4.0" />
 		<PackageReference Include="MSTest.TestAdapter" Version="4.2.1" />
 		<PackageReference Include="MSTest.TestFramework" Version="4.2.1" />
 	</ItemGroup>
