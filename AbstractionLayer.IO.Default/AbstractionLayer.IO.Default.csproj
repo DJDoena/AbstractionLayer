@@ -25,8 +25,8 @@
 		<Company>Doena Soft.</Company>
 		<Authors>DJ Doena</Authors>
 		<Copyright>2016 - 2026</Copyright>
-		<Version>2.0.3</Version>
-		<FileVersion>2.0.3</FileVersion>
+		<Version>2.0.4</Version>
+		<FileVersion>2.0.4</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -35,7 +35,7 @@
 	</ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="6.0.5" />
+      <PackageReference Include="DoenaSoft.AbstractionLayer.IO" Version="6.0.6" />
     </ItemGroup>
 
 </Project>
