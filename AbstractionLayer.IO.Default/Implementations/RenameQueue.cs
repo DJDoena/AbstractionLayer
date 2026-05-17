@@ -156,7 +156,7 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
 
             var targetFile = this.IOServices.GetFile(targetFileName);
 
-            _logger?.WriteLine($@"Adding '{sourceFile.FolderName}\{sourceFile.Name}' -> '{targetFile.Name}'");
+            _logger?.WriteLine($@"Adding '{sourceFile.FolderName}\{sourceFile.Name}' -> '{targetFile.Name}'", true);
 
             _renames.Add(targetFileName, sourceFileName);
         }
@@ -195,7 +195,7 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
                     // Report progress before rename
                     progress?.Report(new RenameProgress(count, index, sourceFileName, targetFileName));
 
-                    _logger?.WriteLine($@"Renaming '{sourceFile.FolderName}\{sourceFile.Name}' -> '{targetFile.Name}'");
+                    _logger?.WriteLine($@"Renaming '{sourceFile.FolderName}\{sourceFile.Name}' -> '{targetFile.Name}'", true);
 
                     try
                     {
