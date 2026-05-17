@@ -1,7 +1,7 @@
-﻿using DoenaSoft.AbstractionLayer.Implementations;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using DoenaSoft.AbstractionLayer.Implementations;
 using SIO = System.IO;
 
 namespace DoenaSoft.AbstractionLayer.IOServices;
@@ -154,6 +154,10 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
                 throw new InvalidOperationException($"Target file '{targetFileName}' of source file '{sourceFileName}' is already target of source file '{_renames[targetFileName]}'");
             }
 
+            var targetFile = this.IOServices.GetFile(targetFileName);
+
+            _logger?.WriteLine($@"Adding '{sourceFile.FolderName}\{sourceFile.Name}' -> '{targetFile.Name}'");
+
             _renames.Add(targetFileName, sourceFileName);
         }
     }
@@ -191,7 +195,7 @@ public sealed class RenameQueue : IOServiceItem, IRenameQueue
                     // Report progress before rename
                     progress?.Report(new RenameProgress(count, index, sourceFileName, targetFileName));
 
-                    _logger?.WriteLine($@"{sourceFile.FolderName}\{sourceFile.Name} -> {targetFile.Name}");
+                    _logger?.WriteLine($@"Renaming '{sourceFile.FolderName}\{sourceFile.Name}' -> '{targetFile.Name}'");
 
                     try
                     {
