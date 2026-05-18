@@ -27,6 +27,6 @@ public interface IInteraction
     /// Reads the next character or key pressed by the user.
     /// </summary>
     /// <param name="intercept">If true, the pressed key is not displayed in the output; if false, the pressed key is displayed.</param>
-    /// <returns>The character that was read.</returns>
-    char ReadKey(bool intercept = false);
+    /// <returns>A tuple containing the character that was read and the key modifiers.</returns>
+    (char key, KeyModifiers modifiers) ReadKey(bool intercept = false);
 }
